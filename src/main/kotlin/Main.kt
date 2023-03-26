@@ -1,9 +1,10 @@
-import Avalon.AvalonGame
+import teleimpromptu.TIPUSession
 import com.beust.klaxon.Klaxon
 import io.javalin.Javalin
 import io.javalin.websocket.WsContext
+import teleimpromptu.message.Message
 
-val games = mutableMapOf<String, AvalonGame>()
+val games = mutableMapOf<String, TIPUSession>()
 
 val WsContext.gameId: String get() = this.pathParam("game-id")
 
@@ -16,7 +17,7 @@ fun main() {
                 println("connection from ${ctx.session.remoteAddress}")
 
                 if (!games.containsKey(ctx.gameId)) {
-                    games[ctx.gameId] = AvalonGame(ctx.gameId)
+                    games[ctx.gameId] = TIPUSession(ctx.gameId)
                 }
             }
 

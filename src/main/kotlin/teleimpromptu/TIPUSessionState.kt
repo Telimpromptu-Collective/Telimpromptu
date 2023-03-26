@@ -1,10 +1,10 @@
-package Avalon
+package teleimpromptu
 
-import Message
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsMessageContext
+import teleimpromptu.message.Message
 
-interface AvalonState {
+interface TIPUSessionState {
     fun receiveMessage(ctx: WsMessageContext, message: Message)
     fun receiveDisconnect(ctx: WsCloseContext)
 }

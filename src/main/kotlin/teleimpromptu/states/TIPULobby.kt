@@ -1,17 +1,15 @@
-package Avalon
+package teleimpromptu.states
 
-import ConnectionSuccessMessage
-import CreateUserMessage
-import Message
-import UsernameStatus
-import UsernameUpdateMessage
 import com.beust.klaxon.Klaxon
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsMessageContext
+import teleimpromptu.TIPUSession
+import teleimpromptu.TIPUSessionState
+import teleimpromptu.message.*
 import java.util.concurrent.ConcurrentHashMap
 
-class AvalonLobby : AvalonState {
+class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
     private val usernameMap = ConcurrentHashMap<String, WsContext>()
 
     val players: List<Pair<String, WsContext>>
@@ -21,8 +19,11 @@ class AvalonLobby : AvalonState {
 
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
+            is StartGameMessage -> {
+                // tipuSession.setState()
+            }
             is CreateUserMessage -> {
-                // no double connections plz
+                // if a player connects with a preexisting session, remove their old one.
                 usernameMap.filter { entry ->
                     entry.value.session == ctx.session
                 }.forEach { entry ->

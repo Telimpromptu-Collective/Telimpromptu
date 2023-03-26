@@ -5,33 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b87aae0a-eebe-4c97-a12d-1ee9e8a6d88c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonGame.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonIngame.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonLobby.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonPlayer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/AvalonRoles.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Message.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/OutMessage.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUPlayer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSession.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonIngame.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonLobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonPlayer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSessionState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/AvalonRoles.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/OutMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +28,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,12 +52,21 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline/src"
+    "last_opened_file_path": "C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline/src/main/kotlin"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin" />
       <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\teleimpromptu\message" />
+      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\teleimpromptu" />
+      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\Avalon" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="teleimpromptu.states" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MainKt (1)">

@@ -1,3 +1,5 @@
+package teleimpromptu.message
+
 data class UsernameStatus(
     val username: String,
     val connected: Boolean
