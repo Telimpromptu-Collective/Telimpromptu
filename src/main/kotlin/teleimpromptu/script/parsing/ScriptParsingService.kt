@@ -1,4 +1,4 @@
-package teleimpromptu.scriptparsing
+package teleimpromptu.script.parsing
 
 import jsonDecoder
 import kotlinx.serialization.decodeFromString

@@ -4,7 +4,6 @@ import io.javalin.websocket.WsContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import teleimpromptu.message.Message
-import teleimpromptu.scriptparsing.ScriptParsingService
 
 val games = mutableMapOf<String, TIPUSession>()
 

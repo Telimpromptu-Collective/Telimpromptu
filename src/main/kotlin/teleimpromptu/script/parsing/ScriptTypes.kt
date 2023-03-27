@@ -1,4 +1,4 @@
-package teleimpromptu.scriptparsing
+package teleimpromptu.script.parsing
 
 import kotlinx.serialization.Serializable
 import teleimpromptu.TIPURole
