@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
     application
 }
 
@@ -16,7 +17,7 @@ dependencies {
     implementation("io.javalin:javalin:5.4.2")
     implementation("org.slf4j:slf4j-simple:2.0.7")
 
-    implementation("com.beust:klaxon:5.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("com.j2html:j2html:1.6.0")
 }
 

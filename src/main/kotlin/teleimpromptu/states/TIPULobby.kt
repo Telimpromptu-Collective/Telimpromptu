@@ -1,9 +1,10 @@
 package teleimpromptu.states
 
-import com.beust.klaxon.Klaxon
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsMessageContext
+import jsonDecoder
+import kotlinx.serialization.encodeToString
 import teleimpromptu.TIPUSession
 import teleimpromptu.TIPUSessionState
 import teleimpromptu.message.*
@@ -34,7 +35,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 usernameMap[message.username]?.session?.close()
 
                 usernameMap[message.username] = ctx
-                ctx.send(Klaxon().toJsonString(ConnectionSuccessMessage()))
+                ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage()))
 
                 updateUserStatuses()
             }
@@ -59,7 +60,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
             }
         )
 
-        val json = Klaxon().toJsonString(updateMessage)
+        val json = jsonDecoder.encodeToString(updateMessage)
 
         usernameMap.values.forEach { ws ->
             ws.send(json)

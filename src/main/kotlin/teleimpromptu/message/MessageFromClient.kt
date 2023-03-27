@@ -1,20 +1,33 @@
 package teleimpromptu.message
 
-import com.beust.klaxon.TypeAdapter
-import com.beust.klaxon.TypeFor
-import kotlin.reflect.KClass
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.Polymorphic
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.*
 
-@TypeFor(field = "type", adapter = MessageTypeAdapter::class)
-open class Message(val type: String)
-data class CreateUserMessage(val username: String): Message("createUser")
+@Polymorphic
+@Serializable(with = MessageSerializer::class)
+open class Message
+
+@Serializable
+data class CreateUserMessage(val type: String, val username: String): Message()
+
+@Serializable
 data class StartGameMessage(
+    val type: String,
     val minionCount: Int
-): Message("startGame")
+): Message()
 
-class MessageTypeAdapter: TypeAdapter<Message> {
-    override fun classFor(type: Any): KClass<out Message> = when(type as String) {
-        "createUser" -> CreateUserMessage::class
-        "startGame" -> StartGameMessage::class
-        else -> throw IllegalArgumentException("Unknown type: $type")
+
+object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::class) {
+    override fun selectDeserializer(
+        element: JsonElement
+    ): DeserializationStrategy<out Message> {
+        return when (val type = element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
+            "createUser" -> CreateUserMessage.serializer()
+            "startGame" -> StartGameMessage.serializer()
+            else -> error("unknown message type $type")
+        }
     }
 }

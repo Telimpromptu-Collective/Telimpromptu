@@ -1,6 +1,5 @@
 package teleimpromptu.states
 
-import com.beust.klaxon.Klaxon
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsMessageContext
 import teleimpromptu.TIPUPlayer

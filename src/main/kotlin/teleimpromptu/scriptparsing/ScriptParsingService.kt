@@ -1,10 +1,12 @@
 package teleimpromptu.scriptparsing
 
-import com.beust.klaxon.Klaxon
-import java.io.File
+import jsonDecoder
+import kotlinx.serialization.decodeFromString
 
 object ScriptParsingService
 {
-    val sections: List<ScriptSection> =
-        Klaxon().parseArray(this::class.java.classLoader.getResource("script/test.json")!!.readText())!!
+    // dont look its horrible...
+    val sections: List<ScriptSection> = jsonDecoder.decodeFromString(
+        this::class.java.classLoader.getResource("script/test.json")!!
+            .readText())!!
 }
