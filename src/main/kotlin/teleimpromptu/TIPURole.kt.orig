@@ -1,5 +1,9 @@
 package teleimpromptu
 
 enum class TIPURole {
+<<<<<<< HEAD
+    HOST, COHOST, GUEST_EXPERT
+=======
     HOST, COHOST, GUESTEXPERT, DETECTIVE, FIELDREPORTER, WITNESS, COMMENTATOR
+>>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
 }

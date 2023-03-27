@@ -1,0 +1,86 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0e1844;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100vh;
+}
+
+.teleprompter-drawing {
+    margin-top: 100px;
+    max-width: 600px;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+#scrolling-text {
+    background-color: black;
+    overflow: auto;
+}
+
+/* Center the content horizontally */
+.content {
+    margin-top: 100px;
+    max-width: 600px;
+    text-align: center;
+    color: white;
+    background-color: #090e23;
+    padding: 30px;
+}
+
+
+.pulse-animation {
+    display: inline-block;
+    animation: pulse 1s infinite;
+}
+
+
+
+@keyframes pulse {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+#scroll-container {
+    border: 3px solid black;
+    border-radius: 5px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#scroll-text {
+    height: 100%;
+    text-align: center;
+
+    font-size: 10vh;
+
+    position: relative;
+
+    -moz-animation: my-animation 120s linear forwards;
+    -webkit-animation: my-animation 120s linear forwards;
+    animation: my-animation 120s linear forwards;
+}
+
+@keyframes my-animation {
+    from {
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+    to {
+        -moz-transform: translateY(-8000px);
+        -webkit-transform: translateY(-8000px);
+        transform: translateY(-8000px);
+    }
+}

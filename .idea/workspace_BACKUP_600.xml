@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b87aae0a-eebe-4c97-a12d-1ee9e8a6d88c" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
@@ -16,6 +17,19 @@
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/todo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" afterDir="false" />
+>>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

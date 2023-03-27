@@ -25,8 +25,13 @@ tasks.test {
     useJUnitPlatform()
 }
 
+<<<<<<< HEAD
 kotlin {
     jvmToolchain(18)
+=======
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+>>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
 }
 
 
