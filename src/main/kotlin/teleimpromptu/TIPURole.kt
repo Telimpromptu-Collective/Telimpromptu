@@ -1,5 +1,5 @@
 package teleimpromptu
 
 enum class TIPURole {
-    HOST, COHOST, GUESTEXPERT
+    HOST, COHOST, GUEST_EXPERT
 }

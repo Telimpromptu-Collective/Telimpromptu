@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b87aae0a-eebe-4c97-a12d-1ee9e8a6d88c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUPlayer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptParsingService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptTypes.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSession.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonIngame.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonLobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonPlayer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Avalon/AvalonState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSessionState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/AvalonRoles.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/OutMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +48,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline/src/main/kotlin"
+    "last_opened_file_path": "C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline/src/main/kotlin",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -69,24 +68,16 @@
       <recent name="teleimpromptu.states" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt (1)">
-    <configuration name="MainKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="FunGamesWithFriendsOnline.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainKt" />
-      <module name="FunGamesWithFriendsOnline" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt (1)" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -101,5 +92,21 @@
       <updated>1679737655792</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beust/klaxon/5.5/d5e430c7122e16bb891dc94c30ff786086d3224a/klaxon-5.5-sources.jar!/com/beust/klaxon/Lexer.kt</url>
+          <line>193</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

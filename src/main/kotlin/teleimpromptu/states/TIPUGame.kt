@@ -18,7 +18,7 @@ class TIPUGame(private val players: List<TIPUPlayer>, private val tipuSession: T
                 // tipuSession.setState()
             }
             is CreateUserMessage -> {
-                // if a player connects with a preexisting session, remove their old one.
+                /*// if a player connects with a preexisting session, remove their old one.
                 usernameMap.filter { entry ->
                     entry.value.session == ctx.session
                 }.forEach { entry ->
@@ -31,7 +31,7 @@ class TIPUGame(private val players: List<TIPUPlayer>, private val tipuSession: T
                 usernameMap[message.username] = ctx
                 ctx.send(Klaxon().toJsonString(ConnectionSuccessMessage()))
 
-                updateUserStatuses()
+                updateUserStatuses()*/
             }
             else -> println("fail")
         }

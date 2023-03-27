@@ -1,0 +1,15 @@
+[
+  {
+    "tags": ["INTRODUCTION"],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "good evening everyone... today will be epic! {!test_prompt1}"
+      }
+    ],
+    "prompts": {
+      "id": "test_prompt1",
+      "description": "what the guy says to the other guy"
+    }
+  }
+]
