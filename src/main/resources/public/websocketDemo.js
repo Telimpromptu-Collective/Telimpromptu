@@ -6,13 +6,6 @@ let ws = null;
 let username = null;
 let playerCount = 0;
 
-
-function updateGoodGuyCount() {
-    id("goodGuyCount").value = playerCount - id("merlinCount").value - id("asssassinCount").value - id("minioninCount").value
-}
-
-id("minioninCount").addEventListener('change', updateGoodGuyCount);
-
 // Add event listeners to button and input field
 id("connect").addEventListener("click", function () {
     ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value);
@@ -38,7 +31,6 @@ id("connect").addEventListener("click", function () {
                 ).join("");
 
                 playerCount = data.statuses.length;
-                updateGoodGuyCount()
                 break;
 
             case "connectionSuccess":
