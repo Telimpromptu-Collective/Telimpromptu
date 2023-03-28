@@ -45,7 +45,7 @@ object ScriptBuilderService {
         return newRolesFromSection.filter { !preexisingRoles.contains(it) }
     }
 
-    private fun getRolesInScript(scriptSoFar: List<ScriptSection>): List<TIPURole> {
-        return scriptSoFar.flatMap { it.getSpeakingRoles() }.distinct()
+    fun getRolesInScript(script: List<ScriptSection>): List<TIPURole> {
+        return script.flatMap { it.getSpeakingRoles() }.distinct()
     }
 }

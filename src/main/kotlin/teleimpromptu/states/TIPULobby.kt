@@ -5,23 +5,33 @@ import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsMessageContext
 import jsonDecoder
 import kotlinx.serialization.encodeToString
+import teleimpromptu.TIPUPlayer
 import teleimpromptu.TIPUSession
 import teleimpromptu.TIPUSessionState
 import teleimpromptu.message.*
+import teleimpromptu.script.building.ScriptBuilderService
 import java.util.concurrent.ConcurrentHashMap
 
 class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
     private val usernameMap = ConcurrentHashMap<String, WsContext>()
 
-    val players: List<Pair<String, WsContext>>
-        get() {
-            return usernameMap.entries.map { Pair(it.key, it.value) }
-        }
-
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is StartGameMessage -> {
-                // tipuSession.setState()
+                val script = ScriptBuilderService.buildScriptForPlayerCount(usernameMap.size)
+                val roles = ScriptBuilderService.getRolesInScript(script)
+
+                // randomly assign roles
+                tipuSession.setState(
+                    TIPUGame(
+                        (usernameMap.entries.shuffled() zip roles)
+                            .map { TIPUPlayer(it.first.key, it.second, it.first.value) },
+                        script,
+                        tipuSession
+                    )
+                )
+
+
             }
             is CreateUserMessage -> {
                 // if a player connects with a preexisting session, remove their old one.

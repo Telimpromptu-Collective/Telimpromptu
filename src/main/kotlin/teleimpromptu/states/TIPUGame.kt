@@ -9,8 +9,15 @@ import teleimpromptu.message.ConnectionSuccessMessage
 import teleimpromptu.message.CreateUserMessage
 import teleimpromptu.message.Message
 import teleimpromptu.message.StartGameMessage
+import teleimpromptu.script.parsing.ScriptSection
 
-class TIPUGame(private val players: List<TIPUPlayer>, private val tipuSession: TIPUSession): TIPUSessionState {
+class TIPUGame(private val players: List<TIPUPlayer>,
+               private val script: List<ScriptSection>,
+               private val tipuSession: TIPUSession): TIPUSessionState {
+
+    init {
+
+    }
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is StartGameMessage -> {
