@@ -32,6 +32,20 @@
     "tags": ["SEGMENT"],
     "lines": [
       {
+        "speaker": "DETECTIVE",
+        "text": "COMBO!!! 1..."
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "COMBO!!! 2..."
+      }
+    ],
+    "prompts": []
+  },
+  {
+    "tags": ["SEGMENT"],
+    "lines": [
+      {
         "speaker": "FIELDREPORTER",
         "text": "im FIELDREPORTER..."
       }

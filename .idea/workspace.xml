@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
