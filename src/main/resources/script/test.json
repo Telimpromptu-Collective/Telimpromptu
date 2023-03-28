@@ -5,6 +5,59 @@
       {
         "speaker": "HOST",
         "text": "good evening everyone... today will be epic! {!test_prompt1}"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "good evening everyone... today will be epic im the cohost! {!test_prompt1}"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "test_prompt1",
+        "description": "what the guy says to the other guy"
+      }
+    ]
+  },
+  {
+    "tags": ["SEGMENT"],
+    "lines": [
+      {
+        "speaker": "DETECTIVE",
+        "text": "im detective..."
+      }
+    ],
+    "prompts": []
+  },
+  {
+    "tags": ["SEGMENT"],
+    "lines": [
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "im FIELDREPORTER..."
+      }
+    ],
+    "prompts": []
+  },
+  {
+    "tags": ["SEGMENT"],
+    "lines": [
+      {
+        "speaker": "WITNESS",
+        "text": "im WITNESS..."
+      }
+    ],
+    "prompts": []
+  },
+  {
+    "tags": ["CLOSING"],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "thats all folks"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "thats all folks"
       }
     ],
     "prompts": [

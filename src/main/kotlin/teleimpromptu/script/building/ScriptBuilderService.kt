@@ -13,22 +13,23 @@ object ScriptBuilderService {
         do {
             // protect against infinite looping here
             script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.SEGMENT, script).random())
-        } while (getRolesInScript(script).size >= playerCount)
+        } while (getRolesInScript(script).size < playerCount)
 
         if (getRolesInScript(script).size > playerCount) {
             error("Something has gone horribly wrong.... Script was generated with too many roles.")
         }
 
-        script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.CLOSING, script).random())
+        script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.CLOSING, script, true).random())
 
         return script
     }
 
     private fun getAvailableSectionsForRoles(playerCount: Int,
                                              filterByTag: SegmentTag,
-                                             scriptSoFar: List<ScriptSection>): List<ScriptSection> {
+                                             scriptSoFar: List<ScriptSection>,
+                                             canAddNothing: Boolean = false): List<ScriptSection> {
         val rolesInScript = getRolesInScript(scriptSoFar)
-        return ScriptParsingService.sections
+        val s = ScriptParsingService.sections
             // if it is the type we are looking for
             .filter { it.tags.contains(filterByTag) }
 
@@ -36,9 +37,10 @@ object ScriptBuilderService {
             // AND the new roles it would add to the script would still be less than our player count
             .filter {
                 val newRoleCount = getNewRoles(it.getSpeakingRoles(), rolesInScript).size
-                return@filter newRoleCount > 1 &&
+                return@filter (newRoleCount > 0 || canAddNothing) &&
                         newRoleCount + rolesInScript.size <= playerCount
             }
+        return s
     }
 
     private fun getNewRoles(newRolesFromSection: List<TIPURole>, preexisingRoles: List<TIPURole>): List<TIPURole> {
