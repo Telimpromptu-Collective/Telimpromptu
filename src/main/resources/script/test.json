@@ -76,7 +76,7 @@
     ],
     "prompts": [
       {
-        "id": "test_prompt1",
+        "id": "test_prompt2",
         "description": "what the guy says to the other guy"
       }
     ]
