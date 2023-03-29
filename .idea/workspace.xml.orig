@@ -4,32 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87aae0a-eebe-4c97-a12d-1ee9e8a6d88c" name="Changes" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+    <list default="true" id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptParsingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptParsingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/scriptparsing/ScriptTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
+<<<<<<< HEAD
 =======
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/todo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
+>>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/main.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" afterDir="false" />
->>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/main.js" afterDir="false" />
+>>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +38,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="FunGamesWithFriendsOnline" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FunGamesWithFriendsOnline" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FunGamesWithFriendsOnline" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -71,43 +79,48 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2NV7zFrPv8ETBg9IO1zzwCnHyE0" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2Naby5W1Bd5ryj5FKxOLx19gr2R" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-<<<<<<< HEAD
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline/src/main/kotlin",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-=======
-    "last_opened_file_path": "C:/Users/alebu/Desktop/BloomTech/Unit5/telimpromptu-revised",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
->>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/small-brylan/Desktop/littlecoderman/telimpromptu-2.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin" />
-      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\teleimpromptu\message" />
-      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\teleimpromptu" />
-      <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\kotlin\Avalon" />
-    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="teleimpromptu.states" />
+      <recent name="teleimpromptu.allocating" />
     </key>
   </component>
-<<<<<<< HEAD
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.ScriptTestingKt">
+    <configuration name="FunGamesWithFriendsOnline [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="FunGamesWithFriendsOnline.main" />
@@ -115,22 +128,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ScriptTestingKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="manualtesting.ScriptTestingKt" />
+      <module name="FunGamesWithFriendsOnline.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.ScriptTestingKt" />
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Gradle.FunGamesWithFriendsOnline [clean]" />
       </list>
     </recent_temporary>
   </component>
-=======
->>>>>>> 8849e50db936cfd7aacde2f6d2cdae22024d3ef4
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b87aae0a-eebe-4c97-a12d-1ee9e8a6d88c" name="Changes" comment="" />
-      <created>1679737655792</created>
+      <changelist id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="" />
+      <created>1679905392829</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1679737655792</updated>
+      <updated>1679905392829</updated>
     </task>
     <servers />
   </component>
@@ -138,10 +158,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beust/klaxon/5.5/d5e430c7122e16bb891dc94c30ff786086d3224a/klaxon-5.5-sources.jar!/com/beust/klaxon/Lexer.kt</url>
-          <line>193</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
+<<<<<<< HEAD
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt</url>
+          <line>34</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+=======
+>>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc
       </breakpoints>
     </breakpoint-manager>
   </component>

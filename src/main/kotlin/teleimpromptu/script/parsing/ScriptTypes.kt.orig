@@ -39,6 +39,7 @@ sealed interface ScriptPrompt
 @Serializable
 class SinglePrompt(
     val id: String,
+<<<<<<< HEAD
     val description: String
 ): ScriptPrompt
 
@@ -61,3 +62,8 @@ object PromptSerializer : JsonContentPolymorphicSerializer<ScriptPrompt>(ScriptP
         }
     }
 }
+=======
+    val description: String,
+    //val dependency: String?
+)
+>>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc

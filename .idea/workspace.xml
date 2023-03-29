@@ -7,11 +7,15 @@
     <list default="true" id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +92,7 @@
       <recent name="teleimpromptu.allocating" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Kotlin.ScriptTestingKt">
     <configuration name="FunGamesWithFriendsOnline [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -126,9 +130,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.ScriptTestingKt" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.FunGamesWithFriendsOnline [clean]" />
-        <item itemvalue="Kotlin.ScriptTestingKt" />
       </list>
     </recent_temporary>
   </component>
@@ -151,11 +155,14 @@
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+<<<<<<< HEAD
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt</url>
           <line>34</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+=======
+>>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc
       </breakpoints>
     </breakpoint-manager>
   </component>
