@@ -18,6 +18,11 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is StartGameMessage -> {
+                if (usernameMap.size < 3) {
+                    ctx.send(jsonDecoder.encodeToString(ErrorMessage("You need at least 3 players to start a game!")))
+                    return
+                }
+
                 val script = ScriptBuilderService.buildScriptForPlayerCount(usernameMap.size)
                 val roles = ScriptBuilderService.getRolesInScript(script)
 
@@ -31,7 +36,11 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                     )
                 )
 
+                val json = jsonDecoder.encodeToString(GameStartedMessage())
 
+                usernameMap.values.forEach { ws ->
+                    ws.send(json)
+                }
             }
             is CreateUserMessage -> {
                 // if a player connects with a preexisting session, remove their old one.

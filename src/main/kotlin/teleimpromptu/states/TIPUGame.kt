@@ -2,13 +2,12 @@ package teleimpromptu.states
 
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsMessageContext
+import jsonDecoder
+import kotlinx.serialization.encodeToString
 import teleimpromptu.TIPUPlayer
 import teleimpromptu.TIPUSession
 import teleimpromptu.TIPUSessionState
-import teleimpromptu.message.ConnectionSuccessMessage
-import teleimpromptu.message.CreateUserMessage
-import teleimpromptu.message.Message
-import teleimpromptu.message.StartGameMessage
+import teleimpromptu.message.*
 import teleimpromptu.script.parsing.ScriptSection
 
 class TIPUGame(private val players: List<TIPUPlayer>,
@@ -16,7 +15,11 @@ class TIPUGame(private val players: List<TIPUPlayer>,
                private val tipuSession: TIPUSession): TIPUSessionState {
 
     init {
+        val json = jsonDecoder.encodeToString(NewPromptsMessage(script.flatMap { it.prompts }))
 
+        players.forEach { player ->
+            player.connection.send(json)
+        }
     }
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {

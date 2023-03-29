@@ -9,6 +9,10 @@ body {
     height: 100vh;
 }
 
+#errorText {
+  color: red;
+}
+
 .teleprompter-drawing {
     margin-top: 100px;
     max-width: 600px;
@@ -20,6 +24,21 @@ body {
 #scrolling-text {
     background-color: black;
     overflow: auto;
+}
+
+#promptList {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}
+
+.submit-prompt {
+  font-size: 1.5em;
+  padding: 10px 20px;
+}
+
+.prompt-textarea {
+  min-width: 50vw;
 }
 
 /* Center the content horizontally */

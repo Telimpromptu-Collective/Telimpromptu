@@ -10,13 +10,13 @@ import kotlinx.serialization.json.*
 @Serializable(with = MessageSerializer::class)
 open class Message
 
+// todo maybe figure out how to not have to include type here it isnt needed
 @Serializable
 data class CreateUserMessage(val type: String, val username: String): Message()
 
 @Serializable
 data class StartGameMessage(
-    val type: String,
-    val minionCount: Int
+    val type: String
 ): Message()
 
 

@@ -7,30 +7,39 @@
 </head>
 
 <body>
-<div class="content">
-    <h1>Telimpromptu</h1>
+    <div class="content">
+        <h1>Telimpromptu</h1>
+        <p id="errorText" hidden>There was an error!</p>
 
-    <div id="connectionForm">
-        <input id="username" placeholder="username">
-        <br>
-        <input id="lobbyid" placeholder="lobby id">
-        <br>
-        <button id="connect">Connect</button>
+        <div id="connectionForm">
+            <input id="username" placeholder="username">
+            <br>
+            <input id="lobbyid" placeholder="lobby id">
+            <br>
+            <button id="connect">Connect</button>
+        </div>
+
+        <div id="inLobby" hidden>
+            <table>
+                <th>connected users</th>
+                <td>
+                    <ul id="userlist">
+                        <!-- Built by JS -->
+                    </ul>
+                </td>
+            </table>
+
+            <button id="startGame">Start Game</button>
+        </div>
+
+        <div id="inGame" hidden>
+            <p>Prompts</p>
+            <div id="promptList">
+                <!-- Built by JS -->
+            </div>
+        </div>
     </div>
-
-    <div id="inLobby" hidden>
-        <table>
-            <th>connected users</th>
-            <td>
-                <ul id="userlist">
-                    <!-- Built by JS -->
-                </ul>
-            </td>
-        </table>
-
-        <button id="startGame">Start Game</button>
-    </div>
-        <script src="websocketDemo.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

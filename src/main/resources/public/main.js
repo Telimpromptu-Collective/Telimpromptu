@@ -20,9 +20,17 @@ id("connect").addEventListener("click", function () {
     }
 
     ws.onmessage = function (msg) {
+        // just so the error text dissapears something happens
+        id("errorText").hidden = true;
+
         let data = JSON.parse(msg.data);
         console.log(data);
         switch (data.type) {
+            case "error":
+                id("errorText").hidden = false;
+                id("errorText").innerHTML = data.message;
+                break;
+
             case "usernameUpdate":
                 id("userlist").innerHTML = data.statuses.map(status =>
                     "<li>" +
@@ -37,8 +45,28 @@ id("connect").addEventListener("click", function () {
                 id("connectionForm").hidden = true;
                 id("inLobby").hidden = false;
                 break;
+
+            case "gameStarted":
+                id("connectionForm").hidden = true;
+                id("inLobby").hidden = true;
+                id("inGame").hidden = false;
+                break;
+
+            case "newPrompts":
+                id("promptList").innerHTML += data.prompts.map(prompt  =>
+                    '<div id="prompt-' + prompt.id + '">' +
+                    '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
+                    '    <br>' +
+                    '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea" rows="5"></textarea>' +
+                    '    <br>' +
+                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit"">Submit</button>' +
+                    '    <br>' +
+                    '</div>' +
+                    '<br>'
+                ).join("");
+                break
+            }
         }
-    }
 
     ws.onclose = () => console.log("WebSocket connection closed");
 });
