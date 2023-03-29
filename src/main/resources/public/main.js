@@ -64,7 +64,20 @@ id("connect").addEventListener("click", function () {
                     '</div>' +
                     '<br>'
                 ).join("");
-                break
+
+                data.prompts.forEach(prompt =>
+                    // this might leak on some browsers... maybe i should unbind but who cares LOL
+                    id('prompt-' + prompt.id + '-submit').addEventListener("click", function () {
+                        var msg = {
+                            type: "promptResponse",
+                            response: id('prompt-' + prompt.id + '-textarea').value
+                            id: prompt.id
+                        };
+                        ws.send(JSON.stringify(msg));
+                        id('prompt-' + prompt.id).remove();
+                    })
+                );
+                break;
             }
         }
 

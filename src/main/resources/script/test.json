@@ -78,6 +78,19 @@
       {
         "id": "test_prompt2",
         "description": "what the guy says to the other guy"
+      },
+      {
+        "groupId": "questionsgroup",
+        "subPrompts": [
+          {
+            "id": "question1",
+            "description": "question one"
+          },
+          {
+            "id": "question2",
+            "description": "question2"
+          }
+        ]
       }
     ]
   }

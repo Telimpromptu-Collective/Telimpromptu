@@ -19,6 +19,14 @@ data class StartGameMessage(
     val type: String
 ): Message()
 
+@Serializable
+data class PromptResponseMessage(
+    val type: String,
+    val response: String,
+    val id: String
+): Message()
+
+
 
 object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::class) {
     override fun selectDeserializer(
@@ -27,6 +35,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
         return when (val type = element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
             "createUser" -> CreateUserMessage.serializer()
             "startGame" -> StartGameMessage.serializer()
+            "promptResponse" -> PromptResponseMessage.serializer()
             else -> error("unknown message type $type")
         }
     }

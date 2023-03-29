@@ -1,5 +1,6 @@
 package teleimpromptu.script.allocating
 
 import teleimpromptu.TIPURole
+import teleimpromptu.script.parsing.ScriptPrompt
 
-class DetailedScriptPrompt (val id: String, val description: String, val speakers: MutableList<TIPURole>)
+class DetailedScriptPrompt (scriptPrompt: ScriptPrompt, val speakers: MutableList<TIPURole>)
