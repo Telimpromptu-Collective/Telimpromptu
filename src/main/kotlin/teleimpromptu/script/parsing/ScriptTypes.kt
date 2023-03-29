@@ -5,11 +5,7 @@ import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 import teleimpromptu.TIPURole
-import teleimpromptu.message.CreateUserMessage
-import teleimpromptu.message.Message
-import teleimpromptu.message.MessageSerializer
-import teleimpromptu.message.PromptResponseMessage
-import teleimpromptu.message.StartGameMessage
+import teleimpromptu.script.allocating.Prompt
 
 enum class SegmentTag {
     INTRODUCTION, MAIN_STORY, SEGMENT, CLOSING
@@ -32,21 +28,22 @@ class ScriptLine(
     val text: String
 )
 
+// scriptprompts are prompts from scripts, prompts are any type of prompt (including adlib prompt)
 @Polymorphic
 @Serializable(with = PromptSerializer::class)
-sealed interface ScriptPrompt
+sealed class ScriptPrompt: Prompt()
 
 @Serializable
 class SinglePrompt(
     val id: String,
     val description: String
-): ScriptPrompt
+): ScriptPrompt()
 
 @Serializable
 class PromptGroup(
     val groupId: String,
-    val subPrompts: SinglePrompt
-): ScriptPrompt
+    val subPrompts: List<SinglePrompt>
+): ScriptPrompt()
 
 object PromptSerializer : JsonContentPolymorphicSerializer<ScriptPrompt>(ScriptPrompt::class) {
     override fun selectDeserializer(

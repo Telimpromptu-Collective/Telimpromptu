@@ -7,23 +7,37 @@ import teleimpromptu.script.parsing.*
 class PromptAllocator(private val players: List<TIPUPlayer>,
                       private val script: List<ScriptSection>) {
 
-    private val remainingPrompts: MutableList<DetailedScriptPrompt> = buildDetailedScriptPrompts()
+    private val prompt: MutableList<DetailedPrompt> = buildDetailedScriptPrompts()
 
     private val playerQueue: MutableList<TIPUPlayer> = players.shuffled().toMutableList()
 
-    fun buildDetailedScriptPrompts(): MutableList<DetailedScriptPrompt> {
-        val prompts: MutableList<DetailedScriptPrompt> = mutableListOf()
+    // we should try to maintain the order of the prompts that they are in inside the config
+    // so we can serve them in roughly that order
+    private fun buildDetailedScriptPrompts(): MutableList<DetailedPrompt> {
+        val prompts: MutableList<DetailedPrompt> = mutableListOf()
 
         for (scriptSection : ScriptSection in script) {
-            for (prompt : ScriptPrompt in scriptSection.prompts) {
+            for (scriptPrompt: ScriptPrompt in scriptSection.prompts) {
                 val speakers: MutableList<TIPURole> = mutableListOf()
 
                 for (line : ScriptLine in scriptSection.lines) {
-                    if (line.text.contains("{!${prompt.id}")) {
-                        speakers.add(line.speaker)
+                    when (scriptPrompt) {
+                        is PromptGroup -> {
+                            for (subPrompt: SinglePrompt in scriptPrompt.subPrompts) {
+                                if (line.text.contains("{!${subPrompt.id}")) {
+                                    speakers.add(line.speaker)
+                                }
+                            }
+                        }
+                        is SinglePrompt -> {
+                            if (line.text.contains("{!${scriptPrompt.id}")) {
+                                speakers.add(line.speaker)
+                            }
+                        }
                     }
                 }
-                prompts.add(DetailedScriptPrompt(prompt.id, prompt.description, speakers.toList()))
+
+                prompts.add(DetailedPrompt(scriptPrompt, speakers.toList()))
             }
 
         }

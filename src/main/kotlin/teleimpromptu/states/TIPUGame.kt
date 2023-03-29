@@ -8,16 +8,18 @@ import teleimpromptu.TIPUPlayer
 import teleimpromptu.TIPUSession
 import teleimpromptu.TIPUSessionState
 import teleimpromptu.message.*
-import teleimpromptu.script.allocating.DetailedScriptPrompt
+import teleimpromptu.script.allocating.DetailedPrompt
+import teleimpromptu.script.allocating.PromptAllocator
 import teleimpromptu.script.parsing.ScriptSection
 
 class TIPUGame(private val players: List<TIPUPlayer>,
                private val script: List<ScriptSection>,
                private val tipuSession: TIPUSession): TIPUSessionState {
 
-    val remainingPrompts: MutableList<DetailedScriptPrompt> = mutableListOf()
+    val promptAllocator: PromptAllocator = PromptAllocator(players, script)
 
-    val promptAnswers: MutableMap<DetailedScriptPrompt, String> = mutableMapOf()
+    // promptids to promptanswers
+    val promptAnswers: MutableMap<String, String> = mutableMapOf()
 
     init {
         val json = jsonDecoder.encodeToString(NewPromptsMessage(script.flatMap { it.prompts }))
@@ -29,6 +31,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is PromptResponseMessage -> {
+                // this is rife for hackage...
                 message.response
             }
             else -> println("fail")
