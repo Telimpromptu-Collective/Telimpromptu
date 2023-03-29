@@ -27,5 +27,6 @@ class ScriptLine(
 @Serializable
 class ScriptPrompt(
     val id: String,
-    val description: String
+    val description: String,
+    //val dependency: String?
 )
