@@ -13,8 +13,12 @@
     ],
     "prompts": [
       {
-        "id": "test_prompt1",
-        "description": "what the guy says to the other guy"
+        "id": "animal-type",
+        "description": "the type of animal that the zookeeper has"
+      },
+      {
+        "id": "animal-words",
+        "description": "what the animal says in an {!animal-type} accent"
       }
     ]
   },
