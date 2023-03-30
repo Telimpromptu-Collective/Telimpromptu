@@ -1,7 +1,9 @@
 package teleimpromptu.message
 
 import kotlinx.serialization.Serializable
+import teleimpromptu.script.allocating.AdlibPrompt
 import teleimpromptu.script.parsing.ScriptPrompt
+import teleimpromptu.script.parsing.SinglePrompt
 
 
 // general
@@ -37,6 +39,7 @@ data class GameStartedMessage(
 
 @Serializable
 data class NewPromptsMessage(
-    val prompts: Collection<ScriptPrompt>,
+    val scriptPrompts: Collection<SinglePrompt>,
+    val adlibPrompts: Collection<AdlibPrompt>,
     val type: String = "newPrompts"
 )

@@ -53,7 +53,7 @@ id("connect").addEventListener("click", function () {
                 break;
 
             case "newPrompts":
-                id("promptList").innerHTML += data.prompts.map(prompt  =>
+                id("promptList").innerHTML += data.scriptPrompts.map(prompt  =>
                     '<div id="prompt-' + prompt.id + '">' +
                     '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
                     '    <br>' +
@@ -65,12 +65,12 @@ id("connect").addEventListener("click", function () {
                     '<br>'
                 ).join("");
 
-                data.prompts.forEach(prompt =>
+                data.scriptPrompts.forEach(prompt =>
                     // this might leak on some browsers... maybe i should unbind but who cares LOL
                     id('prompt-' + prompt.id + '-submit').addEventListener("click", function () {
                         var msg = {
                             type: "promptResponse",
-                            response: id('prompt-' + prompt.id + '-textarea').value
+                            response: id('prompt-' + prompt.id + '-textarea').value,
                             id: prompt.id
                         };
                         ws.send(JSON.stringify(msg));

@@ -7,8 +7,83 @@ import teleimpromptu.script.parsing.*
 class PromptAllocator(private val players: List<TIPUPlayer>,
                       private val script: List<ScriptSection>) {
 
-    private val prompt: MutableList<DetailedPrompt> = buildDetailedScriptPrompts()
-    private val playerQueue: MutableList<TIPUPlayer> = players.shuffled().toMutableList()
+    private val promptsToDoleOutWithUnresolvedDependencies: MutableList<DetailedPrompt>
+    private val promptsToDoleOut: MutableList<DetailedPrompt>
+    private val givenPromptIds: MutableList<String> = mutableListOf()
+    private val completedPromptIds: MutableList<String> = mutableListOf()
+
+    private val promptsGivenToPlayer: MutableMap<TIPUPlayer, Int> = players.associateWith { 0 }.toMutableMap()
+
+    init {
+        val allDetailedPrompts = buildDetailedScriptPrompts()
+        // the list we start handing out only contains prompts with no dependencies.
+        this.promptsToDoleOut = allDetailedPrompts.filter { it.dependentPrompts.isEmpty() }.toMutableList()
+        this.promptsToDoleOutWithUnresolvedDependencies =
+            allDetailedPrompts.filter { it.dependentPrompts.isNotEmpty() }.toMutableList()
+    }
+
+    // todo build this out into multiple strategies... this one is probably called flood
+    fun allocateAvailablePrompts(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<Prompt>> {
+        val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<Prompt>> = mutableMapOf()
+
+        // move these ids to completed
+        newlyCompletedPromptIds.forEach { givenPromptIds.remove(it) }
+        completedPromptIds.addAll(newlyCompletedPromptIds)
+
+        // move prompts with all resolved dependencies to the promptstodoleout
+        // reversed so we dont run into ConcurrentModificationException
+        for (detailedPrompt in promptsToDoleOutWithUnresolvedDependencies.reversed()) {
+            if (areAllPromptDependenciesResolved(detailedPrompt)) {
+                promptsToDoleOutWithUnresolvedDependencies.remove(detailedPrompt)
+                promptsToDoleOut.add(detailedPrompt)
+            }
+        }
+
+        // give all the prompts out
+        do {
+            val detailedPrompt = promptsToDoleOut.removeFirst()
+
+            // wont be null because we will never have 0 players
+            val playerInNeed = promptsGivenToPlayer.entries
+                // filter out speakers of this prompt
+                .filter { !detailedPrompt.speakers.contains(it.key.role) }
+                .minByOrNull { it.value }!!.key
+
+            if (!allocatedPrompts.contains(playerInNeed)) {
+                allocatedPrompts[playerInNeed] = mutableListOf()
+            }
+
+            allocatedPrompts[playerInNeed]!!.add(detailedPrompt.prompt)
+            promptsGivenToPlayer[playerInNeed] = promptsGivenToPlayer[playerInNeed]!! + 1
+        } while (promptsToDoleOut.isNotEmpty())
+
+        // convert the map to immutable lists
+        return allocatedPrompts.entries.associate { it.key to it.value.toList() }
+    }
+
+    fun addAdlibPrompt(prompt: AdlibPrompt) {
+        // todo we could add speakers here but it probably doesnt matter
+        promptsToDoleOut.add(DetailedPrompt(prompt, listOf(), listOf()))
+    }
+
+    private fun areAllPromptDependenciesResolved(prompt: DetailedPrompt): Boolean {
+        return prompt.dependentPrompts.all {
+            when (it) {
+                is SinglePrompt -> {
+                    completedPromptIds.contains(it.id)
+                }
+                is PromptGroup -> {
+                    it.subPrompts.all { subPrompt -> completedPromptIds.contains(subPrompt.id) }
+                }
+                is AdlibPrompt -> {
+                    completedPromptIds.contains(it.id)
+                }
+                else -> {
+                    error("prompt was of unknown type when checking if dependencies were resolved")
+                }
+            }
+        }
+    }
 
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
@@ -83,9 +158,5 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             }
         }
         return promptMap.toMap()
-    }
-
-    fun allocateAvailablePrompts() {
-
     }
 }

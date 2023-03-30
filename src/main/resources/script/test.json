@@ -8,10 +8,14 @@
       },
       {
         "speaker": "COHOST",
-        "text": "good evening everyone... today will be epic im the cohost! {!test_prompt1}"
+        "text": "good evening everyone... today will be epic im the cohost! {!introprompt1}"
       }
     ],
     "prompts": [
+      {
+        "id": "introprompt1",
+        "description": "intro prompt one!"
+      },
       {
         "id": "animal-type",
         "description": "the type of animal that the zookeeper has"
@@ -80,15 +84,15 @@
     ],
     "prompts": [
       {
-        "id": "test_prompt2",
-        "description": "what the guy says to the other guy {!test_prompt1}"
+        "id": "closeprompt1",
+        "description": "close prompt 1"
       },
       {
         "groupId": "questionsgroup",
         "subPrompts": [
           {
             "id": "question1",
-            "description": "question one {!test_prompt2} {!test_prompt1}"
+            "description": "question one {!closeprompt1}"
           },
           {
             "id": "question2",
