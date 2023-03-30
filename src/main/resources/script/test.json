@@ -77,14 +77,14 @@
     "prompts": [
       {
         "id": "test_prompt2",
-        "description": "what the guy says to the other guy"
+        "description": "what the guy says to the other guy {!test_prompt1}"
       },
       {
         "groupId": "questionsgroup",
         "subPrompts": [
           {
             "id": "question1",
-            "description": "question one"
+            "description": "question one {!test_prompt2} {!test_prompt1}"
           },
           {
             "id": "question2",
