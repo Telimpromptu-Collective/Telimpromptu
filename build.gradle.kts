@@ -15,6 +15,8 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("io.javalin:javalin:5.4.2")
+    implementation("io.javalin:javalin-rendering:5.4.2")
+    implementation("gg.jte:jte:2.2.4")
     implementation("org.slf4j:slf4j-simple:2.0.7")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")

@@ -27,14 +27,13 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 val roles = ScriptBuilderService.getRolesInScript(script)
 
                 // randomly assign roles
-                tipuSession.setState(
+                tipuSession.state =
                     TIPUGame(
                         (usernameMap.entries.shuffled() zip roles)
                             .map { TIPUPlayer(it.first.key, it.second, it.first.value) },
                         script,
                         tipuSession
                     )
-                )
 
                 val json = jsonDecoder.encodeToString(GameStartedMessage())
 

@@ -24,23 +24,23 @@ object ScriptBuilderService {
         return script
     }
 
+    // todo its possible to have a section that only mentions a role and that role ends up not having any speaking parts
     private fun getAvailableSectionsForRoles(playerCount: Int,
                                              filterByTag: SegmentTag,
                                              scriptSoFar: List<ScriptSection>,
                                              canAddNothing: Boolean = false): List<ScriptSection> {
         val rolesInScript = getRolesInScript(scriptSoFar)
-        val s = ScriptParsingService.sections
+        return ScriptParsingService.sections
             // if it is the type we are looking for
             .filter { it.tags.contains(filterByTag) }
 
             // and it adds at least one role
             // AND the new roles it would add to the script would still be less than our player count
             .filter {
-                val newRoleCount = getNewRoles(it.getSpeakingRoles(), rolesInScript).size
+                val newRoleCount = getNewRoles(it.rolesInSection, rolesInScript).size
                 return@filter (newRoleCount > 0 || canAddNothing) &&
                         newRoleCount + rolesInScript.size <= playerCount
             }
-        return s
     }
 
     private fun getNewRoles(newRolesFromSection: List<TIPURole>, preexisingRoles: List<TIPURole>): List<TIPURole> {
@@ -48,6 +48,6 @@ object ScriptBuilderService {
     }
 
     fun getRolesInScript(script: List<ScriptSection>): List<TIPURole> {
-        return script.flatMap { it.getSpeakingRoles() }.distinct()
+        return script.flatMap { it.rolesInSection}.distinct()
     }
 }

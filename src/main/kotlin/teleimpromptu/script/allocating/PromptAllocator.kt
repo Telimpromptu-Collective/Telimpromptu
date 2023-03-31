@@ -31,16 +31,13 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         completedPromptIds.addAll(newlyCompletedPromptIds)
 
         // move prompts with all resolved dependencies to the promptstodoleout
-        // reversed so we dont run into ConcurrentModificationException
-        for (detailedPrompt in promptsToDoleOutWithUnresolvedDependencies.reversed()) {
-            if (areAllPromptDependenciesResolved(detailedPrompt)) {
-                promptsToDoleOutWithUnresolvedDependencies.remove(detailedPrompt)
-                promptsToDoleOut.add(detailedPrompt)
-            }
-        }
+        val promptsToMove = promptsToDoleOutWithUnresolvedDependencies.filter { areAllPromptDependenciesResolved(it) }
+        promptsToDoleOutWithUnresolvedDependencies.removeAll(promptsToMove)
+        promptsToDoleOut.addAll(promptsToMove)
+
 
         // give all the prompts out
-        do {
+        while (promptsToDoleOut.isNotEmpty()) {
             val detailedPrompt = promptsToDoleOut.removeFirst()
 
             // wont be null because we will never have 0 players
@@ -55,7 +52,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
 
             allocatedPrompts[playerInNeed]!!.add(detailedPrompt.prompt)
             promptsGivenToPlayer[playerInNeed] = promptsGivenToPlayer[playerInNeed]!! + 1
-        } while (promptsToDoleOut.isNotEmpty())
+        }
 
         // convert the map to immutable lists
         return allocatedPrompts.entries.associate { it.key to it.value.toList() }
@@ -85,6 +82,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         }
     }
 
+    // todo this can be changed to parse time pretty sure
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
     private fun buildDetailedScriptPrompts(): MutableList<DetailedPrompt> {

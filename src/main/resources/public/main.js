@@ -59,7 +59,7 @@ id("connect").addEventListener("click", function () {
                     '    <br>' +
                     '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea" rows="5"></textarea>' +
                     '    <br>' +
-                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit"">Submit</button>' +
+                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit">Submit</button>' +
                     '    <br>' +
                     '</div>' +
                     '<br>'

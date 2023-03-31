@@ -3,6 +3,7 @@ package teleimpromptu.script.parsing
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.json.*
 import teleimpromptu.TIPURole
 import teleimpromptu.script.allocating.Prompt
@@ -12,15 +13,18 @@ enum class SegmentTag {
 }
 
 @Serializable
-class ScriptSection(
+open class RawScriptSection(
     val tags: List<SegmentTag>,
     val lines: List<ScriptLine>,
     val prompts: List<ScriptPrompt>,
-) {
-    fun getSpeakingRoles(): List<TIPURole> {
-        return lines.map { it.speaker }.distinct()
-    }
-}
+)
+
+class ScriptSection(
+    tags: List<SegmentTag>,
+    lines: List<ScriptLine>,
+    prompts: List<ScriptPrompt>,
+    val rolesInSection: List<TIPURole>
+): RawScriptSection(tags, lines, prompts)
 
 @Serializable
 class ScriptLine(

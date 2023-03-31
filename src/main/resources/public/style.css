@@ -32,6 +32,18 @@ body {
     margin: 0; /* Remove margins */
 }
 
+.host-speech {
+    color: blue;
+}
+
+.cohost-speech {
+    color: green;
+}
+
+.guestexpert-speech {
+    color: red;
+}
+
 .submit-prompt {
   font-size: 1.5em;
   padding: 10px 20px;
