@@ -3,7 +3,7 @@ package teleimpromptu.script.formatting
 import teleimpromptu.TIPUPlayer
 import teleimpromptu.TIPURole
 
-class PromptFormatter(val players: List<TIPUPlayer>) {
+class PromptFormatter(private val players: List<TIPUPlayer>) {
     private val formatMap: MutableMap<String, String> = mutableMapOf()
 
     // todo this sucks
@@ -16,9 +16,8 @@ class PromptFormatter(val players: List<TIPUPlayer>) {
             formattedText = formattedText.replace("{!${promptId}}", response)
         }
 
-        for (role in TIPURole.values()) {
-            formattedText = formattedText.replace("{@${role.toLowercaseString()}",
-                players.find { it.role == role }!!.username )
+        for (player in players) {
+            formattedText = formattedText.replace("{@${player.role.toLowercaseString()}", player.username)
         }
 
         return formattedText
