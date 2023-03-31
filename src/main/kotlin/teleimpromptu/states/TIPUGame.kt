@@ -23,7 +23,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
                private val tipuSession: TIPUSession): TIPUSessionState {
 
     private val promptAllocator: PromptAllocator = PromptAllocator(players, script)
-    private val promptFormatter: PromptFormatter = PromptFormatter()
+    private val promptFormatter: PromptFormatter = PromptFormatter(players)
 
     init {
         sendPromptsToUsers(promptAllocator.allocateAvailablePrompts(listOf()))
