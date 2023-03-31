@@ -7,17 +7,23 @@
 </head>
 
 <body>
+    <div id="teleprompter-drawing">
+        <img src="./teleprompter_drawing.png" alt="lil teleprompter" id="teleprompter" width="250" height="250">
+    </div>
     <div class="content">
         <h1>Telimpromptu</h1>
         <p id="errorText" hidden>There was an error!</p>
 
-        <div id="connectionForm">
-            <input id="username" placeholder="username">
-            <br>
-            <input id="lobbyid" placeholder="lobby id">
-            <br>
-            <button id="connect">Connect</button>
-        </div>
+        <form id="connect">
+            <div id="connectionForm">
+                <input id="username" placeholder="username">
+                <br>
+                <input id="lobbyid" placeholder="lobby id">
+                <br>
+                <br>
+                <button>Connect</button>
+            </div>
+        </form>
 
         <div id="inLobby" hidden>
             <table>

@@ -8,6 +8,7 @@ let playerCount = 0;
 
 // Add event listeners to button and input field
 id("connect").addEventListener("click", function () {
+    event.preventDefault();
     ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value);
     ws.onopen = function () {
 
@@ -47,6 +48,7 @@ id("connect").addEventListener("click", function () {
                 break;
 
             case "gameStarted":
+                id("teleprompter-drawing").hidden = true;
                 id("connectionForm").hidden = true;
                 id("inLobby").hidden = true;
                 id("inGame").hidden = false;
@@ -57,7 +59,7 @@ id("connect").addEventListener("click", function () {
                     '<div id="prompt-' + prompt.id + '">' +
                     '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
                     '    <br>' +
-                    '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea" rows="5"></textarea>' +
+                    '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea"></textarea>' +
                     '    <br>' +
                     '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit">Submit</button>' +
                     '    <br>' +
@@ -91,3 +93,12 @@ id("startGame").addEventListener("click", function () {
     ws.send(JSON.stringify(msg));
 });
 
+// teleprompter animation :>
+const teleprompter = document.getElementById("teleprompter");
+setInterval(function() {
+    if (teleprompter.src.includes("teleprompter_drawing.png")) {
+        teleprompter.src = "./teleprompter_drawing2.png";
+    } else {
+        teleprompter.src = "./teleprompter_drawing.png";
+    }
+}, 500);
