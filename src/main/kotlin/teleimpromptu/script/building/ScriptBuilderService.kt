@@ -9,7 +9,7 @@ object ScriptBuilderService {
     fun buildScriptForPlayerCount(playerCount: Int): MutableList<ScriptSection> {
         val script = mutableListOf<ScriptSection>()
         script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.INTRODUCTION, script).random())
-        script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.MAIN_STORY, script).random())
+        // script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.MAIN_STORY, script).random())
 
         do {
             // protect against infinite looping here
