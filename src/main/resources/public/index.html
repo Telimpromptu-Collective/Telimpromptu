@@ -14,14 +14,15 @@
         <h1>Telimpromptu</h1>
         <p id="errorText" hidden>There was an error!</p>
 
-        <form id="connect">
+        <form>
             <div id="connectionForm">
                 <input id="username" placeholder="username">
                 <br>
                 <input id="lobbyid" placeholder="lobby id">
                 <br>
                 <br>
-                <button>Connect</button>
+                <button id="connectButton">Connect</button>
+                <button id="connectTeleprompterButton">Teleprompter</button>
             </div>
         </form>
 
@@ -50,6 +51,11 @@
             <p>Prompts</p>
             <div id="promptList">
                 <!-- Built by JS -->
+            </div>
+            <div id="promptsComplete" hidden>
+                <p id="promptCompleteText"></p>
+                <br>
+                <button id="gameCompleteTeleprompterButton">Go To Teleprompter</button>
             </div>
         </div>
     </div>

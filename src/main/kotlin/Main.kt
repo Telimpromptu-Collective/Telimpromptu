@@ -11,8 +11,8 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import teleimpromptu.TIPUSession
 import teleimpromptu.message.Message
-import teleimpromptu.pages.TeleprompterPage
 import teleimpromptu.states.TIPUGame
+import java.lang.Exception
 import java.nio.file.Path
 
 
@@ -53,17 +53,21 @@ fun main() {
             }
 
             ws.onMessage { ctx ->
-                if (!games.containsKey(ctx.gameId)) {
-                    // TODO send back error
-                    return@onMessage
+                try {
+                    if (!games.containsKey(ctx.gameId)) {
+                        // TODO send back error
+                        return@onMessage
+                    }
+
+                    // println(ctx.message())
+                    val message = jsonDecoder.decodeFromString<Message>(ctx.message())
+                        ?: // TODO send back error
+                        return@onMessage
+
+                    games[ctx.gameId]!!.receiveMessage(ctx, message)
+                } catch (ex: Exception) {
+                    println("encountered exception in onmessage:\n$ex")
                 }
-
-                // println(ctx.message())
-                val message = jsonDecoder.decodeFromString<Message>(ctx.message())
-                    ?: // TODO send back error
-                    return@onMessage
-
-                games[ctx.gameId]!!.receiveMessage(ctx, message)
             }
         }
         get("/games/{game-id}/teleprompter") { ctx ->

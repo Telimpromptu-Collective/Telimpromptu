@@ -47,6 +47,11 @@ data class GameStartedMessage(
 @Serializable
 data class NewPromptsMessage(
     val scriptPrompts: Collection<SinglePrompt>,
-    val adlibPrompts: Collection<AdlibPrompt>,
+    // val adlibPrompts: Collection<AdlibPrompt>,
     val type: String = "newPrompts"
+)
+
+@Serializable
+data class PromptsCompleteMessage(
+    val type: String = "promptsComplete"
 )

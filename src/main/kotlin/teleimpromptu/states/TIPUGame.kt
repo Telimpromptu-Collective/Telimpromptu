@@ -4,10 +4,7 @@ import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsMessageContext
 import jsonDecoder
 import kotlinx.serialization.encodeToString
-import teleimpromptu.TIPUPlayer
-import teleimpromptu.TIPURole
-import teleimpromptu.TIPUSession
-import teleimpromptu.TIPUSessionState
+import teleimpromptu.*
 import teleimpromptu.message.*
 import teleimpromptu.script.allocating.AdlibPrompt
 import teleimpromptu.script.allocating.Prompt
@@ -26,7 +23,8 @@ class TIPUGame(private val players: List<TIPUPlayer>,
     private val promptFormatter: PromptFormatter = PromptFormatter(players)
 
     init {
-        sendPromptsToUsers(promptAllocator.allocateAvailablePrompts(listOf()))
+        // send everyone their prompts. empty list because there are no newly completed prompts
+        promptAllocator.allocateAvailablePrompts(listOf()).forEach { sendPromptsToPlayer(it.key, it.value) }
     }
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
@@ -35,7 +33,31 @@ class TIPUGame(private val players: List<TIPUPlayer>,
 
                 // todo trusting this id allows hackerz!
                 promptFormatter.addPromptResponse(message.id, message.response)
-                sendPromptsToUsers(promptAllocator.allocateAvailablePrompts(listOf(message.id)))
+
+                // get the prompts and send the prompts to everyone
+                promptAllocator.allocateAvailablePrompts(listOf(message.id))
+                    .forEach { sendPromptsToPlayer(it.key, it.value) }
+
+                if (promptAllocator.areAllPromptsComplete()) {
+                    players.forEach { it.connection.send(jsonDecoder.encodeToString(PromptsCompleteMessage())) }
+                }
+            }
+            // user reconnect
+            is CreateUserMessage -> {
+                // if this user is connecting with a username not in the lobby, stop
+                val reconnectingUser = players.find { it.username == message.username } ?: return
+
+                // if someone already connected with this username kick them and set this as the new one lol
+                reconnectingUser.connection.closeSession()
+                reconnectingUser.connection = ctx
+
+                // send them the start game info to get them up to speed
+                val json = jsonDecoder
+                    .encodeToString(GameStartedMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
+                reconnectingUser.connection.send(json)
+
+                // send them their incomplete prompts
+                sendPromptsToPlayer(reconnectingUser, promptAllocator.outstandingPromptsForPlayer(reconnectingUser))
             }
             else -> println("fail game: $message")
         }
@@ -45,34 +67,12 @@ class TIPUGame(private val players: List<TIPUPlayer>,
         println("connection closed....")
     }
 
-    private fun sendPromptsToUsers(usersToPrompts: Map<TIPUPlayer, List<Prompt>>) {
-        for (entry in usersToPrompts) {
-            // unpack groups into a list containing all scriptPrompts
-            val unpackedScriptPrompts = entry.value.flatMap {
-                    when (it) {
-                        is SinglePrompt -> {
-                            listOf(it)
-                        }
-                        is PromptGroup -> {
-                            it.subPrompts
-                        }
-                        // essentially filter out adlibs
-                        else -> {
-                            listOf()
-                        }
-                    }
-                }
+    // todo maybe this should be unpacked beforehand since reconnecting has to be
+    private fun sendPromptsToPlayer(player: TIPUPlayer, prompts: List<SinglePrompt>) {
+        // format script prompts
+        val formattedScriptPrompts = prompts.map { SinglePrompt(it.id, promptFormatter.formatText(it.description)) }
 
-            // format script prompts
-            val formattedScriptPrompts = unpackedScriptPrompts
-                .map { SinglePrompt(it.id, promptFormatter.formatText(it.description)) }
-
-            val adlibPrompts = entry.value.filterIsInstance<AdlibPrompt>()
-
-            val json = jsonDecoder.encodeToString(NewPromptsMessage(formattedScriptPrompts, adlibPrompts))
-
-            entry.key.connection.send(json)
-        }
+        player.connection.send(jsonDecoder.encodeToString(NewPromptsMessage(formattedScriptPrompts)))
     }
 
     fun getFullFormattedScript(): List<ScriptLine> {

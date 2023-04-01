@@ -5,11 +5,15 @@ let id = id => document.getElementById(id);
 let ws = null;
 let username = null;
 let playerCount = 0;
+let lobbyId = null;
+
+let gameComplete = false;
 
 // Add event listeners to button and input field
-id("connect").addEventListener("click", function () {
+id("connectButton").addEventListener("click", function () {
     event.preventDefault();
-    ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value);
+    lobbyId = id("lobbyid").value
+    ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/games/" + lobbyId);
     ws.onopen = function () {
 
         username = id("username").value
@@ -37,6 +41,29 @@ id("connect").addEventListener("click", function () {
             case "error":
                 id("errorText").hidden = false;
                 id("errorText").innerHTML = data.message;
+                break;
+
+            case "promptsComplete":
+                gameComplete = true;
+                id("promptsComplete").hidden = false;
+                id("promptList").hidden = true;
+
+                let delay = 200;
+
+                let h1 = document.getElementById("promptCompleteText");
+
+                h1.innerHTML = "All prompts complete!"
+                  .split("")
+                  .map(letter => {
+                    return `<span>` + letter + `</span>`;
+                  })
+                  .join("");
+
+                Array.from(h1.children).forEach((span, index) => {
+                  setTimeout(() => {
+                    span.classList.add("wavy");
+                  }, index * 60 + delay);
+                });
                 break;
 
             case "usernameUpdate":
@@ -84,13 +111,23 @@ id("connect").addEventListener("click", function () {
         }
 
 
-    ws.onclose = () => console.log("WebSocket connection closed");
+    ws.onclose = () => {
+        if (!gameComplete) {
+            location.reload();
+        }
+        console.log("WebSocket connection closed");
+    }
 });
 
 function submitResponse(promptId) {
+    let text = id('prompt-' + promptId + '-textarea').value;
+    if (text === "") {
+        return;
+    }
+
     var msg = {
         type: "promptResponse",
-        response: id('prompt-' + promptId + '-textarea').value,
+        response: text,
         id: promptId
     };
     ws.send(JSON.stringify(msg));
@@ -113,3 +150,12 @@ setInterval(function() {
         teleprompter.src = "./teleprompter_drawing.png";
     }
 }, 500);
+
+id("connectTeleprompterButton").addEventListener("click", function () {
+    event.preventDefault();
+    window.location.href = "http://www." + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value + "/teleprompter";
+})
+
+id("gameCompleteTeleprompterButton").addEventListener("click", function () {
+    window.location.href = "http://www." + location.hostname + ":" + location.port + "/games/" + lobbyId + "/teleprompter";
+})

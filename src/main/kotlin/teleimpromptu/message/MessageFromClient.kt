@@ -5,6 +5,8 @@ import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
+import java.lang.Exception
+import java.lang.IllegalArgumentException
 
 @Polymorphic
 @Serializable(with = MessageSerializer::class)

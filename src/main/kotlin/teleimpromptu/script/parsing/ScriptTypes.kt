@@ -35,19 +35,27 @@ class ScriptLine(
 // scriptprompts are prompts from scripts, prompts are any type of prompt (including adlib prompt)
 @Polymorphic
 @Serializable(with = PromptSerializer::class)
-sealed class ScriptPrompt: Prompt()
+sealed class ScriptPrompt: Prompt
 
 @Serializable
 class SinglePrompt(
     val id: String,
     val description: String
-): ScriptPrompt()
+): ScriptPrompt() {
+    override fun unpack(): List<SinglePrompt> {
+        return listOf(this)
+    }
+}
 
 @Serializable
 class PromptGroup(
     val groupId: String,
     val subPrompts: List<SinglePrompt>
-): ScriptPrompt()
+): ScriptPrompt() {
+    override fun unpack(): List<SinglePrompt> {
+        return this.subPrompts
+    }
+}
 
 object PromptSerializer : JsonContentPolymorphicSerializer<ScriptPrompt>(ScriptPrompt::class) {
     override fun selectDeserializer(

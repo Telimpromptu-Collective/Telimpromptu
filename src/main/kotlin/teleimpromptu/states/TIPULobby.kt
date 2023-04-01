@@ -45,17 +45,10 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 }
             }
             is CreateUserMessage -> {
-                // if a player connects with a preexisting session, remove their old one.
-                usernameMap.filter { entry ->
-                    entry.value.session == ctx.session
-                }.forEach { entry ->
-                    usernameMap.remove(entry.key)
-                }
-
-                // if someone already connected with this username kick them lol
-                usernameMap[message.username]?.session?.close()
-
+                // if someone already connected with this username kick them and set this as the new one lol
+                usernameMap[message.username]?.closeSession()
                 usernameMap[message.username] = ctx
+
                 ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage()))
 
                 updateUserStatuses()

@@ -7,12 +7,13 @@ import teleimpromptu.script.parsing.*
 class PromptAllocator(private val players: List<TIPUPlayer>,
                       private val script: List<ScriptSection>) {
 
+    // these are partially redundant...
     private val promptsToDoleOutWithUnresolvedDependencies: MutableList<DetailedPrompt>
     private val promptsToDoleOut: MutableList<DetailedPrompt>
-    private val givenPromptIds: MutableList<String> = mutableListOf()
     private val completedPromptIds: MutableList<String> = mutableListOf()
 
-    private val promptsGivenToPlayer: MutableMap<TIPUPlayer, Int> = players.associateWith { 0 }.toMutableMap()
+    private val promptsGivenToPlayer: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> =
+        players.associateWith { mutableListOf<SinglePrompt>() }.toMutableMap()
 
     init {
         val allDetailedPrompts = buildDetailedScriptPrompts()
@@ -23,11 +24,14 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
     }
 
     // todo build this out into multiple strategies... this one is probably called flood
-    fun allocateAvailablePrompts(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<Prompt>> {
-        val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<Prompt>> = mutableMapOf()
+    fun allocateAvailablePrompts(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<SinglePrompt>> {
+        val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> = mutableMapOf()
 
         // move these ids to completed
-        newlyCompletedPromptIds.forEach { givenPromptIds.remove(it) }
+        for (promptList in promptsGivenToPlayer.values) {
+            promptList.removeIf { newlyCompletedPromptIds.contains(it.id) }
+        }
+
         completedPromptIds.addAll(newlyCompletedPromptIds)
 
         // move prompts with all resolved dependencies to the promptstodoleout
@@ -44,20 +48,32 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             val playerInNeed = promptsGivenToPlayer.entries
                 // filter out speakers of this prompt
                 .filter { !detailedPrompt.speakers.contains(it.key.role) }
-                .minByOrNull { it.value }?.key
+                // get the player with the fewest given prompts
+                .minByOrNull { it.value.size }?.key
+
                 // if there is no one who doesnt speak it just give it to someone
-                ?: promptsGivenToPlayer.entries.minByOrNull { it.value }!!.key
+                ?: promptsGivenToPlayer.entries.minByOrNull { it.value.size }!!.key
 
             if (!allocatedPrompts.contains(playerInNeed)) {
                 allocatedPrompts[playerInNeed] = mutableListOf()
             }
 
-            allocatedPrompts[playerInNeed]!!.add(detailedPrompt.prompt)
-            promptsGivenToPlayer[playerInNeed] = promptsGivenToPlayer[playerInNeed]!! + 1
+            allocatedPrompts[playerInNeed]!!.addAll(detailedPrompt.prompt.unpack())
+            promptsGivenToPlayer[playerInNeed]!!.addAll(detailedPrompt.prompt.unpack())
         }
 
         // convert the map to immutable lists
         return allocatedPrompts.entries.associate { it.key to it.value.toList() }
+    }
+
+    fun outstandingPromptsForPlayer(player: TIPUPlayer): List<SinglePrompt> {
+        return promptsGivenToPlayer[player]!!
+    }
+
+    fun areAllPromptsComplete(): Boolean {
+        return promptsToDoleOutWithUnresolvedDependencies.isEmpty() &&
+                promptsToDoleOut.isEmpty() &&
+                promptsGivenToPlayer.all { it.value.isEmpty() }
     }
 
     fun addAdlibPrompt(prompt: AdlibPrompt) {
@@ -84,7 +100,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         }
     }
 
-    // todo this can be changed to parse time pretty sure
+    // todo this can be changed to parse time pretty
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
     private fun buildDetailedScriptPrompts(): MutableList<DetailedPrompt> {
