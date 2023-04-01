@@ -7,7 +7,7 @@
 
 <head>
     <title>Telimpromptu</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/style.css">
 </head>
 <p style="font-size: 2.5em">
 @for(ScriptLine scriptLine: script)
