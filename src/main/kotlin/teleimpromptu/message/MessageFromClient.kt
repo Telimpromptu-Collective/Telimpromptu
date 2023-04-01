@@ -20,6 +20,11 @@ data class StartGameMessage(
 ): Message()
 
 @Serializable
+data class HeartbeatMessage(
+    val type: String
+): Message()
+
+@Serializable
 data class PromptResponseMessage(
     val type: String,
     val response: String,
@@ -36,6 +41,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
             "createUser" -> CreateUserMessage.serializer()
             "startGame" -> StartGameMessage.serializer()
             "promptResponse" -> PromptResponseMessage.serializer()
+            "heartbeat" -> HeartbeatMessage.serializer()
             else -> error("unknown message type $type")
         }
     }
