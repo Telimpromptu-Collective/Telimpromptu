@@ -5,11 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 public final class JteteleprompterGenerated {
 	public static final String JTE_NAME = "teleprompter.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,4,4,13,13,13,14,14,14,14,14,14,14,14,14,15,15,29};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,4,4,15,15,15,16,16,16,16,16,16,16,16,16,17,17,31};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<ScriptLine> script, LinkedHashMap<TIPURole, String> roleMap) {
-		jteOutput.writeContent("\r\n<head>\r\n    <title>Telimpromptu</title>\r\n    <link rel=\"stylesheet\" href=\"/style.css\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n</head>\r\n<div style=\"font-size: 8em\">\r\n");
+		jteOutput.writeContent("\r\n<head>\r\n    <title>Telimpromptu</title>\r\n    <link rel=\"stylesheet\" href=\"/style.css\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n</head>\r\n<div style=\"font-size: 8em\">\r\n    <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br>YOU'RE LIVE!<br>\r\n\r\n");
 		for (ScriptLine scriptLine: script) {
-			jteOutput.writeContent("\r\n    <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br><br><br><span class=\"");
+			jteOutput.writeContent("\r\n    <span class=\"");
 			jteOutput.setContext("span", "class");
 			jteOutput.writeUserContent(scriptLine.getSpeaker().toLowercaseString());
 				jteOutput.setContext("span", null);

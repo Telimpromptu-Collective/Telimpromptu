@@ -28,7 +28,7 @@
       },
       {
         "id": "main_story_info",
-        "description": "What we know about the main story, which is {!main_story}"
+        "description": "An additional detail about the main story, which is {!main_story}"
       },
       {
         "id": "main_story_info2",
@@ -117,15 +117,11 @@
         "subPrompts": [
           {
             "id": "expert_question1",
-            "description": "First question the host asks to the reporter. It starts with {!expert_initial_answer1}"
+            "description": "First question the host asks to the reporter. The guest expert's answer starts with '{!expert_initial_answer1}'"
           },
           {
             "id": "expert_question2",
-            "description": "Second question the host asks to the reporter. It starts with {!expert_initial_answer2}"
-          },
-          {
-            "id": "expert_question3",
-            "description": "Third question the host asks to the reporter. It starts with {!expert_initial_answer3}"
+            "description": "Second question the host asks to the reporter. The guest expert's answer starts with '{!expert_initial_answer2}'"
           }
         ]
       },
@@ -144,7 +140,7 @@
       },
       {
         "id": "expert_oath",
-        "description": "Write the oath that the guest expert had to swear upon entering their field."
+        "description": "Write the oath that the guest expert who has a {!expert-credentials} had to swear upon entering their field."
       }
     ]
   },
@@ -209,7 +205,7 @@
       },
       {
         "id": "host_exclamation",
-        "description": "An exclaimation the host says. Eg: 'Wow!' 'Holy moly!'"
+        "description": "An exclamation the host says. Eg: 'Wow!' 'Holy moly!'"
       },
       {
         "id": "fieldreporter_quote",
@@ -246,7 +242,7 @@
       },
       {
         "id": "witness_account1",
-        "description": "Write the first half of a firsthand account of the scene in as many words as you like."
+        "description": "Write the first half of a witness' firsthand account of the scene in as many words as you like. They will be speaking in a {!witness_voice} voice."
       },
       {
         "id": "witness_account2",
@@ -265,7 +261,7 @@
       },
       {
         "speaker": "DETECTIVE",
-        "text": "Well, the situation is worse than we thought, my team has just discovered {!detective_info1}."
+        "text": "Well, the situation is worse than we thought, my team has just discovered that {!detective_info1}."
       },
       {
         "speaker": "HOST",
@@ -396,7 +392,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "Well, {!host_story_description} {@cohost} its an unbelievable story isn't it?"
+        "text": "Well, there you have it folks. A story like this you only see once in a lifetime. {!host_story_description} {@cohost} its an unbelievable story isn't it?"
       },
       {
         "speaker": "COHOST",
