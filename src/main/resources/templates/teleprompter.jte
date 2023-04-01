@@ -11,8 +11,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <div style="font-size: 8em">
+    <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br>YOU'RE LIVE!<br>
+
 @for(ScriptLine scriptLine: script)
-    <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br><br><br><span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> $unsafe{scriptLine.getText().replace("\n", "<br>")}<br><br>
+    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> $unsafe{scriptLine.getText().replace("\n", "<br>")}<br><br>
 @endfor
 </div>
 

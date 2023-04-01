@@ -44,7 +44,9 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             val playerInNeed = promptsGivenToPlayer.entries
                 // filter out speakers of this prompt
                 .filter { !detailedPrompt.speakers.contains(it.key.role) }
-                .minByOrNull { it.value }!!.key
+                .minByOrNull { it.value }?.key
+                // if there is no one who doesnt speak it just give it to someone
+                ?: promptsGivenToPlayer.entries.minByOrNull { it.value }!!.key
 
             if (!allocatedPrompts.contains(playerInNeed)) {
                 allocatedPrompts[playerInNeed] = mutableListOf()
