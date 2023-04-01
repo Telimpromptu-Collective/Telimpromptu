@@ -113,10 +113,27 @@
         ]
       },
       {
+        "groupId": "expert_questions",
+        "subPrompts": [
+          {
+            "id": "expert_question1",
+            "description": "First question the host asks to the reporter. It starts with {!expert_initial_answer1}"
+          },
+          {
+            "id": "expert_question2",
+            "description": "Second question the host asks to the reporter. It starts with {!expert_initial_answer2}"
+          },
+          {
+            "id": "expert_question3",
+            "description": "Third question the host asks to the reporter. It starts with {!expert_initial_answer3}"
+          }
+        ]
+      },
+      {
         "groupId": "expert_full_answers",
         "subPrompts": [
           {
-            "id": "{!expert_full_answer1}",
+            "id": "expert_full_answer1",
             "description": "The answer to {!expert_question1} which starts with {!expert_initial_answer1}"
           },
           {
@@ -166,7 +183,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "{!host_exclamation} is right {@COHOST}."
+        "text": "{!host_exclamation} is right {@cohost}."
       },
       {
         "speaker": "COHOST",
@@ -189,6 +206,10 @@
       {
         "id": "fieldreporter_fieldreport1",
         "description": "Write 1+ sentences on what the field reporter sees at the scene of the incident."
+      },
+      {
+        "id": "host_exclamation",
+        "description": "An exclaimation the host says. Eg: 'Wow!' 'Holy moly!'"
       },
       {
         "id": "fieldreporter_quote",

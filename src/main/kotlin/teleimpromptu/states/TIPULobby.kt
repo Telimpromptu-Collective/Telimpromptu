@@ -26,16 +26,19 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 val script = ScriptBuilderService.buildScriptForPlayerCount(usernameMap.size)
                 val roles = ScriptBuilderService.getRolesInScript(script)
 
+                val players = (usernameMap.entries.shuffled() zip roles)
+                    .map { TIPUPlayer(it.first.key, it.second, it.first.value) }
+
                 // randomly assign roles
                 tipuSession.state =
                     TIPUGame(
-                        (usernameMap.entries.shuffled() zip roles)
-                            .map { TIPUPlayer(it.first.key, it.second, it.first.value) },
+                        players,
                         script,
                         tipuSession
                     )
 
-                val json = jsonDecoder.encodeToString(GameStartedMessage())
+                val json = jsonDecoder
+                    .encodeToString(GameStartedMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
 
                 usernameMap.values.forEach { ws ->
                     ws.send(json)
@@ -57,7 +60,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
 
                 updateUserStatuses()
             }
-            else -> println("fail")
+            else -> println("fail lobby: $message")
         }
     }
 

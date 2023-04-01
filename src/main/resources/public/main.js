@@ -33,7 +33,7 @@ id("connect").addEventListener("click", function () {
                 break;
 
             case "usernameUpdate":
-                id("userlist").innerHTML = data.statuses.map(status =>
+                id("lobby-userlist").innerHTML = data.statuses.map(status =>
                     "<li>" +
                     status.username + (status.connected ? "" : " -dc") + (status.username === username ? " <b>(you)</b>" : "") +
                     "</li>"
@@ -52,6 +52,12 @@ id("connect").addEventListener("click", function () {
                 id("connectionForm").hidden = true;
                 id("inLobby").hidden = true;
                 id("inGame").hidden = false;
+
+                id("ingame-userlist").innerHTML = data.statuses.map(status =>
+                    "<li>" +
+                    status.username + ": " + status.role + (status.username === username ? " <b>(you)</b>" : "") +
+                    "</li>"
+                ).join("");
                 break;
 
             case "newPrompts":
@@ -61,30 +67,28 @@ id("connect").addEventListener("click", function () {
                     '    <br>' +
                     '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea"></textarea>' +
                     '    <br>' +
-                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit">Submit</button>' +
+                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit" onClick="submitResponse(\'' + prompt.id + '\')">Submit</button>' +
                     '    <br>' +
                     '</div>' +
                     '<br>'
                 ).join("");
-
-                data.scriptPrompts.forEach(prompt =>
-                    // this might leak on some browsers... maybe i should unbind but who cares LOL
-                    id('prompt-' + prompt.id + '-submit').addEventListener("click", function () {
-                        var msg = {
-                            type: "promptResponse",
-                            response: id('prompt-' + prompt.id + '-textarea').value,
-                            id: prompt.id
-                        };
-                        ws.send(JSON.stringify(msg));
-                        id('prompt-' + prompt.id).remove();
-                    })
-                );
                 break;
             }
         }
 
+
     ws.onclose = () => console.log("WebSocket connection closed");
 });
+
+function submitResponse(promptId) {
+    var msg = {
+        type: "promptResponse",
+        response: id('prompt-' + promptId + '-textarea').value,
+        id: promptId
+    };
+    ws.send(JSON.stringify(msg));
+    id('prompt-' + promptId).remove();
+}
 
 id("startGame").addEventListener("click", function () {
     var msg = {

@@ -31,11 +31,13 @@ class TIPUGame(private val players: List<TIPUPlayer>,
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is PromptResponseMessage -> {
+                println("recieved: " + message.id + ": " + message.response)
+
                 // todo trusting this id allows hackerz!
                 promptFormatter.addPromptResponse(message.id, message.response)
                 sendPromptsToUsers(promptAllocator.allocateAvailablePrompts(listOf(message.id)))
             }
-            else -> println("fail")
+            else -> println("fail game: $message")
         }
     }
 

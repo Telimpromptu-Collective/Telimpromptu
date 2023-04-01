@@ -11,7 +11,7 @@ object ScriptParsingService
     private fun parseScript(): List<ScriptSection> {
         // yuck
         val rawSections: List<RawScriptSection> = jsonDecoder.decodeFromString(
-            this::class.java.classLoader.getResource("script/test.json")!!
+            this::class.java.classLoader.getResource("script/onepointoh.json")!!
                 .readText()
         )!!
 
@@ -23,13 +23,17 @@ object ScriptParsingService
             // all the roles that get mentioned
             for (line in rawSection.lines) {
                 for (role in TIPURole.values()) {
-                    if (line.text.contains("{@${role.toLowercaseString()}")) {
+                    if (line.text.contains("{@${role.toLowercaseString()}}")) {
                         rolesInSection.add(role)
                     }
                 }
             }
 
-            return@map ScriptSection(rawSection.tags, rawSection.lines, rawSection.prompts, rolesInSection.toList())
+            return@map ScriptSection(
+                rawSection.tags,
+                rawSection.lines,
+                rawSection.prompts,
+                rolesInSection.distinct().toList())
         }
     }
 }

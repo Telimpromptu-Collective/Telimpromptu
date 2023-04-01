@@ -31,7 +31,14 @@ data class ConnectionSuccessMessage(
 )
 
 @Serializable
+data class IngamePlayerStatus(
+    val username: String,
+    val role: String
+)
+
+@Serializable
 data class GameStartedMessage(
+    val statuses: Collection<IngamePlayerStatus>,
     val type: String = "gameStarted"
 )
 
