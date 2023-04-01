@@ -33,7 +33,7 @@ body {
 }
 
 .host-speech {
-    color: blue;
+    color: yellow;
 }
 
 .cohost-speech {
@@ -42,6 +42,22 @@ body {
 
 .guestexpert-speech {
     color: red;
+}
+
+.detective-speech {
+    color: brown;
+}
+
+.fieldreporter-speech {
+    color: orange;
+}
+
+.witness {
+    color: pink;
+}
+
+.commentator {
+    color: purple;
 }
 
 .submit-prompt {

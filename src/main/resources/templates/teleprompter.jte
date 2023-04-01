@@ -7,20 +7,20 @@
 
 <head>
     <title>Telimpromptu</title>
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
-<p style="font-size: 8em">
+<div style="font-size: 8em">
 @for(ScriptLine scriptLine: script)
-    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> ${scriptLine.getText().replace("\n", "<br>")}<br>
+    <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br><br><br><span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> $unsafe{scriptLine.getText().replace("\n", "<br>")}<br><br>
 @endfor
-</p>
+</div>
 
 <script>
     const delay = ms => new Promise(res => setTimeout(res, ms));
     const scrollFunction = async () => {
         while (true) {
             await delay(50);
-            window.scrollBy(0, 1)
+            window.scrollBy(0, 4)
         }
     }
 
