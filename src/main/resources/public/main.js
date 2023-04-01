@@ -18,6 +18,13 @@ id("connect").addEventListener("click", function () {
             username: username
         };
         ws.send(JSON.stringify(msg));
+
+        setInterval(function() {
+                var msg = {
+                    type: "heartbeat"
+                };
+                ws.send(JSON.stringify(msg));
+        }, 5000);
     }
 
     ws.onmessage = function (msg) {

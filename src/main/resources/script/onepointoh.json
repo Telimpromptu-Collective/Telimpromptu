@@ -104,11 +104,11 @@
         "subPrompts": [
           {
             "id": "expert_initial_answer1",
-            "description": "The start of the answer to {!expert_question1}. Eg: 'Yes', 'I can't answer that', 'No'"
+            "description": "The start of the answer to the first question that hasnt even been written yet. Eg: 'Yes', 'I can't answer that', 'No'"
           },
           {
             "id": "expert_initial_answer2",
-            "description": "The start of the answer to {!expert_question2}."
+            "description": "The start of the answer to the second question that hasnt even been written yet."
           }
         ]
       },

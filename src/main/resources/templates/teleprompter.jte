@@ -9,9 +9,9 @@
     <title>Telimpromptu</title>
     <link rel="stylesheet" href="../public/style.css">
 </head>
-<p style="font-size: 2.5em">
+<p style="font-size: 8em">
 @for(ScriptLine scriptLine: script)
-    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}: ${scriptLine.getText()}</span><br>
+    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> ${scriptLine.getText().replace("\n", "<br>")}<br>
 @endfor
 </p>
 

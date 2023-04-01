@@ -42,7 +42,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
     }
 
     override fun receiveDisconnect(ctx: WsCloseContext) {
-
+        println("connection closed....")
     }
 
     private fun sendPromptsToUsers(usersToPrompts: Map<TIPUPlayer, List<Prompt>>) {
