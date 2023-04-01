@@ -1,7 +1,7 @@
 package teleimpromptu
 
 enum class TIPURole {
-    HOST, COHOST, GUESTEXPERT, DETECTIVE, FIELDREPORTER, WITNESS, COMMENTATOR;
+    HOST, COHOST, GUESTEXPERT, DETECTIVE, FIELDREPORTER, WITNESS, COMMENTATOR, ZOOKEEPER;
 
     fun toLowercaseString(): String {
         return when(this) {
@@ -12,6 +12,7 @@ enum class TIPURole {
             FIELDREPORTER -> "fieldreporter"
             WITNESS -> "witness"
             COMMENTATOR -> "commentator"
+            ZOOKEEPER -> "zookeeper"
         }
     }
 }

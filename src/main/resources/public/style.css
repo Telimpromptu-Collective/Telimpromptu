@@ -52,12 +52,16 @@ body {
     color: orange;
 }
 
-.witness {
+.witness-speech {
     color: pink;
 }
 
-.commentator {
+.commentator-speech {
     color: purple;
+}
+
+.zookeeper-speech {
+    color: gray;
 }
 
 .submit-prompt {

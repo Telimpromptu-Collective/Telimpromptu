@@ -232,7 +232,7 @@
       },
       {
         "speaker": "WITNESS",
-        "text": "(In a {!witness_voice} voice.)\n\n\n{!witness_account1}\n\n\n{!witness_account2}"
+        "text": "(In a {!witness_voice} voice.)\n\n{!witness_account1}\n\n{!witness_account2}"
       },
       {
         "speaker": "COHOST",
@@ -300,6 +300,92 @@
       {
         "id": "detective_note",
         "description": "The detective will present a note that was discovered at the scene. Write what the note says."
+      }
+    ]
+  },
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Tonight we have a special treat for you all. We have {@zookeeper} the zookeeper here from the {!zoo_name}!"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "Thank you for having me on."
+      },
+      {
+        "speaker": "HOST",
+        "text": "So {@zookeeper}, what do you have for us tonight?"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "I've got my little buddy {!animal_name} with us. They're a little scared but they'll warm up to you pretty quick. Say hi {!animal_name}!\n\n(Make timid a {!animal_type} noise.)"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Oh wow!"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "You know, I have a special affinity for {!animal_type_plural}, once while I was on vacation {!cohost_animal_story}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "Haha.... it seems like little {!animal_name} has warmed up to us! Arent you a nice little {!animal_type}\n\n(Zookeeper makes a friendly {!animal_type} noise.)"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "You know, {!animal_name} is actually pretty smart for a {!animal_type} and actually has some experience with the topic of tonight's story!"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Well isnt that something!"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "Yup. Go on, {!animal_name}, tell them what you think of tonight's story!\n\n(In an {!animal_type} voice)\n\n{!animal_story}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Well I'll be! A talking {!animal_type} incredible! Thank you for bringing them for us tonight."
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "No problem. Thank you for bringing me on.\n\n(Make an {!animal_type} noise that could maybe be interpreted as goodbye)"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "zoo_name",
+        "description": "The name of a Zoo or somewhere that contains animals."
+      },
+      {
+        "groupId": "animal_info",
+        "subPrompts": [
+          {
+            "id": "animal_type",
+            "description": "A type of animal the Zookeeper will bring on."
+          },
+          {
+            "id": "animal_type_plural",
+            "description": "That animal type... but plural."
+          },
+          {
+            "id": "animal_name",
+            "description": "The name of that animal."
+          }
+        ]
+      },
+      {
+        "id": "cohost_animal_story",
+        "description": "A story the cohost tells where they encountered an {!animal_type} on a vacation."
+      },
+      {
+        "id": "animal_story",
+        "description": "A story that a {!animal_type} tells in a {!animal_type} accent, relating to tonight's main story."
       }
     ]
   },
