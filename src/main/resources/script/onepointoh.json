@@ -387,6 +387,80 @@
   },
   {
     "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Tonight we have a special treat for you all. We have {@zookeeper} the zookeeper here from the {!zoo_name}!"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "Thank you for having me on."
+      },
+      {
+        "speaker": "HOST",
+        "text": "So {@zookeeper}, what do you have for us tonight?"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "I've got my little buddy {!animal_name} with us. They're a little scared but they'll warm up to you pretty quick. Say hi {!animal_name}!\n\n(Make timid a {!animal_type} noise.)"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Oh... uhh"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "(Make another {!animal_type} noise.)"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "{!zookeeper_accusation}"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "{!zookeeper_buytime}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "I'm so sorry about that everyone."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "zoo_name",
+        "description": "The name of a Zoo or somewhere that contains animals."
+      },
+      {
+        "groupId": "animal_info",
+        "subPrompts": [
+          {
+            "id": "animal_type",
+            "description": "A type of animal the Zookeeper will bring on."
+          },
+          {
+            "id": "animal_type_plural",
+            "description": "That animal type... but plural."
+          },
+          {
+            "id": "animal_name",
+            "description": "The name of that animal."
+          }
+        ]
+      },
+      {
+        "id": "zookeeper_accusation",
+        "description": "Something the cohost will say after they realize the zookeeper didn't actually bring an animal and is just making animal noises and pretending."
+      },
+      {
+        "id": "zookeeper_buytime",
+        "description": "Something the zookeeper says to buy time before they make their escape out of the studio after being discovered as a fraud."
+      }
+    ]
+  },
+  {
+    "tags": [
       "CLOSING"
     ],
     "lines": [
