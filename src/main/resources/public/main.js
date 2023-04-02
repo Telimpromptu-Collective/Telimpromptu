@@ -10,11 +10,11 @@ let lobbyId = null;
 let gameComplete = false;
 
 // Add event listeners to button and input field
-id("connectButton").addEventListener("click", function () {
+id("connectButton").addEventListener("click", function() {
     event.preventDefault();
     lobbyId = id("lobbyid").value
     ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/games/" + lobbyId);
-    ws.onopen = function () {
+    ws.onopen = function() {
 
         username = id("username").value
         var msg = {
@@ -24,14 +24,14 @@ id("connectButton").addEventListener("click", function () {
         ws.send(JSON.stringify(msg));
 
         setInterval(function() {
-                var msg = {
-                    type: "heartbeat"
-                };
-                ws.send(JSON.stringify(msg));
+            var msg = {
+                type: "heartbeat"
+            };
+            ws.send(JSON.stringify(msg));
         }, 5000);
     }
 
-    ws.onmessage = function (msg) {
+    ws.onmessage = function(msg) {
         // just so the error text dissapears something happens
         id("errorText").hidden = true;
 
@@ -53,16 +53,16 @@ id("connectButton").addEventListener("click", function () {
                 let h1 = document.getElementById("promptCompleteText");
 
                 h1.innerHTML = "All prompts complete!"
-                  .split("")
-                  .map(letter => {
-                    return `<span>` + letter + `</span>`;
-                  })
-                  .join("");
+                    .split("")
+                    .map(letter => {
+                        return `<span>` + letter + `</span>`;
+                    })
+                    .join("");
 
                 Array.from(h1.children).forEach((span, index) => {
-                  setTimeout(() => {
-                    span.classList.add("wavy");
-                  }, index * 60 + delay);
+                    setTimeout(() => {
+                        span.classList.add("wavy");
+                    }, index * 60 + delay);
                 });
                 break;
 
@@ -95,20 +95,25 @@ id("connectButton").addEventListener("click", function () {
                 break;
 
             case "newPrompts":
-                id("promptList").innerHTML += data.scriptPrompts.map(prompt  =>
-                    '<div id="prompt-' + prompt.id + '">' +
-                    '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
-                    '    <br>' +
-                    '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea"></textarea>' +
-                    '    <br>' +
-                    '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit" onClick="submitResponse(\'' + prompt.id + '\')">Submit</button>' +
-                    '    <br>' +
-                    '</div>' +
-                    '<br>'
-                ).join("");
+                let promptList = id("promptList");
+
+                // no innerhtml reset hack xd
+                for (const prompt of data.scriptPrompts) {
+                    let tempDiv = document.createElement('div')
+                    tempDiv.innerHTML =
+                        '<div id="prompt-' + prompt.id + '">' +
+                        '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
+                        '    <br>' +
+                        '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea"></textarea>' +
+                        '    <br>' +
+                        '    <button class="submit-prompt" id="prompt-' + prompt.id + '-submit" onClick="submitResponse(\'' + prompt.id + '\')">Submit</button>' +
+                        '    <br>' +
+                        '</div>';
+                    promptList.appendChild(tempDiv.firstChild);
+                }
                 break;
-            }
         }
+    }
 
 
     ws.onclose = () => {
@@ -134,7 +139,7 @@ function submitResponse(promptId) {
     id('prompt-' + promptId).remove();
 }
 
-id("startGame").addEventListener("click", function () {
+id("startGame").addEventListener("click", function() {
     var msg = {
         type: "startGame"
     };
@@ -151,11 +156,11 @@ setInterval(function() {
     }
 }, 500);
 
-id("connectTeleprompterButton").addEventListener("click", function () {
+id("connectTeleprompterButton").addEventListener("click", function() {
     event.preventDefault();
-    window.location.href = "http://www." + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value + "/teleprompter";
+    window.location.href = "http://" + location.hostname + ":" + location.port + "/games/" + id("lobbyid").value + "/teleprompter";
 })
 
-id("gameCompleteTeleprompterButton").addEventListener("click", function () {
-    window.location.href = "http://www." + location.hostname + ":" + location.port + "/games/" + lobbyId + "/teleprompter";
+id("gameCompleteTeleprompterButton").addEventListener("click", function() {
+    window.location.href = "http://" + location.hostname + ":" + location.port + "/games/" + lobbyId + "/teleprompter";
 })
