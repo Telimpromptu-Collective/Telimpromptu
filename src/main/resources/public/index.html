@@ -11,18 +11,16 @@
         <img src="./teleprompter_drawing.png" alt="lil teleprompter" id="teleprompter" width="250" height="250">
     </div>
     <div class="content">
-        <h1>Telimpromptu</h1>
         <p id="errorText" hidden>There was an error!</p>
 
         <form>
             <div id="connectionForm">
-                <input id="username" placeholder="username">
+                <input id="username" placeholder="Name">
                 <br>
-                <input id="lobbyid" placeholder="lobby id">
-                <br>
+                <input id="lobbyid" placeholder="Lobby ID">
                 <br>
                 <button id="connectButton">Connect</button>
-                <button id="connectTeleprompterButton">Teleprompter</button>
+                <a id="connectTeleprompterButton">Go to teleprompter</a>
             </div>
         </form>
 
@@ -48,6 +46,7 @@
                     </ul>
                 </td>
             </table>
+
             <p>Prompts</p>
             <div id="promptList">
                 <!-- Built by JS -->

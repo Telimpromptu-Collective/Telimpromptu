@@ -24,15 +24,15 @@
     "prompts": [
       {
         "id": "main_story",
-        "description": "The main story of the night!"
+        "description": "The story of the night!"
       },
       {
         "id": "main_story_info",
-        "description": "An additional detail about the main story, which is {!main_story}"
+        "description": "Initial details about the story, {!main_story}"
       },
       {
         "id": "main_story_info2",
-        "description": "Additional info about the main story, {!main_story}. We also know {!main_story_info}."
+        "description": "Details about the story, {!main_story}. We also know {!main_story_info}."
       }
     ]
   },
@@ -97,18 +97,18 @@
     "prompts": [
       {
         "id": "expert-credentials",
-        "description": "The credentials that the expert has. Eg: 'PHD in Rocks', 'Bachelors of Astronomy'"
+        "description": "The credentials that the expert has\ne.g. 'PhD in Rocks'"
       },
       {
         "groupId": "expert_initialanswers",
         "subPrompts": [
           {
             "id": "expert_initial_answer1",
-            "description": "The start of the answer to the first question that hasnt even been written yet. Eg: 'Yes', 'I can't answer that', 'No'"
+            "description": "The guest expert's first answer to a question that hasn't been written yet\ne.g. 'Yes', 'I can't answer that', 'No'"
           },
           {
             "id": "expert_initial_answer2",
-            "description": "The start of the answer to the second question that hasnt even been written yet."
+            "description": "The guest expert's second answer to a question that hasn't been written yet"
           }
         ]
       },
@@ -117,15 +117,15 @@
         "subPrompts": [
           {
             "id": "expert_question1",
-            "description": "First question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer1}'"
+            "description": "The first question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer1}'"
           },
           {
             "id": "expert_question2",
-            "description": "Second question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer2}'"
+            "description": "The second question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer2}'"
           },
           {
-            "id": "expert_question2",
-            "description": "Second question the host asks to the reporter. The guest expert will say they can't answer it."
+            "id": "expert_question3",
+            "description": "The third question the host asks to the reporter. The guest expert will say they can't answer it."
           }
         ]
       },
@@ -555,54 +555,50 @@
       },
       {
         "speaker": "RELIGIOUSLEADER",
-        "text": "I disagree. Everyone join in."
-      },
-      {
-        "speaker": "RELIGIOUSLEADER",
-        "text": "(To the tune of {!chant_tune}) {!religious_chant_1}. (Everyone joins in) {!religious_chant_2}-"
+        "text": "I disagree.\n(To the tune of {!chant_tune}) {!religious_chant_1}\n(Everyone joins in)\n{!religious_chant_2}-"
       },
       {
         "speaker": "HOST",
-        "text": "(Make a loud interrupting noise). Back to the news."
+        "text": "(Make a loud interrupting noise) That's enough of that. Back to the news."
       }
     ],
     "prompts": [
       {
         "id": "religion_name",
-        "description": "Make up the name of a religion"
+        "description": "The name of a made-up religion"
       },
       {
         "groupId": "religion_info",
         "subPrompts": [
           {
             "id": "religious_title",
-            "description": "Make the title for the religious leader who practices {!religion_name}"
+            "description": "The title for a religious leader who practices {!religion_name}"
           },
           {
             "id": "religion_description",
-            "description": "Describe what a religion named {!religion_name} would practice."
+            "description": "The practices for a follower of {!religion_name}\nContext: \"As the {!religious_title}, I must (Your text here)\""
           }
         ]
       },
       {
         "id": "religion_performance",
-        "description": "Say something that would make the scene more dangerous."
+        "description": "A dangerous religious ritual to be described by the religious leader\nContext: \"I am here to (Your text here)\""
       },
       {
         "id": "religious_leader_insult",
-        "description": "Create an insult for the leader of a religion named {!religion_name}. They practice {!religion_description}."
+        "description": "An insult for the leader of a religion named {!religion_name}"
       },
       {
         "id": "chant_tune",
-        "description": "Name a song that {@religiousleader} knows. Be as basic as you want."
+        "description": "A song that {@religiousleader} will have to sing to the tune of"
       },
       {
         "id": "religious_chant_1",
-        "description": "Create the first half of a chant for a religion named {!religion_name}"
+        "description": "The first half of a chant for a religion named {!religion_name}\nThe chant will be to the tune of {!chant_tune}"
       },
       {
         "id": "religious_chant_2",
-        "description": "Create the second half of a chant for a religion named {!religion_name}. It should be interrupted."
+        "description": "The second half of a chant for a religion named {!religion_name}\nTune: {!chant_tune}\nFirst half: {!religious_chant_1}"
       }
     ]
   },
@@ -627,11 +623,11 @@
     "prompts": [
       {
         "id": "host_story_description",
-        "description": "Write 1+ sentences for the closing remarks of the story. Context: 'Well, there you have it folks. A story like this you only see once in a lifetime. (Your text here)"
+        "description": "A few words for the closing remarks of the story\nContext: \"Well, there you have it folks. A story like this you only see once in a lifetime. (Your text here)\""
       },
       {
         "id": "cohost_statistic",
-        "description": "Write a fake statistic for the CoHost to present. Context: 'Perhaps this story shouldn't be all that surprising given that (Your text here)'"
+        "description": "A fake fact or statistic for the CoHost to present\nContext: \"Perhaps this story shouldn't be all that surprising given that (Your text here)\""
       }
     ]
   }
