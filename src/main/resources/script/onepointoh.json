@@ -564,14 +564,14 @@
     ],
     "prompts": [
       {
+        "id": "religion_name",
+        "description": "Make up the name of a religion"
+      },
+      {
         "groupId": "religion_info",
         "subPrompts": [
           {
-            "id": "religion_name",
-            "description": "Make up the name of a religion"
-          },
-          {
-            "id": "religion_title",
+            "id": "religious_title",
             "description": "Make the title for the religious leader who practices {!religion_name}"
           },
           {
