@@ -117,11 +117,15 @@
         "subPrompts": [
           {
             "id": "expert_question1",
-            "description": "First question the host asks to the reporter. The guest expert's answer starts with '{!expert_initial_answer1}'"
+            "description": "First question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer1}'"
           },
           {
             "id": "expert_question2",
-            "description": "Second question the host asks to the reporter. The guest expert's answer starts with '{!expert_initial_answer2}'"
+            "description": "Second question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer2}'"
+          },
+          {
+            "id": "expert_question2",
+            "description": "Second question the host asks to the reporter. The guest expert will say they can't answer it."
           }
         ]
       },
