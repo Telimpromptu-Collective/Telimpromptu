@@ -1,7 +1,6 @@
 import gg.jte.CodeResolver
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
-import gg.jte.resolve.DirectoryCodeResolver
 import gg.jte.resolve.ResourceCodeResolver
 import io.javalin.Javalin
 import io.javalin.http.Context
@@ -12,8 +11,6 @@ import kotlinx.serialization.json.Json
 import teleimpromptu.TIPUSession
 import teleimpromptu.message.Message
 import teleimpromptu.states.TIPUGame
-import java.lang.Exception
-import java.nio.file.Path
 
 
 val games = mutableMapOf<String, TIPUSession>()

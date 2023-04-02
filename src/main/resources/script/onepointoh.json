@@ -150,6 +150,71 @@
     ],
     "lines": [
       {
+        "speaker": "COHOST",
+        "text": "{@guestexpert} Expertson has agreed to an exclusive interview with Telimpromptu News. He is a distinguished professional and has a {!expert-credentials}. {@guestexpert} Expertson, thank you for joining us."
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "It's a pleasure to be here."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "{@guestexpert}, in your professional opinion, what do you make of this story?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Well, {!phony_expert_answer1}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "(Listening on ear piece) ...I've just received word from our sources that {!cohost_contradiction1}. {@guestexpert}, how do you respond to that?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Well, ..I uh, (clears throat). It's clear that your 'sources' don't have a {!expert-credentials} like me, or they wouldn't even be asking such questions."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "(Talking softly into ear piece) Really? I don't believe this. (Talking to guest expert) I've just gotten word that {!cohost_contradiction2}. {@guestexpert}, what do you have to say for yourself?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Uh....uh...{!guest_expert_plea}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Alright, I'm afraid we'll have to cut our interview short. I'm sorry about that, folks."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "expert-credentials",
+        "description": "The credentials that the expert has. Eg: 'PHD in Rocks', 'Bachelors of Astronomy'"
+      },
+      {
+        "id": "phony_expert_answer1",
+        "description": "Write an expert account of the story for the guest expert, who claims to have a {!expert-credentials}. Make the guest expert's account completely unbelievable."
+      },
+      {
+        "id": "cohost_contradiction1",
+        "description": "Write the information the cohost receives that contradicts the guest expert's claim that {!phony_expert_answer1}."
+      },
+      {
+        "id": "cohost_contradiction2",
+        "description": "Write a piece of information that reveals that the guest expert's claim of having a {!expert-credentials} is a lie. E.g. 'The University of Hampburgshire is not a real university'."
+      },
+      {
+        "id": "guest_expert_plea",
+        "description": "The guest expert has been found out to be a phony. Write his desperate plea that reveals his real reason for wanting to get on TV."
+      }
+    ]
+  },
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
         "speaker": "HOST",
         "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
       },
@@ -456,6 +521,84 @@
       {
         "id": "zookeeper_buytime",
         "description": "Something the zookeeper says to buy time before they make their escape out of the studio after being discovered as a fraud."
+      }
+    ]
+  },
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "On the scene is {!religious_title} {@religiousleader} who practices {!religion_name}! {!religious_title} {@religiousleader}, what are you doing here?"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "As the {!religious_title}, I must {!religion_description}. That is why I am here."
+      },
+      {
+        "speaker": "HOST",
+        "text": "I see. But what are you specifically doing on the scene?"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "I am here to {!religion_performance}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "You {!religious_leader_insult}! That will endanger everyone on scene!"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "I disagree. Everyone join in."
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "(To the tune of {!chant_tune}) {!religious_chant_1}. (Everyone joins in) {!religious_chant_2}-"
+      },
+      {
+        "speaker": "HOST",
+        "text": "(Make a loud interrupting noise). Back to the news."
+      }
+    ],
+    "prompts": [
+      {
+        "groupId": "religion_info",
+        "subPrompts": [
+          {
+            "id": "religion_name",
+            "description": "Make up the name of a religion"
+          },
+          {
+            "id": "religion_title",
+            "description": "Make the title for the religious leader who practices {!religion_name}"
+          },
+          {
+            "id": "religion_description",
+            "description": "Describe what a religion named {!religion_name} would practice."
+          }
+        ]
+      },
+      {
+        "id": "religion_performance",
+        "description": "Say something that would make the scene more dangerous."
+      },
+      {
+        "id": "religious_leader_insult",
+        "description": "Create an insult for the leader of a religion named {!religion_name}. They practice {!religion_description}."
+      },
+      {
+        "id": "chant_tune",
+        "description": "Name a song that {@religiousleader} knows. Be as basic as you want."
+      },
+      {
+        "id": "religious_chant_1",
+        "description": "Create the first half of a chant for a religion named {!religion_name}"
+      },
+      {
+        "id": "religious_chant_2",
+        "description": "Create the second half of a chant for a religion named {!religion_name}. It should be interrupted."
       }
     ]
   },
