@@ -132,8 +132,6 @@ button {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    max-width: 1000px;
-    min-width: 600px;
     text-align: center;
     color: white;
     background-color: #090e23;
@@ -181,3 +179,21 @@ button {
   }
 }
 
+@media only screen and (max-width: 600px) {
+
+    .content {
+        width: 100%;
+    }
+
+    #teleprompter-drawing {
+        max-width: 50%;
+        height: auto;
+    }
+
+
+    .button {
+        font-size: 16px;
+        padding: 10px;
+        width: 80vw;
+    }
+}
