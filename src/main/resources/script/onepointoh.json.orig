@@ -38,51 +38,6 @@
   },
   {
     "tags": [
-      "INTRODUCTION"
-    ],
-    "lines": [
-      {
-        "speaker": "HOST",
-        "text": "You're watching Telimpromptu News, I'm your host, {@host} Newsperson."
-      },
-      {
-        "speaker": "COHOST",
-        "text": "I'm {@cohost} McNewsman, tonight's story: {!main_story}"
-      },
-      {
-        "speaker": "HOST",
-        "text": "{!host_reaction_to_main_story}"
-      },
-      {
-        "speaker": "COHOST",
-        "text": "Telimpromptu News has some exclusive footage of the event, let's watch.\n\n{!youtube_video}\n\n"
-      },
-      {
-        "speaker": "HOST",
-        "text": "{!host_reaction_to_youtube_video}"
-      }
-    ],
-    "prompts": [
-      {
-        "id": "main_story",
-        "description": "The story of the night!"
-      },
-      {
-        "id": "host_reaction_to_main_story",
-        "description": "The host's reaction upon hearing the story, {!main_story}"
-      },
-      {
-        "id": "youtube_video",
-        "description": "Insert a link to a YouTube video that portrays {!main_story}\nLink to a timestamp if necessary"
-      },
-      {
-        "id": "host_reaction_to_youtube_video",
-        "description": "Write the host's commentary upon seeing video footage of {!main_story}"
-      }
-    ]
-  },
-  {
-    "tags": [
       "SEGMENT"
     ],
     "lines": [
@@ -612,7 +567,11 @@
       },
       {
         "speaker": "HOST",
+<<<<<<< HEAD
+        "text": "(Make a loud interrupting noise) Back to the news."
+=======
         "text": "(Make a loud interrupting noise) That's enough of that. Back to the news."
+>>>>>>> 8ebfdd26a0448e346343840c06cd1ff6f9aaf87f
       }
     ],
     "prompts": [
@@ -634,6 +593,7 @@
         ]
       },
       {
+<<<<<<< HEAD
         "groupId": "ritual_info",
         "subPrompts": [
           {
@@ -645,6 +605,10 @@
             "description": "The name of that ritual."
           }
         ]
+=======
+        "id": "religion_performance",
+        "description": "A dangerous religious ritual to be described by the religious leader\nContext: \"I am here to (Your text here)\""
+>>>>>>> 8ebfdd26a0448e346343840c06cd1ff6f9aaf87f
       },
       {
         "id": "religious_leader_insult",
