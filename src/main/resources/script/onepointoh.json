@@ -484,6 +484,14 @@
         "text": "(Make another {!animal_type} noise.)"
       },
       {
+        "speaker": "HOST",
+        "text": "You didn't bring an {!animal_type}, did you?"
+      },
+      {
+        "speaker": "ZOOKEEPER",
+        "text": "(Make an insisting {!animal_type} noise.)"
+      },
+      {
         "speaker": "COHOST",
         "text": "{!zookeeper_accusation}"
       },
@@ -539,7 +547,7 @@
       },
       {
         "speaker": "RELIGIOUSLEADER",
-        "text": "As the {!religious_title}, I must {!religion_description}. That is why I am here."
+        "text": "As the {!religious_title} of {!religion_name}, we believe in {!religion_description}. That is why I am here."
       },
       {
         "speaker": "HOST",
@@ -547,7 +555,7 @@
       },
       {
         "speaker": "RELIGIOUSLEADER",
-        "text": "I am here to {!religion_performance}"
+        "text": "I am here to perform our ritual of {!religion_ritual}, where I will now {!religion_ritual_action}"
       },
       {
         "speaker": "HOST",
@@ -563,7 +571,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "(Make a loud interrupting noise). Back to the news."
+        "text": "(Make a loud interrupting noise) Back to the news."
       }
     ],
     "prompts": [
@@ -585,8 +593,17 @@
         ]
       },
       {
-        "id": "religion_performance",
-        "description": "Say something that would make the scene more dangerous."
+        "groupId": "ritual_info",
+        "subPrompts": [
+          {
+            "id": "religion_ritual_action",
+            "description": "The actions involved in a religious ritual performed by members of the {!religion_name} religion."
+          },
+          {
+            "id": "religion_ritual",
+            "description": "The name of that ritual."
+          }
+        ]
       },
       {
         "id": "religious_leader_insult",
@@ -632,6 +649,40 @@
       {
         "id": "cohost_statistic",
         "description": "Write a fake statistic for the CoHost to present. Context: 'Perhaps this story shouldn't be all that surprising given that (Your text here)'"
+      }
+    ]
+  },
+  {
+    "tags": [
+      "CLOSING"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Well thats all we have for tonight everyone. Truly something special isnt it, {@cohost}?"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Its like the old {!musical_artist} line, {!cohost_lyric}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "You're right about that one. Well folks, that’s all we've got for tonight. Telimpromptu news, signing off."
+      }
+    ],
+    "prompts": [
+      {
+        "groupId": "cohost_music_reference",
+        "subPrompts": [
+          {
+            "id": "cohost_lyric",
+            "description": "A lyric that the {@cohost} will say that somehow relates to tonight's story."
+          },
+          {
+            "id": "musical_artist",
+            "description": "The musical artist the referenced lyric is by."
+          }
+        ]
       }
     ]
   }

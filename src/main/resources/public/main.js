@@ -6,6 +6,7 @@ let ws = null;
 let username = null;
 let playerCount = 0;
 let lobbyId = null;
+let heartbeatInterval = null;
 
 let gameComplete = false;
 
@@ -23,7 +24,7 @@ id("connectButton").addEventListener("click", function() {
         };
         ws.send(JSON.stringify(msg));
 
-        setInterval(function() {
+        heartbeatInterval= setInterval(function() {
             var msg = {
                 type: "heartbeat"
             };
@@ -117,6 +118,8 @@ id("connectButton").addEventListener("click", function() {
 
 
     ws.onclose = () => {
+        clearInterval(heartbeatInterval);
+
         if (!gameComplete) {
             location.reload();
         }
