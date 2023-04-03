@@ -567,7 +567,11 @@
       },
       {
         "speaker": "HOST",
+<<<<<<< HEAD
+        "text": "(Make a loud interrupting noise) Back to the news."
+=======
         "text": "(Make a loud interrupting noise) That's enough of that. Back to the news."
+>>>>>>> 8ebfdd26a0448e346343840c06cd1ff6f9aaf87f
       }
     ],
     "prompts": [
@@ -589,6 +593,7 @@
         ]
       },
       {
+<<<<<<< HEAD
         "groupId": "ritual_info",
         "subPrompts": [
           {
@@ -600,6 +605,10 @@
             "description": "The name of that ritual."
           }
         ]
+=======
+        "id": "religion_performance",
+        "description": "A dangerous religious ritual to be described by the religious leader\nContext: \"I am here to (Your text here)\""
+>>>>>>> 8ebfdd26a0448e346343840c06cd1ff6f9aaf87f
       },
       {
         "id": "religious_leader_insult",

@@ -8,8 +8,67 @@ body {
     height: 100vh;
 }
 
+//connection form
+
+#connectionForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: #303030;
+  border: none;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+
+#connectButton {
+  width: 100%;
+  color: black;
+  background-color: cyan;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#connectTeleprompterButton {
+  color: gray;
+  text-decoration: none;
+  text-decoration: underline;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+button {
+    font-size: 1em;
+}
+
 #errorText {
   color: red;
+}
+
+#lobby-userlist {
+    list-style-type: none;
+}
+
+#inLobby {
+    text-align: left;
 }
 
 #teleprompter-drawing {
@@ -64,20 +123,14 @@ body {
     color: gray;
 }
 
-.submit-prompt {
-  font-size: 1.5em;
-  padding: 10px 20px;
-}
-
 .prompt-textarea {
   min-width: 20vw;
 }
 
-#inLobby {
-    text-align: center;
-}
-
 .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 10px;
     max-width: 1000px;
     min-width: 600px;
@@ -128,19 +181,3 @@ body {
   }
 }
 
-/* Responsive styles */
-@media (max-width: 800px) {
-  form {
-    flex-direction: column;
-  }
-
-
-  label,
-  input[type="text"],
-  button {
-    width: 100%;
-    max-width: none;
-    margin-bottom: 10px;
-    margin-left: 0;
-  }
-}
