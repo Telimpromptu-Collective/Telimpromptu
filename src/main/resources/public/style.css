@@ -49,7 +49,6 @@ input {
 #connectTeleprompterButton {
   color: gray;
   text-decoration: none;
-  text-decoration: underline;
   font-size: 16px;
   margin-top: 10px;
 }
@@ -57,6 +56,10 @@ input {
 
 button {
     font-size: 1em;
+    color: gray;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 #errorText {
@@ -71,7 +74,13 @@ button {
     text-align: left;
 }
 
+#teleprompter {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 #teleprompter-drawing {
+    aspect-ratio: 1 / 1;
     margin-top: 10px;
     max-width: 300px;
     text-align: center;

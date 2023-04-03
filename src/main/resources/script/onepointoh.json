@@ -43,11 +43,11 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "You're watching Telimpromptu News, I'm your host, {@host} Newsperson."
+        "text": "You're watching Telimpromptu News, I'm your host, {@host} Hostadanews."
       },
       {
         "speaker": "COHOST",
-        "text": "I'm {@cohost} McNewsman, tonight's story: {!main_story}"
+        "text": "I'm {@cohost} Newsly, tonight's story: {!main_story}"
       },
       {
         "speaker": "HOST",
@@ -69,7 +69,7 @@
       },
       {
         "id": "host_reaction_to_main_story",
-        "description": "The host's reaction upon hearing the story, {!main_story}"
+        "description": "The host's reaction upon hearing the story for the first time, {!main_story}"
       },
       {
         "id": "youtube_video",
@@ -717,11 +717,11 @@
         "subPrompts": [
           {
             "id": "cohost_lyric",
-            "description": "A lyric that the {@cohost} will say that somehow relates to tonight's story."
+            "description": "A quote that the {@cohost} will say that somehow relates to tonight's story e.g. The lyrics to a song"
           },
           {
             "id": "musical_artist",
-            "description": "The musical artist the referenced lyric is by."
+            "description": "The person who the quote is attributed to."
           }
         ]
       }
