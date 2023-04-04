@@ -103,7 +103,8 @@ id("connectButton").addEventListener("click", function() {
                     let tempDiv = document.createElement('div')
                     tempDiv.innerHTML =
                         '<div id="prompt-' + prompt.id + '">' +
-                        '    <label for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
+                        // style="white-space: pre-line" makes new lines work properly
+                        '    <label style="white-space: pre-line" for="prompt-' + prompt.id + '-textarea">' + prompt.description + '</label>' +
                         '    <br>' +
                         '    <textarea class="prompt-textarea" id="prompt-' + prompt.id + '-textarea"></textarea>' +
                         '    <br>' +

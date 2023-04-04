@@ -629,7 +629,7 @@
           },
           {
             "id": "religion_description",
-            "description": "The practices for a follower of {!religion_name}\nContext: \"As the {!religious_title}, I must (Your text here)\""
+            "description": "The practices for a follower of {!religion_name}\nContext: \"As the RELIGIOUS TITLE YOU JUST ENTERED, I must (Your text here)\""
           }
         ]
       },

@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="/style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
-<div style="font-size: 8em">
+<div style="font-size: 8em" style="white-space: pre-line">
     <br>3<br><br><br>2<br><br><br>1<br><br><br>0.5 lol<br>YOU'RE LIVE!<br>
 
 @for(ScriptLine scriptLine: script)
-    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> $unsafe{scriptLine.getText().replace("\n", "<br>")}<br><br>
+    <span class="${scriptLine.getSpeaker().toLowercaseString()}-speech">${roleMap.get(scriptLine.getSpeaker())}:</span> ${scriptLine.getText()}<br><br>
 @endfor
 </div>
 
@@ -23,7 +23,7 @@
     const scrollFunction = async () => {
         while (true) {
             await delay(50);
-            window.scrollBy(0, 4)
+            window.scrollBy(0, 5)
         }
     }
 
