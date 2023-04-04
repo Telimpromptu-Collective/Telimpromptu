@@ -63,7 +63,7 @@ fun main() {
 
                     games[ctx.gameId]!!.receiveMessage(ctx, message)
                 } catch (ex: Exception) {
-                    println("encountered exception in onmessage:\n$ex")
+                    println("encountered exception in onmessage:\n${ex.message}")
                 }
             }
         }

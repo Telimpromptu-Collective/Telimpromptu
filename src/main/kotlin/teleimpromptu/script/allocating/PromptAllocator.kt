@@ -27,7 +27,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
     fun allocateAvailablePrompts(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<SinglePrompt>> {
         val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> = mutableMapOf()
 
-        // move these ids to completed
+        // move newlyCompletedPromptIds to completed
         for (promptList in promptsGivenToPlayer.values) {
             promptList.removeIf { newlyCompletedPromptIds.contains(it.id) }
         }
@@ -100,11 +100,25 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         }
     }
 
-    // todo this can be changed to parse time pretty
+    // todo this can be changed to happen at json parse time
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
     private fun buildDetailedScriptPrompts(): MutableList<DetailedPrompt> {
         val prompts: MutableList<DetailedPrompt> = mutableListOf()
+
+        // todo is there a better place we can generate last name prompts...
+        prompts.addAll(
+            players.map { DetailedPrompt(
+                SinglePrompt("${it.role.toLowercaseString()}_lastname",
+                    "The last name for ${it.username} who is a ${it.role.toLowercaseString()}"
+                ),
+                listOf(it.role),
+                listOf()
+            )
+            }
+        )
+
+
         val promptMap: Map<String, ScriptPrompt> = getMapOfPromptsFromScript(script)
         val regex = Regex("""\{\!(.*?)\}""") // matches "{!id}" pattern
 
