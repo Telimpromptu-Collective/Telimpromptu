@@ -16,29 +16,21 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         players.associateWith { mutableListOf<SinglePrompt>() }.toMutableMap()
 
     init {
-        val allDetailedPrompts = DetailedPromptBuilderService.buildDetailedScriptPrompts(script, players)
+        val allDetailedPrompts: List<DetailedPrompt> = DetailedPromptBuilderService.buildDetailedPrompts(script, players)
         // the list we start handing out only contains prompts with no dependencies.
         this.promptsToDoleOut = allDetailedPrompts.filter { it.dependentPrompts.isEmpty() }.toMutableList()
         this.promptsToDoleOutWithUnresolvedDependencies =
             allDetailedPrompts.filter { it.dependentPrompts.isNotEmpty() }.toMutableList()
     }
 
+    fun moveCompletedPromptsAndAllocate(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<SinglePrompt>> {
+        moveCompletedPrompts(newlyCompletedPromptIds)
+        return allocateAvailablePrompts()
+    }
+
     // todo build this out into multiple strategies... this one is probably called flood
-    fun allocateAvailablePrompts(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<SinglePrompt>> {
+    private fun allocateAvailablePrompts(): Map<TIPUPlayer, List<SinglePrompt>> {
         val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> = mutableMapOf()
-
-        // move newlyCompletedPromptIds to completed
-        for (promptList in promptsGivenToPlayer.values) {
-            promptList.removeIf { newlyCompletedPromptIds.contains(it.id) }
-        }
-
-        completedPromptIds.addAll(newlyCompletedPromptIds)
-
-        // move prompts with all resolved dependencies to the promptstodoleout
-        val promptsToMove = promptsToDoleOutWithUnresolvedDependencies.filter { areAllPromptDependenciesResolved(it) }
-        promptsToDoleOutWithUnresolvedDependencies.removeAll(promptsToMove)
-        promptsToDoleOut.addAll(promptsToMove)
-
 
         // give all the prompts out
         while (promptsToDoleOut.isNotEmpty()) {
@@ -47,7 +39,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             // wont be null because we will never have 0 players
             val playerInNeed = promptsGivenToPlayer.entries
                 // filter out speakers of this prompt
-                .filter { !detailedPrompt.speakers.contains(it.key.role) }
+                .filter { !detailedPrompt.shouldNotBeGivenTo.contains(it.key.role) }
                 // get the player with the fewest given prompts
                 .minByOrNull { it.value.size }?.key
 
@@ -64,6 +56,22 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
 
         // convert the map to immutable lists
         return allocatedPrompts.entries.associate { it.key to it.value.toList() }
+    }
+
+    private fun moveCompletedPrompts(newlyCompletedPromptIds: List<String>) {
+        // val playerToCompletedPromptIds: MutableMap<TIPUPlayer, List<String>> = mutableMapOf()
+
+        // move newlyCompletedPromptIds to completed
+        for (promptList in promptsGivenToPlayer.values) {
+            promptList.removeIf { newlyCompletedPromptIds.contains(it.id) }
+        }
+
+        completedPromptIds.addAll(newlyCompletedPromptIds)
+
+        // move prompts with all resolved dependencies to the promptstodoleout
+        val promptsToMove = promptsToDoleOutWithUnresolvedDependencies.filter { areAllPromptDependenciesResolved(it) }
+        promptsToDoleOutWithUnresolvedDependencies.removeAll(promptsToMove)
+        promptsToDoleOut.addAll(promptsToMove)
     }
 
     fun outstandingPromptsForPlayer(player: TIPUPlayer): List<SinglePrompt> {

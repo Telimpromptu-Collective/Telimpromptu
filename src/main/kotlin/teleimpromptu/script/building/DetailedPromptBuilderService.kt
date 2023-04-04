@@ -7,24 +7,33 @@ import teleimpromptu.script.allocating.Prompt
 import teleimpromptu.script.parsing.*
 
 object DetailedPromptBuilderService {
+    fun buildDetailedPrompts(script: List<ScriptSection>, players: List<TIPUPlayer>): MutableList<DetailedPrompt> {
+        val prompts: MutableList<DetailedPrompt> = mutableListOf()
+
+        prompts.addAll(buildDetailedScriptPrompts(script))
+        prompts.addAll(buildLastNamePrompts(players))
+
+        return prompts
+    }
+
+    private fun buildLastNamePrompts(players: List<TIPUPlayer>): List<DetailedPrompt> {
+        return players.map {
+            DetailedPrompt(
+                SinglePrompt("${it.role.toLowercaseString()}_lastname",
+                    "The last name for ${it.username} who is a ${it.role.toLowercaseString()}"
+                ),
+                listOf(it.role),
+                listOf()
+            )
+        }
+    }
+
+
     // todo this can be changed to happen at json parse time
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
-    fun buildDetailedScriptPrompts(script: List<ScriptSection>, players: List<TIPUPlayer>): MutableList<DetailedPrompt> {
+    private fun buildDetailedScriptPrompts(script: List<ScriptSection>): MutableList<DetailedPrompt> {
         val prompts: MutableList<DetailedPrompt> = mutableListOf()
-
-        // todo is there a better place we can generate last name prompts...
-        prompts.addAll(
-            players.map {
-                DetailedPrompt(
-                    SinglePrompt("${it.role.toLowercaseString()}_lastname",
-                        "The last name for ${it.username} who is a ${it.role.toLowercaseString()}"
-                    ),
-                    listOf(it.role),
-                    listOf()
-                )
-            }
-        )
 
 
         val promptMap: Map<String, ScriptPrompt> = getMapOfPromptsFromScript(script)
