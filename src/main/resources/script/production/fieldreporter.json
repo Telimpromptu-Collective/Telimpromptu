@@ -1,0 +1,75 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Thank you, {@host}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Whats going on at the scene of the incident?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Well, {!fieldreporter_fieldreport1}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "Anything else?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Yes, we have a quote from a witness who saw the incident firsthand. Quote, {!fieldreporter_quote}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "{!host_exclamation}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "{!host_exclamation} is right {@cohost}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "One last thing, {@fieldreporter}. Do you have a message for the families at home?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Yes, {!fieldreporter_familyanswer}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "That's field reporter {@fieldreporter} Reportsalot. {@fieldreporter}, thank you."
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Thank you."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "fieldreporter_fieldreport1",
+        "description": "Write 1+ sentences on what the field reporter sees at the scene of the incident."
+      },
+      {
+        "id": "host_exclamation",
+        "description": "An exclamation the host says. Eg: 'Wow!' 'Holy moly!'"
+      },
+      {
+        "id": "fieldreporter_quote",
+        "description": "Write a quote for the field reporter to present on something said by a witness who saw the incident firsthand."
+      },
+      {
+        "id": "fieldreporter_familyanswer",
+        "description": "Write a message for the field reporter to give to the families at home."
+      }
+    ]
+  }
+]

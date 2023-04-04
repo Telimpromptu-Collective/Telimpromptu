@@ -1,0 +1,84 @@
+[
+  {
+    "tags": [
+      "INTRODUCTION"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "I'm {@host} Newsperson with Telimpromptu news."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "And I'm {@cohost} McNewsman!"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Our leading story tonight {!main_story}. Here's what we know so far: {!main_story_info}"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Thats right {@host}. We are also being told {!main_story_info2}"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "main_story",
+        "description": "The story of the night!"
+      },
+      {
+        "id": "main_story_info",
+        "description": "Initial details about the story, {!main_story}"
+      },
+      {
+        "id": "main_story_info2",
+        "description": "Details about the story, {!main_story}. We also know {!main_story_info}."
+      }
+    ]
+  },
+  {
+    "tags": [
+      "INTRODUCTION"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "You're watching Telimpromptu News, I'm your host, {@host} Hostadanews."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "I'm {@cohost} Newsly, tonight's story: {!main_story}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "{!host_reaction_to_main_story}"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Telimpromptu News has some exclusive footage of the event, let's watch.\n\n{!youtube_video}\n\n"
+      },
+      {
+        "speaker": "HOST",
+        "text": "{!host_reaction_to_youtube_video}"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "main_story",
+        "description": "The story of the night!"
+      },
+      {
+        "id": "host_reaction_to_main_story",
+        "description": "The host's reaction upon hearing the story for the first time, {!main_story}"
+      },
+      {
+        "id": "youtube_video",
+        "description": "Insert a link to a YouTube video that portrays {!main_story}\nLink to a timestamp if necessary"
+      },
+      {
+        "id": "host_reaction_to_youtube_video",
+        "description": "Write the host's commentary upon seeing video footage of {!main_story}"
+      }
+    ]
+  }
+]

@@ -3,17 +3,18 @@ package teleimpromptu.script.parsing
 import jsonDecoder
 import kotlinx.serialization.decodeFromString
 import teleimpromptu.TIPURole
+import java.io.File
+import java.nio.file.Files
 
 object ScriptParsingService
 {
     val sections: List<ScriptSection> = parseScript()
 
     private fun parseScript(): List<ScriptSection> {
-        // yuck
-        val rawSections: List<RawScriptSection> = jsonDecoder.decodeFromString(
-            this::class.java.classLoader.getResource("script/onepointoh.json")!!
-                .readText()
-        )!!
+        val rawSections: List<RawScriptSection> = File(this::class.java.classLoader.getResource("script/production")!!.path).walk()
+            .filter { it.extension == "json" }
+            .flatMap { jsonDecoder.decodeFromString<List<RawScriptSection>>(it.readText()) }
+            .toList()
 
         // todo make this cleaner
         return rawSections.map { rawSection ->

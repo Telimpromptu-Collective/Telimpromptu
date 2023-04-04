@@ -1,0 +1,85 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "On the scene is {!religious_title} {@religiousleader} who practices {!religion_name}! {!religious_title} {@religiousleader}, what are you doing here?"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "As the {!religious_title} of {!religion_name}, we believe in {!religion_description}. That is why I am here."
+      },
+      {
+        "speaker": "HOST",
+        "text": "I see. But what are you specifically doing on the scene?"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "I am here to perform our ritual of {!religion_ritual}, where I will now {!religion_ritual_action}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "You {!religious_leader_insult}! That will endanger everyone on scene!"
+      },
+      {
+        "speaker": "RELIGIOUSLEADER",
+        "text": "I disagree.\n(To the tune of {!chant_tune}) {!religious_chant_1}\n(Everyone joins in)\n{!religious_chant_2}-"
+      },
+      {
+        "speaker": "HOST",
+        "text": "(Make a loud interrupting noise) That's enough of that. Back to the news."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "religion_name",
+        "description": "The name of a made-up religion"
+      },
+      {
+        "groupId": "religion_info",
+        "subPrompts": [
+          {
+            "id": "religious_title",
+            "description": "The title for a religious leader who practices {!religion_name}"
+          },
+          {
+            "id": "religion_description",
+            "description": "The practices for a follower of {!religion_name}\nContext: \"As the RELIGIOUS TITLE YOU JUST ENTERED, I must (Your text here)\""
+          }
+        ]
+      },
+      {
+        "groupId": "ritual_info",
+        "subPrompts": [
+          {
+            "id": "religion_ritual_action",
+            "description": "The actions involved in a religious ritual performed by members of the {!religion_name} religion."
+          },
+          {
+            "id": "religion_ritual",
+            "description": "The name of that ritual."
+          }
+        ]
+      },
+      {
+        "id": "religious_leader_insult",
+        "description": "An insult for the leader of a religion named {!religion_name}"
+      },
+      {
+        "id": "chant_tune",
+        "description": "A song that {@religiousleader} will have to sing to the tune of"
+      },
+      {
+        "id": "religious_chant_1",
+        "description": "The first half of a chant for a religion named {!religion_name}\nThe chant will be to the tune of {!chant_tune}"
+      },
+      {
+        "id": "religious_chant_2",
+        "description": "The second half of a chant for a religion named {!religion_name}\nTune: {!chant_tune}\nFirst half: {!religious_chant_1}"
+      }
+    ]
+  }
+]

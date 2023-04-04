@@ -1,0 +1,179 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Joining us now is our guest expert {@guestexpert} Expertson who has a {!expert-credentials}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "Thank you for joining us."
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Thank you for having me on {@host}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "First question, {!expert_question1}?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "{!expert_initial_answer1}, {@host}, {!expert_full_answer1}"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Remarkable."
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Maybe to some, but when you have a {!expert-credentials} like me, you see this kind of thing every day."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Next question, {@guestexpert}, {!expert_question2}?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "{!expert_initial_answer2}, {@cohost}, and here I should add a relevant detail to the case: {!guestexpert_detail}, as I will now demonstrate. (Demonstrates)"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Final question, {!expert_question3}?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "I'm sorry {@cohost}, I cant answer that question. When I obtained my {!expert-credentials}, I swore a particular and solemn oath.\nThat oath is this.\n(Places hand on heart)\n{!expert_oath}"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Well that was really something. Thank you for your time, {@guestexpert}."
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Thank you."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "expert-credentials",
+        "description": "The credentials that the expert has\ne.g. 'PhD in Rocks'"
+      },
+      {
+        "groupId": "expert_initialanswers",
+        "subPrompts": [
+          {
+            "id": "expert_initial_answer1",
+            "description": "The guest expert's first answer to a question that hasn't been written yet\ne.g. 'Yes', 'I can't answer that', 'No'"
+          },
+          {
+            "id": "expert_initial_answer2",
+            "description": "The guest expert's second answer to a question that hasn't been written yet"
+          }
+        ]
+      },
+      {
+        "groupId": "expert_questions",
+        "subPrompts": [
+          {
+            "id": "expert_question1",
+            "description": "The first question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer1}'"
+          },
+          {
+            "id": "expert_question2",
+            "description": "The second question the host asks to the guest expert. The guest expert's answer starts with '{!expert_initial_answer2}'"
+          },
+          {
+            "id": "expert_question3",
+            "description": "The third question the host asks to the reporter. The guest expert will say they can't answer it."
+          }
+        ]
+      },
+      {
+        "groupId": "expert_full_answers",
+        "subPrompts": [
+          {
+            "id": "expert_full_answer1",
+            "description": "The answer to {!expert_question1} which starts with {!expert_initial_answer1}"
+          },
+          {
+            "id": "guestexpert_detail",
+            "description": "Write a detail for the guest expert to present that they will have to demonstrate themself."
+          }
+        ]
+      },
+      {
+        "id": "expert_oath",
+        "description": "Write the oath that the guest expert who has a {!expert-credentials} had to swear upon entering their field."
+      }
+    ]
+  },
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "COHOST",
+        "text": "{@guestexpert} Expertson has agreed to an exclusive interview with Telimpromptu News. He is a distinguished professional and has a {!expert-credentials}. {@guestexpert} Expertson, thank you for joining us."
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "It's a pleasure to be here."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "{@guestexpert}, in your professional opinion, what do you make of this story?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Well, {!phony_expert_answer1}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "(Listening on ear piece) ...I've just received word from our sources that {!cohost_contradiction1}. {@guestexpert}, how do you respond to that?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Well, ..I uh, (clears throat). It's clear that your 'sources' don't have a {!expert-credentials} like me, or they wouldn't even be asking such questions."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "(Talking softly into ear piece) Really? I don't believe this. (Talking to guest expert) I've just gotten word that {!cohost_contradiction2}. {@guestexpert}, what do you have to say for yourself?"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Uh....uh...{!guest_expert_plea}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Alright, I'm afraid we'll have to cut our interview short. I'm sorry about that, folks."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "expert-credentials",
+        "description": "The credentials that the expert has. Eg: 'PHD in Rocks', 'Bachelors of Astronomy'"
+      },
+      {
+        "id": "phony_expert_answer1",
+        "description": "Write an expert account of the story for the guest expert, who claims to have a {!expert-credentials}. Make the guest expert's account completely unbelievable."
+      },
+      {
+        "id": "cohost_contradiction1",
+        "description": "Write the information the cohost receives that contradicts the guest expert's claim that {!phony_expert_answer1}."
+      },
+      {
+        "id": "cohost_contradiction2",
+        "description": "Write a piece of information that reveals that the guest expert's claim of having a {!expert-credentials} is a lie. E.g. 'The University of Hampburgshire is not a real university'."
+      },
+      {
+        "id": "guest_expert_plea",
+        "description": "The guest expert has been found out to be a phony. Write his desperate plea that reveals his real reason for wanting to get on TV."
+      }
+    ]
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+  "tags": [
+    "CLOSING"
+  ],
+  "lines": [
+    {
+      "speaker": "HOST",
+      "text": "Well thats all we have for tonight everyone. Truly something special isnt it, {@cohost}?"
+    },
+    {
+      "speaker": "COHOST",
+      "text": "Its like the old {!musical_artist} line, {!cohost_lyric}."
+    },
+    {
+      "speaker": "HOST",
+      "text": "You're right about that one. Well folks, that’s all we've got for tonight. Telimpromptu news, signing off."
+    }
+  ],
+  "prompts": [
+    {
+      "groupId": "cohost_music_reference",
+      "subPrompts": [
+        {
+          "id": "cohost_lyric",
+          "description": "A quote that the {@cohost} will say that somehow relates to tonight's story e.g. The lyrics to a song"
+        },
+        {
+          "id": "musical_artist",
+          "description": "The person who the quote is attributed to."
+        }
+      ]
+    }
+  ]
+  }
+]

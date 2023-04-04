@@ -1,0 +1,35 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Turning back now to the scene of the incident where I’m being told reporters have managed to get a few words with a witness who saw the event."
+      },
+      {
+        "speaker": "WITNESS",
+        "text": "(In a {!witness_voice} voice.)\n\n{!witness_account1}\n\n{!witness_account2}"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Enlightening."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "witness_voice",
+        "description": "Write a silly voice for the witness to talk in, it should be a voice that the person reading can do. Ex. 'British', 'Mickey Mouse' The prompt will show up as: '(in a your_text_here voice)'"
+      },
+      {
+        "id": "witness_account1",
+        "description": "Write the first half of a witness' firsthand account of the scene in as many words as you like. They will be speaking in a {!witness_voice} voice."
+      },
+      {
+        "id": "witness_account2",
+        "description": "Write the second half half of a firsthand account of the scene in as many words as you like. It starts with: {!witness_account1}"
+      }
+    ]
+  }
+]
