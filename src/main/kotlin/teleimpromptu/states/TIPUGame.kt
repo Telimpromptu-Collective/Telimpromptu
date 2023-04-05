@@ -24,9 +24,12 @@ class TIPUGame(private val players: List<TIPUPlayer>,
 
     init {
         // send everyone their prompts. empty list because there are no newly completed prompts
-        promptAllocator.moveCompletedPromptsAndAllocate(listOf()).forEach { sendPromptsToPlayer(it.key, it.value) }
+        promptAllocator.allocateAvailablePrompts().forEach { sendPromptsToPlayer(it.key, it.value) }
     }
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
+        // find the sender player, return if its not someone we know
+        val sender = players.firstOrNull { it.connection == ctx } ?: return
+
         when (message) {
             is PromptResponseMessage -> {
                 println("recieved: " + message.id + ": " + message.response)
@@ -35,7 +38,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
                 promptFormatter.addPromptResponse(message.id, message.response)
 
                 // get the prompts and send the prompts to everyone
-                promptAllocator.moveCompletedPromptsAndAllocate(listOf(message.id))
+                promptAllocator.moveCompletedPromptsAndAllocate(listOf(message.id), sender)
                     .forEach { sendPromptsToPlayer(it.key, it.value) }
 
                 if (promptAllocator.areAllPromptsComplete()) {

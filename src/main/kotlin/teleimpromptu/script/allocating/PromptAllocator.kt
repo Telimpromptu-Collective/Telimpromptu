@@ -23,13 +23,13 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             allDetailedPrompts.filter { it.dependentPrompts.isNotEmpty() }.toMutableList()
     }
 
-    fun moveCompletedPromptsAndAllocate(newlyCompletedPromptIds: List<String>): Map<TIPUPlayer, List<SinglePrompt>> {
-        moveCompletedPrompts(newlyCompletedPromptIds)
+    fun moveCompletedPromptsAndAllocate(newlyCompletedPromptIds: List<String>, completedByTIPUPlayer: TIPUPlayer): Map<TIPUPlayer, List<SinglePrompt>> {
+        moveCompletedPrompts(newlyCompletedPromptIds, completedByTIPUPlayer)
         return allocateAvailablePrompts()
     }
 
     // todo build this out into multiple strategies... this one is probably called flood
-    private fun allocateAvailablePrompts(): Map<TIPUPlayer, List<SinglePrompt>> {
+    fun allocateAvailablePrompts(): Map<TIPUPlayer, List<SinglePrompt>> {
         val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> = mutableMapOf()
 
         // give all the prompts out
@@ -51,6 +51,8 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             }
 
             allocatedPrompts[playerInNeed]!!.addAll(detailedPrompt.prompt.unpack())
+
+            // update prompts given to player here so the info is updated for the next time in the loop
             promptsGivenToPlayer[playerInNeed]!!.addAll(detailedPrompt.prompt.unpack())
         }
 
@@ -58,12 +60,22 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         return allocatedPrompts.entries.associate { it.key to it.value.toList() }
     }
 
-    private fun moveCompletedPrompts(newlyCompletedPromptIds: List<String>) {
-        // val playerToCompletedPromptIds: MutableMap<TIPUPlayer, List<String>> = mutableMapOf()
-
+    private fun moveCompletedPrompts(newlyCompletedPromptIds: List<String>, completedByPlayer: TIPUPlayer) {
         // move newlyCompletedPromptIds to completed
         for (promptList in promptsGivenToPlayer.values) {
+            // remove completed prompts
             promptList.removeIf { newlyCompletedPromptIds.contains(it.id) }
+
+            // if any of the prompts with dependencies have dependent prompts that
+            // either have a completed prompt as a dependency, or in the case of a prompt group,
+            // have a prompt that has one of the completed prompt ids as a dependency,
+            // add the user that completed this prompt to that list... phew...
+            promptsToDoleOutWithUnresolvedDependencies.filter {
+                it.dependentPrompts.any {
+                        dependentPrompt -> dependentPrompt.unpack()
+                            .any { unpackedPrompt -> newlyCompletedPromptIds.contains(unpackedPrompt.id) }
+                }
+            }.forEach { it.shouldNotBeGivenTo.add(completedByPlayer.role) }
         }
 
         completedPromptIds.addAll(newlyCompletedPromptIds)
@@ -86,7 +98,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
 
     fun addAdlibPrompt(prompt: AdlibPrompt) {
         // todo we could add speakers here but it probably doesnt matter
-        promptsToDoleOut.add(DetailedPrompt(prompt, listOf(), listOf()))
+        promptsToDoleOut.add(DetailedPrompt(prompt, mutableListOf(), listOf()))
     }
 
     private fun areAllPromptDependenciesResolved(prompt: DetailedPrompt): Boolean {
