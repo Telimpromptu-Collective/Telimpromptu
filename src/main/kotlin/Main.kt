@@ -29,7 +29,7 @@ fun main() {
 
     // set up server
     Javalin.create {
-        it.staticFiles.add("/public")
+        it.staticFiles.add("/webroot")
         //it.staticFiles.add("/app/build/static")
     }.apply {
         ws("/games/{game-id}") { ws ->

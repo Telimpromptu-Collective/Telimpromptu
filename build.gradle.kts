@@ -1,7 +1,13 @@
+import com.github.gradle.node.npm.task.NpmTask
+import com.github.gradle.node.npm.task.NpxTask
+
 plugins {
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.serialization") version "1.8.10"
     application
+
+
+    id("com.github.node-gradle.node") version "3.5.1"
 }
 
 group = "org.FGWFO"
@@ -13,6 +19,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    implementation(project(":app"))
 
     implementation("io.javalin:javalin:5.4.2")
     implementation("io.javalin:javalin-rendering:5.4.2")
