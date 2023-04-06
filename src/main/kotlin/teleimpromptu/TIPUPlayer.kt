@@ -3,7 +3,8 @@ package teleimpromptu
 import io.javalin.websocket.WsContext
 import java.util.Objects
 
-data class TIPUPlayer(val username: String, val role: TIPURole, var connection: WsContext) {
+data class TIPUPlayer(val username: String, val role: TIPURole, val lastname: String, var connection: WsContext) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
