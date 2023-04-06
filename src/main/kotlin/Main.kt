@@ -29,8 +29,7 @@ fun main() {
 
     // set up server
     Javalin.create {
-        it.staticFiles.add("/webroot")
-        //it.staticFiles.add("/app/build/static")
+        it.staticFiles.add("/public")
     }.apply {
         ws("/games/{game-id}") { ws ->
             ws.onConnect { ctx ->

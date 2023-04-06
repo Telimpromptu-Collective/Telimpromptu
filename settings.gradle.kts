@@ -1,5 +1,4 @@
-
 rootProject.name = "FunGamesWithFriendsOnline"
 
-include("app")
+include("frontend")
 

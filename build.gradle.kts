@@ -20,7 +20,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    implementation(project(":app"))
+    implementation(project(":frontend"))
 
     implementation("io.javalin:javalin:5.4.2")
     implementation("io.javalin:javalin-rendering:5.4.2")

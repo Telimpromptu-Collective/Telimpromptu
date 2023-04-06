@@ -27,7 +27,7 @@ val buildTask = tasks.register<NpxTask>("buildWebapp") {
     inputs.dir(project.fileTree("src"))
     inputs.dir("node_modules")
     outputs.dir("${buildDir}/webapp")
-    environment.set(mapOf("BUILD_PATH" to "${buildDir}/webapp/webroot"))
+    environment.set(mapOf("BUILD_PATH" to "${buildDir}/webapp/public"))
 }
 
 /*
