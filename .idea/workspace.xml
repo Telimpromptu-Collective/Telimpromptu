@@ -4,19 +4,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="">
+    <list default="true" id="e16031bd-025f-4a58-a070-dc478a4e3ed9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml.orig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedScriptPrompt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/websocketDemo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/script/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml.orig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/manualtesting/ScriptTesting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/TIPUPlayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/TIPUSession.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPUSessionState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/TIPUSessionState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageFromClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/message/MessageFromClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/message/MessageToClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/message/MessageToClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedPrompt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/allocating/DetailedPrompt.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/allocating/PromptTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/DetailedPromptBuilderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/building/DetailedPromptBuilderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptParsingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/parsing/ScriptParsingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPUGame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/states/TIPUGame.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobby.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/kotlin/teleimpromptu/states/TIPULobby.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/public/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/public/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/teleprompter_drawing.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/public/teleprompter_drawing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/teleprompter_drawing2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/public/teleprompter_drawing2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/onepointoh.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/onepointoh.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/detective.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/detective.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/fieldreporter.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/fieldreporter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/guestexpert.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/guestexpert.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/intro.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/intro.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/outro.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/outro.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/religiousleader.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/religiousleader.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/witness.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/witness.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/zookeeper.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/script/production/zookeeper.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teleprompter.jte" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/templates/teleprompter.jte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/todo" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/resources/todo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +102,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="FunGamesWithFriendsOnline" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FunGamesWithFriendsOnline" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
@@ -59,20 +117,10 @@
       </state>
     </system>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Kotlin Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2Naby5W1Bd5ryj5FKxOLx19gr2R" />
+  <component name="ProjectId" id="2O2ERMp9mQnB32nHbQyQR1RU3ar" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -80,20 +128,11 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/small-brylan/Desktop/littlecoderman/telimpromptu-2.0&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mulli/IdeaProjects/FunGamesWithFriendsOnline&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="teleimpromptu.allocating" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Kotlin.ScriptTestingKt">
-    <configuration name="FunGamesWithFriendsOnline [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Kotlin.MainKt">
+    <configuration name="FunGamesWithFriendsOnline [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -104,7 +143,28 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="FunGamesWithFriendsOnline [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -116,54 +176,28 @@
     </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
-      <module name="FunGamesWithFriendsOnline.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ScriptTestingKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="manualtesting.ScriptTestingKt" />
-      <module name="FunGamesWithFriendsOnline.main" />
+      <module name="FunGamesWithFriendsOnline" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.ScriptTestingKt" />
         <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.FunGamesWithFriendsOnline [clean]" />
+        <item itemvalue="Gradle.FunGamesWithFriendsOnline [run]" />
+        <item itemvalue="Gradle.FunGamesWithFriendsOnline [build]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6ed8a75e-e764-4d83-b32d-685f77fc6c02" name="Changes" comment="" />
-      <created>1679905392829</created>
+      <changelist id="e16031bd-025f-4a58-a070-dc478a4e3ed9" name="Changes" comment="" />
+      <created>1680750267760</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1679905392829</updated>
+      <updated>1680750267760</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/manualtesting/ScriptTesting.kt</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-<<<<<<< HEAD
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt</url>
-          <line>34</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-=======
->>>>>>> edb981ef0bccf903ed77c90f11e042ef76e7e3cc
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

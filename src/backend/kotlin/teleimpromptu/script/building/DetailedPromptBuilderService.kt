@@ -22,7 +22,7 @@ object DetailedPromptBuilderService {
                 SinglePrompt("${it.role.toLowercaseString()}_lastname",
                     "The last name for ${it.username} who is a ${it.role.toLowercaseString()}"
                 ),
-                listOf(it.role),
+                mutableListOf(it.role),
                 listOf()
             )
         }
@@ -81,7 +81,7 @@ object DetailedPromptBuilderService {
                     }
                 }
 
-                prompts.add(DetailedPrompt(scriptPrompt, speakers.toList(), dependentPrompts.toList()))
+                prompts.add(DetailedPrompt(scriptPrompt, speakers, dependentPrompts.toList()))
             }
 
         }
