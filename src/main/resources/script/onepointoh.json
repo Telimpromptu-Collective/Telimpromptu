@@ -6,11 +6,11 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "I'm {@host} Newsperson with Telimpromptu news."
+        "text": "I'm {@host} {@hostlastname} with Telimpromptu news."
       },
       {
         "speaker": "COHOST",
-        "text": "And I'm {@cohost} McNewsman!"
+        "text": "And I'm {@cohost} {@cohostlastname}!"
       },
       {
         "speaker": "HOST",
@@ -43,11 +43,11 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "You're watching Telimpromptu News, I'm your host, {@host} Hostadanews."
+        "text": "You're watching Telimpromptu News, I'm your host, {@host} {@hostlastname}."
       },
       {
         "speaker": "COHOST",
-        "text": "I'm {@cohost} Newsly, tonight's story: {!main_story}"
+        "text": "I'm {@cohost} {@cohostlastname}, tonight's story: {!main_story}"
       },
       {
         "speaker": "HOST",
@@ -88,7 +88,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "Joining us now is our guest expert {@guestexpert} Expertson who has a {!expert-credentials}."
+        "text": "Joining us now is our guest expert {@guestexpert} {@guestexpertlastname} who has a {!expert-credentials}."
       },
       {
         "speaker": "HOST",
@@ -128,11 +128,11 @@
       },
       {
         "speaker": "GUESTEXPERT",
-        "text": "I'm sorry {@cohost}, I cant answer that question. When I obtained my {!expert-credentials}, I swore a particular and solemn oath.\nThat oath is this.\n(Places hand on heart)\n{!expert_oath}"
+        "text": "I'm sorry {@cohost}, I cant answer that question. When I obtained my {!expert-credentials}, I swore a solemn oath.\n(Places hand on heart)\n{!expert_oath}"
       },
       {
         "speaker": "HOST",
-        "text": "Well that was really something. Thank you for your time, {@guestexpert}."
+        "text": "That's {@guestexpert} {@guestexpertlastname}. Thank you for your time, {@guestexpert}."
       },
       {
         "speaker": "GUESTEXPERT",
@@ -200,7 +200,7 @@
     "lines": [
       {
         "speaker": "COHOST",
-        "text": "{@guestexpert} Expertson has agreed to an exclusive interview with Telimpromptu News. He is a distinguished professional and has a {!expert-credentials}. {@guestexpert} Expertson, thank you for joining us."
+        "text": "{@guestexpert} {@guestexpertlastname} has agreed to an exclusive interview with Telimpromptu News. He is a distinguished professional and has a {!expert-credentials}. {@guestexpert} {@guestexpertlastname}, thank you for joining us."
       },
       {
         "speaker": "GUESTEXPERT",
@@ -224,11 +224,11 @@
       },
       {
         "speaker": "COHOST",
-        "text": "(Talking softly into ear piece) Really? I don't believe this. (Talking to guest expert) I've just gotten word that {!cohost_contradiction2}. {@guestexpert}, what do you have to say for yourself?"
+        "text": "(Talking softly into ear piece)\nReally? I don't believe this.\n(Talking to guest expert) I've just gotten word that {!cohost_contradiction2}. {@guestexpert}, what do you have to say for yourself?"
       },
       {
         "speaker": "GUESTEXPERT",
-        "text": "Uh....uh...{!guest_expert_plea}."
+        "text": "Uh....I...{!guest_expert_plea}."
       },
       {
         "speaker": "COHOST",
@@ -242,15 +242,15 @@
       },
       {
         "id": "phony_expert_answer1",
-        "description": "Write an expert account of the story for the guest expert, who claims to have a {!expert-credentials}. Make the guest expert's account completely unbelievable."
+        "description": "An expert account of the story for the guest expert, who claims to have a {!expert-credentials}. Make the guest expert's account unbelievable."
       },
       {
         "id": "cohost_contradiction1",
-        "description": "Write the information the cohost receives that contradicts the guest expert's claim that {!phony_expert_answer1}."
+        "description": "The information the cohost receives that contradicts the guest expert's claim that {!phony_expert_answer1}."
       },
       {
         "id": "cohost_contradiction2",
-        "description": "Write a piece of information that reveals that the guest expert's claim of having a {!expert-credentials} is a lie. E.g. 'The University of Hampburgshire is not a real university'."
+        "description": "A piece of information that reveals that the guest expert does not really have a {!expert-credentials}. E.g. 'The University of Hampburgshire is not a real university'."
       },
       {
         "id": "guest_expert_plea",
@@ -265,7 +265,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
+        "text": "We go now to field reporter {@fieldreporter} {@fieldreporterlastname}. {@fieldreporter} thank you for joining us."
       },
       {
         "speaker": "FIELDREPORTER",
@@ -289,7 +289,7 @@
       },
       {
         "speaker": "COHOST",
-        "text": "{!host_exclamation}."
+        "text": "{!host_exclamation}!"
       },
       {
         "speaker": "HOST",
@@ -305,7 +305,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "That's field reporter {@fieldreporter} Reportsalot. {@fieldreporter}, thank you."
+        "text": "That's field reporter {@fieldreporter} {@fieldreporterlastname}. {@fieldreporter}, thank you."
       },
       {
         "speaker": "FIELDREPORTER",
@@ -319,7 +319,7 @@
       },
       {
         "id": "host_exclamation",
-        "description": "An exclamation the host says. Eg: 'Wow!' 'Holy moly!'"
+        "description": "An exclamation the host says. Eg: 'Wow' 'Holy moly'"
       },
       {
         "id": "fieldreporter_quote",
@@ -629,7 +629,7 @@
           },
           {
             "id": "religion_description",
-            "description": "The practices for a follower of {!religion_name}\nContext: \"As the RELIGIOUS TITLE YOU JUST ENTERED, I must (Your text here)\""
+            "description": "The practices for a follower of {!religion_name}\nContext: \"As the (Religious Title), I must (Your text here)\""
           }
         ]
       },
@@ -679,7 +679,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "Thank you for shedding some light on the facts, {@cohost}. Well folks, that’s all the time we have for tonight. Goodbye."
+        "text": "Well folks, that’s all the time we have for tonight. Goodbye."
       }
     ],
     "prompts": [
@@ -700,11 +700,11 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "Well thats all we have for tonight everyone. Truly something special isnt it, {@cohost}?"
+        "text": "Well that's all we have for tonight everyone. Truly something special isnt it, {@cohost}?"
       },
       {
         "speaker": "COHOST",
-        "text": "Its like the old {!musical_artist} line, {!cohost_lyric}."
+        "text": "It's like the old {!musical_artist} line, {!cohost_lyric}."
       },
       {
         "speaker": "HOST",
