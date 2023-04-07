@@ -3,6 +3,9 @@
     "tags": [
       "SEGMENT"
     ],
+    "primaryRoles": [
+      "ZOOKEEPER"
+    ],
     "lines": [
       {
         "speaker": "HOST",
@@ -88,6 +91,9 @@
   {
     "tags": [
       "SEGMENT"
+    ],
+    "primaryRoles": [
+      "ZOOKEEPER"
     ],
     "lines": [
       {

@@ -14,9 +14,9 @@ object ScriptBuilderService {
         do {
             // protect against infinite looping here
             script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.SEGMENT, script).random())
-        } while (getRolesInScript(script).size < playerCount)
+        } while (getPrimaryRolesInScript(script).size < playerCount)
 
-        if (getRolesInScript(script).size > playerCount) {
+        if (getPrimaryRolesInScript(script).size > playerCount) {
             error("Something has gone horribly wrong.... Script was generated with too many roles.")
         }
 
@@ -30,7 +30,7 @@ object ScriptBuilderService {
                                              filterByTag: SegmentTag,
                                              scriptSoFar: List<ScriptSection>,
                                              canAddNothing: Boolean = false): List<ScriptSection> {
-        val rolesInScript = getRolesInScript(scriptSoFar)
+        val rolesInScript = getPrimaryRolesInScript(scriptSoFar)
         return ScriptParsingService.sections
             // if it is the type we are looking for
             .filter { it.tags.contains(filterByTag) }
@@ -38,7 +38,7 @@ object ScriptBuilderService {
             // and it adds at least one role
             // AND the new roles it would add to the script would still be less than our player count
             .filter {
-                val newRoleCount = getNewRoles(it.rolesInSection, rolesInScript).size
+                val newRoleCount = getNewRoles(it.primaryRoles, rolesInScript).size
                 return@filter (newRoleCount > 0 || canAddNothing) &&
                         newRoleCount + rolesInScript.size <= playerCount
             }
@@ -48,7 +48,7 @@ object ScriptBuilderService {
         return newRolesFromSection.filter { !preexisingRoles.contains(it) }
     }
 
-    fun getRolesInScript(script: List<ScriptSection>): List<TIPURole> {
-        return script.flatMap { it.rolesInSection}.distinct()
+    fun getPrimaryRolesInScript(script: List<ScriptSection>): List<TIPURole> {
+        return script.flatMap { it.primaryRoles }.distinct()
     }
 }

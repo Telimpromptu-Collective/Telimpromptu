@@ -3,6 +3,9 @@
     "tags": [
       "SEGMENT"
     ],
+    "primaryRoles": [
+      "RELIGIOUSLEADER"
+    ],
     "lines": [
       {
         "speaker": "HOST",

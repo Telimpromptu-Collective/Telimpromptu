@@ -3,6 +3,9 @@
     "tags": [
       "SEGMENT"
     ],
+    "primaryRoles": [
+      "WITNESS"
+    ],
     "lines": [
       {
         "speaker": "HOST",

@@ -3,6 +3,9 @@
     "tags": [
       "SEGMENT"
     ],
+    "primaryRoles": [
+      "FIELDREPORTER"
+    ],
     "lines": [
       {
         "speaker": "HOST",

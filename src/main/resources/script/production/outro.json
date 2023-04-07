@@ -3,6 +3,9 @@
   "tags": [
     "CLOSING"
   ],
+  "primaryRoles": [
+    "HOST", "COHOST"
+  ],
   "lines": [
     {
       "speaker": "HOST",

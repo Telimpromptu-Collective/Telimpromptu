@@ -3,6 +3,9 @@
     "tags": [
       "SEGMENT"
     ],
+    "primaryRoles": [
+      "DETECTIVE"
+    ],
     "lines": [
       {
         "speaker": "HOST",

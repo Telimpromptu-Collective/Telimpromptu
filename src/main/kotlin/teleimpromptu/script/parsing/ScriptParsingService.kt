@@ -40,6 +40,7 @@ object ScriptParsingService
 
             return@map ScriptSection(
                 rawSection.tags,
+                rawSection.primaryRoles,
                 rawSection.lines,
                 rawSection.prompts,
                 rolesInSection.distinct().toList())

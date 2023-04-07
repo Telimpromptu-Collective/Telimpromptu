@@ -22,7 +22,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
         TIPURole.COHOST to listOf("McNewsman", "Newsperson", "Hosterson"),
         TIPURole.GUESTEXPERT to listOf("Expertson", "Knowsalot", "McQualified"),
         TIPURole.DETECTIVE to listOf("Gumshoe", "McSniff", "Sleuthburger"),
-        TIPURole.FIELDREPORTER to listOf("Reportson", "McReporter", "Rerportsalot"),
+        TIPURole.FIELDREPORTER to listOf("Reportson", "McReporter", "Rerpotsalot"),
         TIPURole.WITNESS to listOf("Realman"),
         TIPURole.COMMENTATOR to listOf("Smith"),
         TIPURole.ZOOKEEPER to listOf("Zooman", "King", "Animalman"),
@@ -37,7 +37,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 }
 
                 val script = ScriptBuilderService.buildScriptForPlayerCount(usernameMap.size)
-                val roles = ScriptBuilderService.getRolesInScript(script)
+                val roles = ScriptBuilderService.getPrimaryRolesInScript(script)
 
                 val players = (usernameMap.entries.shuffled() zip roles)
                     .map { (entry, role) ->

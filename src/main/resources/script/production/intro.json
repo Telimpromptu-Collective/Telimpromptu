@@ -3,6 +3,9 @@
     "tags": [
       "INTRODUCTION"
     ],
+    "primaryRoles": [
+      "HOST", "COHOST"
+    ],
     "lines": [
       {
         "speaker": "HOST",
