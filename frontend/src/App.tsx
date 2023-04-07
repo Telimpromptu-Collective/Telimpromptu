@@ -3,6 +3,7 @@ import useWebSocket from "react-use-websocket";
 import { Lobby } from "./components/Lobby";
 import {
   isConnectionSuccessMessage,
+  isGameStartedMessage,
   isMessage,
   isUserNameUpdateMessage,
 } from "./messages";
@@ -12,13 +13,20 @@ export interface UserStatus {
   connected: boolean;
 }
 
+enum GameState {
+  lobbyDisconnected,
+  lobbyConnected,
+  gameActive,
+  gameOver,
+}
+
 const App: React.FC = () => {
   //state
   const [socketUrl, setSocketUrl] = useState("");
   const [heartBeatInterval, setHeartBeatInterval] = useState<NodeJS.Timer>();
   const [userList, setUserList] = useState<UserStatus[]>([]);
   const [username, setUsername] = useState("");
-  const [connected, setConnected] = useState(false);
+  const [gameState, setGameState] = useState(GameState.lobbyDisconnected);
 
   const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl);
 
@@ -29,7 +37,7 @@ const App: React.FC = () => {
       );
       sendJsonMessage({ type: "createUser", username: username });
       setHeartBeatInterval(
-        setInterval(() => sendJsonMessage({ type: "heartbeatMessage" }), 5000)
+        setInterval(() => sendJsonMessage({ type: "heartbeat" }), 5000)
       );
     },
     [setHeartBeatInterval, sendJsonMessage]
@@ -39,28 +47,40 @@ const App: React.FC = () => {
     clearInterval(heartBeatInterval);
   }, [heartBeatInterval]);
 
-  const onStartGame = useCallback(() => {}, []);
+  const onStartGame = useCallback(() => {
+    sendJsonMessage({ type: "startGame" });
+  }, []);
 
   useEffect(() => {
     if (isMessage(lastJsonMessage)) {
       if (isUserNameUpdateMessage(lastJsonMessage)) {
         setUserList(lastJsonMessage.statuses);
       } else if (isConnectionSuccessMessage(lastJsonMessage)) {
-        setConnected(true);
+        setGameState(GameState.lobbyConnected);
         setUsername(lastJsonMessage.username);
+      } else if (isGameStartedMessage(lastJsonMessage)) {
+        setGameState(GameState.gameActive);
       }
     }
   }, [lastJsonMessage]);
 
-  return (
-    <Lobby
-      username={username}
-      userList={userList}
-      connected={connected}
-      onConnect={onConnect}
-      onStartGame={onStartGame}
-    />
-  );
+  switch (gameState) {
+    case GameState.lobbyDisconnected:
+    case GameState.lobbyConnected:
+      return (
+        <Lobby
+          username={username}
+          userList={userList}
+          connected={gameState === GameState.lobbyConnected}
+          onConnect={onConnect}
+          onStartGame={onStartGame}
+        />
+      );
+    case GameState.gameActive:
+      return <></>;
+    case GameState.gameOver:
+      return <></>;
+  }
 };
 
 export default App;
