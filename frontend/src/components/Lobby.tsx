@@ -1,6 +1,8 @@
 import styles from "../styles/components.module.css";
+
 import React, { FormEvent, useCallback, useRef } from "react";
-import { UserStatus } from "../App";
+import { UserList } from "./UserList";
+import { UserStatus } from "../messages";
 
 interface LobbyProps {
   username?: string;
@@ -36,31 +38,8 @@ export const Lobby: React.FC<LobbyProps> = (props) => {
     </div>
   ) : (
     <div className={styles.userListContainer}>
-      <UserList userList={userList} username={username} />
+      <UserList {...props} />
       <button onClick={onStartGame}>Start Game</button>
     </div>
-  );
-};
-
-const UserList: React.FC<{
-  userList: UserStatus[];
-  username?: string;
-}> = (props) => {
-  const { userList, username } = props;
-
-  return (
-    <table>
-      <th>Connected Users</th>
-      <td>
-        <ul className={styles.userList}>
-          {userList.map((status) => (
-            <li>
-              {`${status.username}${status.connected ? "" : "-dc"}`}
-              {status.username === username && <b> (you)</b>}
-            </li>
-          ))}
-        </ul>
-      </td>
-    </table>
   );
 };

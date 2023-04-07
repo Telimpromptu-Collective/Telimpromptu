@@ -1,51 +1,66 @@
 import styles from "../styles/components.module.css";
+
 import React, { FormEvent, useCallback, useRef } from "react";
-import useWebSocket from "react-use-websocket";
+import { PromptData } from "../messages";
 
-export interface IPromptProviderProps {
-  player?: string;
-  lobbyId: string;
+interface PromptProviderProps {
+  promptList?: PromptData[];
+  onSubmitPrompt: (id: string, description: string) => void;
 }
 
-interface IPromptProps {
-  promptText: string;
+interface PromptProps {
+  id: string;
+  description: string;
+  onSubmitPrompt: (id: string, description: string) => void;
 }
 
-export const PromptProvider: React.FC<IPromptProviderProps> = (props) => {
-  const { lobbyId } = props;
-  const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-    `ws://${window.location.hostname}:${window.location.port}/games/${lobbyId}`
+export const PromptProvider: React.FC<PromptProviderProps> = (props) => {
+  const { promptList, onSubmitPrompt } = props;
+
+  return (
+    <>
+      {promptList &&
+        promptList.map((promptData) => (
+          <Prompt {...promptData} onSubmitPrompt={onSubmitPrompt} />
+        ))}
+    </>
   );
-  return <Prompt promptText="test" />;
 };
 
-const Prompt: React.FC<IPromptProps> = (props) => {
-  const { promptText } = props;
+const Prompt: React.FC<PromptProps> = (props) => {
+  const { id, description, onSubmitPrompt } = props;
   const textAreaRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const onSubmit = useCallback(
+  const onClickSubmitButton = useCallback(
     (event: FormEvent) => {
-      if (textAreaRef.current) {
-        textAreaRef.current.value += "test";
+      const response = textAreaRef.current?.value;
+      if (response && response !== "") {
+        onSubmitPrompt(id, response);
+        containerRef.current?.remove();
       }
 
       event.preventDefault();
     },
-    [textAreaRef]
+    [textAreaRef, id, description, onSubmitPrompt]
   );
+
   return (
-    <form onSubmit={onSubmit} className={styles.promptContainer}>
-      <label className={`${styles.promptText}`}>{promptText}</label>
-      <input
-        className={`${styles.promptBox}`}
-        type="textarea"
-        ref={textAreaRef}
-      />
-      <input
-        className={`${styles.promptButton}`}
-        type="submit"
-        value="Submit"
-      />
-    </form>
+    <div ref={containerRef}>
+      <form className={styles.promptContainer}>
+        <label className={`${styles.promptText}`}>{description}</label>
+        <input
+          className={`${styles.promptBox}`}
+          type="textarea"
+          ref={textAreaRef}
+        />
+        <button
+          className={`${styles.promptButton}`}
+          onClick={onClickSubmitButton}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };

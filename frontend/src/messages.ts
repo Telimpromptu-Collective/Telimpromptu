@@ -35,8 +35,13 @@ export interface ErrorMessage extends Message {
 export const isErrorMessage = (msg: Message): msg is ErrorMessage =>
   msg.type === "error";
 
+export interface UserStatus {
+  username: string;
+  connected: boolean;
+  role?: string;
+}
 export interface UserNameUpdateMessage extends Message {
-  statuses: { username: string; connected: boolean }[];
+  statuses: UserStatus[];
 }
 export const isUserNameUpdateMessage = (
   msg: Message
@@ -50,12 +55,18 @@ export const isConnectionSuccessMessage = (
 ): msg is ConnectionSuccessMessage => msg.type === "connectionSuccess";
 
 export interface GameStartedMessage extends Message {
-  statuses: { username: string; role: string }[];
+  statuses: UserStatus[];
 }
 export const isGameStartedMessage = (msg: Message): msg is GameStartedMessage =>
   msg.type === "gameStarted";
 
-export interface NewPromptsMessage extends Message {}
+export interface PromptData {
+  id: string;
+  description: string;
+}
+export interface NewPromptsMessage extends Message {
+  scriptPrompts: PromptData[];
+}
 export const isNewPromptsMessage = (msg: Message): msg is NewPromptsMessage =>
   msg.type === "newPrompts";
 

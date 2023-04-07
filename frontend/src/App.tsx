@@ -2,16 +2,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { Lobby } from "./components/Lobby";
 import {
+  PromptData,
+  UserStatus,
   isConnectionSuccessMessage,
+  isErrorMessage,
   isGameStartedMessage,
   isMessage,
+  isNewPromptsMessage,
+  isPromptsCompleteMessage,
   isUserNameUpdateMessage,
 } from "./messages";
-
-export interface UserStatus {
-  username: string;
-  connected: boolean;
-}
+import { Game } from "./components/Game";
 
 enum GameState {
   lobbyDisconnected,
@@ -25,6 +26,7 @@ const App: React.FC = () => {
   const [socketUrl, setSocketUrl] = useState("");
   const [heartBeatInterval, setHeartBeatInterval] = useState<NodeJS.Timer>();
   const [userList, setUserList] = useState<UserStatus[]>([]);
+  const [promptList, setPromptList] = useState<PromptData[]>();
   const [username, setUsername] = useState("");
   const [gameState, setGameState] = useState(GameState.lobbyDisconnected);
 
@@ -51,6 +53,10 @@ const App: React.FC = () => {
     sendJsonMessage({ type: "startGame" });
   }, []);
 
+  const onSubmitPrompt = useCallback((id: string, response: string) => {
+    sendJsonMessage({ type: "promptResponse", response: response, id: id });
+  }, []);
+
   useEffect(() => {
     if (isMessage(lastJsonMessage)) {
       if (isUserNameUpdateMessage(lastJsonMessage)) {
@@ -58,28 +64,48 @@ const App: React.FC = () => {
       } else if (isConnectionSuccessMessage(lastJsonMessage)) {
         setGameState(GameState.lobbyConnected);
         setUsername(lastJsonMessage.username);
+      } else if (isNewPromptsMessage(lastJsonMessage)) {
+        console.log(
+          `NEW MESSAGES ${lastJsonMessage.scriptPrompts[0].description}`
+        );
+        setPromptList(lastJsonMessage.scriptPrompts);
       } else if (isGameStartedMessage(lastJsonMessage)) {
         setGameState(GameState.gameActive);
+        setUserList(lastJsonMessage.statuses);
+      } else if (isPromptsCompleteMessage(lastJsonMessage)) {
+        console.log("DONE");
+        setGameState(GameState.gameOver);
+      } else if (isErrorMessage(lastJsonMessage)) {
       }
     }
   }, [lastJsonMessage]);
+
+  const commonProps = {
+    username: username,
+    userList: userList,
+  };
 
   switch (gameState) {
     case GameState.lobbyDisconnected:
     case GameState.lobbyConnected:
       return (
         <Lobby
-          username={username}
-          userList={userList}
+          {...commonProps}
           connected={gameState === GameState.lobbyConnected}
           onConnect={onConnect}
           onStartGame={onStartGame}
         />
       );
     case GameState.gameActive:
-      return <></>;
     case GameState.gameOver:
-      return <></>;
+      return (
+        <Game
+          {...commonProps}
+          gameOver={gameState === GameState.gameOver}
+          promptList={promptList}
+          onSubmitPrompt={onSubmitPrompt}
+        />
+      );
   }
 };
 
