@@ -27,6 +27,7 @@ data class UsernameUpdateMessage(
 
 @Serializable
 data class ConnectionSuccessMessage(
+    val username: String,
     val type: String = "connectionSuccess"
 )
 

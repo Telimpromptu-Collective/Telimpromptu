@@ -66,7 +66,7 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                 usernameMap[message.username]?.closeSession()
                 usernameMap[message.username] = ctx
 
-                ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage()))
+                ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage(message.username)))
 
                 updateUserStatuses()
             }
