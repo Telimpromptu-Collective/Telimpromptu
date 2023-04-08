@@ -13,6 +13,8 @@ import {
   isUserNameUpdateMessage,
 } from "./messages";
 import { Game } from "./components/Game";
+import { ErrorHost, ErrorData } from "./components/ErrorHost";
+import { nanoid } from "nanoid";
 
 enum GameState {
   lobbyDisconnected,
@@ -27,6 +29,7 @@ const App: React.FC = () => {
   const [heartBeatInterval, setHeartBeatInterval] = useState<NodeJS.Timer>();
   const [userList, setUserList] = useState<UserStatus[]>([]);
   const [promptList, setPromptList] = useState<PromptData[]>([]);
+  const [errorList, setErrorList] = useState<ErrorData[]>([]);
   const [username, setUsername] = useState("");
   const [gameState, setGameState] = useState(GameState.lobbyDisconnected);
 
@@ -51,15 +54,32 @@ const App: React.FC = () => {
 
   const onStartGame = useCallback(() => {
     sendJsonMessage({ type: "startGame" });
-  }, []);
+  }, [sendJsonMessage]);
 
   const onSubmitPrompt = useCallback(
     (id: string, response: string) => {
-      setPromptList(promptList?.filter((prompt) => prompt.id !== id));
+      setPromptList((promptList) =>
+        promptList?.filter((prompt) => prompt.id !== id)
+      );
       sendJsonMessage({ type: "promptResponse", response: response, id: id });
     },
     [setPromptList, promptList, sendJsonMessage]
   );
+
+  const onDismissError = useCallback(
+    (id: string) => {
+      setErrorList((errorList) => errorList.filter((error) => error.id !== id));
+    },
+    [errorList, setErrorList]
+  );
+  //testing
+  useEffect(() => {
+    setErrorList([
+      { message: "1", id: nanoid() },
+      { message: "2", id: nanoid() },
+      { message: "3", id: nanoid() },
+    ]);
+  }, []);
 
   useEffect(() => {
     if (isMessage(lastJsonMessage)) {
@@ -69,30 +89,39 @@ const App: React.FC = () => {
         setGameState(GameState.lobbyConnected);
         setUsername(lastJsonMessage.username);
       } else if (isNewPromptsMessage(lastJsonMessage)) {
-        console.log(
-          `NEW MESSAGES ${lastJsonMessage.scriptPrompts[0].description}`
-        );
         setPromptList([...promptList, ...lastJsonMessage.scriptPrompts]);
       } else if (isGameStartedMessage(lastJsonMessage)) {
         setGameState(GameState.gameActive);
         setUserList(lastJsonMessage.statuses);
-      } else if (isPromptsCompleteMessage(lastJsonMessage)) {
-        console.log("DONE");
-        setGameState(GameState.gameOver);
       } else if (isErrorMessage(lastJsonMessage)) {
+        setErrorList([
+          ...errorList,
+          { message: lastJsonMessage.message, id: nanoid() }, //unique id for each error because of react shenanigans
+        ]);
+      } else if (isPromptsCompleteMessage(lastJsonMessage)) {
+        setGameState(GameState.gameOver);
       }
     }
-  }, [lastJsonMessage]);
+  }, [
+    lastJsonMessage,
+    setGameState,
+    setUserList,
+    setUsername,
+    setPromptList,
+    promptList,
+  ]);
 
   const commonProps = {
     username: username,
     userList: userList,
   };
 
+  // Main game element, only one should be active. Lobby/Game/Teleprompter(TODO)
+  let mainElement: React.ReactElement;
   switch (gameState) {
     case GameState.lobbyDisconnected:
     case GameState.lobbyConnected:
-      return (
+      mainElement = (
         <Lobby
           {...commonProps}
           connected={gameState === GameState.lobbyConnected}
@@ -100,9 +129,10 @@ const App: React.FC = () => {
           onStartGame={onStartGame}
         />
       );
+      break;
     case GameState.gameActive:
     case GameState.gameOver:
-      return (
+      mainElement = (
         <Game
           {...commonProps}
           gameOver={gameState === GameState.gameOver}
@@ -110,7 +140,17 @@ const App: React.FC = () => {
           onSubmitPrompt={onSubmitPrompt}
         />
       );
+      break;
   }
+
+  return (
+    <>
+      {errorList && (
+        <ErrorHost errorList={errorList} onClose={onDismissError} />
+      )}
+      {mainElement}
+    </>
+  );
 };
 
 export default App;

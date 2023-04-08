@@ -35,3 +35,42 @@
 
 .userList {
 }
+
+.errorHost {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+  z-index: 10; /* 10 in case for some reason we want something between errors and game in future. */
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: rgba(100, 148, 237, 0.726);
+  border-radius: 3px;
+  position: relative;
+}
+
+.errorCloseButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: crimson;
+  margin-left: auto;
+  border-radius: 3px;
+}
+
+.errorCloseButton:active {
+  background-color: red;
+}
+
+.errorText {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 10pt;
+}

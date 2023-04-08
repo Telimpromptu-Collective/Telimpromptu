@@ -46,7 +46,7 @@ const Prompt: React.FC<PromptProps> = (props) => {
 
       event.preventDefault();
     },
-    [textAreaRef, id, description, onSubmitPrompt]
+    [textAreaRef, id, onSubmitPrompt]
   );
 
   return (
