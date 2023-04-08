@@ -21,7 +21,11 @@ export const PromptProvider: React.FC<PromptProviderProps> = (props) => {
     <>
       {promptList &&
         promptList.map((promptData) => (
-          <Prompt {...promptData} onSubmitPrompt={onSubmitPrompt} />
+          <Prompt
+            {...promptData}
+            onSubmitPrompt={onSubmitPrompt}
+            key={promptData.id}
+          />
         ))}
     </>
   );
@@ -30,14 +34,14 @@ export const PromptProvider: React.FC<PromptProviderProps> = (props) => {
 const Prompt: React.FC<PromptProps> = (props) => {
   const { id, description, onSubmitPrompt } = props;
   const textAreaRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const onClickSubmitButton = useCallback(
     (event: FormEvent) => {
       const response = textAreaRef.current?.value;
       if (response && response !== "") {
         onSubmitPrompt(id, response);
-        containerRef.current?.remove();
+        //containerRef.current?.remove();
+        //textAreaRef.current.remove();
       }
 
       event.preventDefault();
@@ -46,21 +50,19 @@ const Prompt: React.FC<PromptProps> = (props) => {
   );
 
   return (
-    <div ref={containerRef}>
-      <form className={styles.promptContainer}>
-        <label className={`${styles.promptText}`}>{description}</label>
-        <input
-          className={`${styles.promptBox}`}
-          type="textarea"
-          ref={textAreaRef}
-        />
-        <button
-          className={`${styles.promptButton}`}
-          onClick={onClickSubmitButton}
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+    <form className={styles.promptContainer}>
+      <label className={`${styles.promptText}`}>{description}</label>
+      <input
+        className={`${styles.promptBox}`}
+        type="textarea"
+        ref={textAreaRef}
+      />
+      <button
+        className={`${styles.promptButton}`}
+        onClick={onClickSubmitButton}
+      >
+        Submit
+      </button>
+    </form>
   );
 };
