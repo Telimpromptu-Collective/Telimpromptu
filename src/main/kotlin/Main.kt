@@ -10,6 +10,8 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import teleimpromptu.TIPUSession
 import teleimpromptu.message.Message
+import teleimpromptu.script.parsing.ScriptParsingService
+import teleimpromptu.script.validating.TelimpromptuScriptValidator
 import teleimpromptu.states.TIPUGame
 
 
@@ -78,4 +80,21 @@ fun main() {
             }
         }
     }.start(9090)
+
+    runScriptValidation()
+}
+
+private fun runScriptValidation() {
+    println("Validating script...")
+
+    val scriptValidator = TelimpromptuScriptValidator()
+    val scriptSections = ScriptParsingService.sections
+    for (section in scriptSections) {
+        val errors = scriptValidator.validate(section)
+        for (error in errors) {
+            println(error)
+        }
+    }
+
+    println("Script validation finished")
 }
