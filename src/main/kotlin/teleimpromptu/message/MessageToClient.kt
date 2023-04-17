@@ -1,8 +1,6 @@
 package teleimpromptu.message
 
 import kotlinx.serialization.Serializable
-import teleimpromptu.script.allocating.AdlibPrompt
-import teleimpromptu.script.parsing.ScriptPrompt
 import teleimpromptu.script.parsing.SinglePrompt
 
 
@@ -37,22 +35,47 @@ data class IngamePlayerStatus(
     val role: String
 )
 
-@Serializable
-data class GameStartedMessage(
-    val statuses: Collection<IngamePlayerStatus>,
-    val type: String = "gameStarted"
-)
-
 // ingame
 
 @Serializable
 data class NewPromptsMessage(
     val scriptPrompts: Collection<SinglePrompt>,
-    // val adlibPrompts: Collection<AdlibPrompt>,
     val type: String = "newPrompts"
 )
 
 @Serializable
 data class PromptsCompleteMessage(
     val type: String = "promptsComplete"
+)
+
+// storysubmission
+
+
+@Serializable
+data class EnterPromptAnsweringStateMessage(
+    val statuses: Collection<IngamePlayerStatus>,
+    val type: String = "enterPromptAnsweringState"
+)
+
+@Serializable
+data class EnterStorySubmissionStateMessage(
+    val type: String = "enterStorySubmissionState"
+)
+
+@Serializable
+data class StoryForClient(
+    val author: String,
+    val story: String
+)
+
+@Serializable
+data class EnterStoryVotingStateMessage(
+    val stories: List<StoryForClient>,
+    val type: String = "enterStoryVotingState"
+)
+
+@Serializable
+data class StoryVotesUpdate(
+    val votes: Map<String, Int>,
+    val type: String = "enterStoryVotingState"
 )

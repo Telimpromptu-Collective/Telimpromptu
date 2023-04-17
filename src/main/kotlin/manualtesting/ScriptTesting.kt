@@ -1,6 +1,5 @@
 package manualtesting
 
-import teleimpromptu.TIPUPlayer
 import teleimpromptu.script.allocating.PromptAllocator
 import teleimpromptu.script.building.ScriptBuilderService
 

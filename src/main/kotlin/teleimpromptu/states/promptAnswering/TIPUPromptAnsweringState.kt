@@ -1,4 +1,4 @@
-package teleimpromptu.states
+package teleimpromptu.states.promptAnswering
 
 import io.javalin.websocket.WsCloseContext
 import io.javalin.websocket.WsMessageContext
@@ -6,23 +6,27 @@ import jsonDecoder
 import kotlinx.serialization.encodeToString
 import teleimpromptu.*
 import teleimpromptu.message.*
-import teleimpromptu.script.allocating.AdlibPrompt
-import teleimpromptu.script.allocating.Prompt
 import teleimpromptu.script.allocating.PromptAllocator
 import teleimpromptu.script.formatting.PromptFormatter
-import teleimpromptu.script.parsing.PromptGroup
 import teleimpromptu.script.parsing.ScriptLine
 import teleimpromptu.script.parsing.ScriptSection
 import teleimpromptu.script.parsing.SinglePrompt
 
-class TIPUGame(private val players: List<TIPUPlayer>,
-               private val script: List<ScriptSection>,
-               private val tipuSession: TIPUSession): TIPUSessionState {
+class TIPUPromptAnsweringState(private val players: List<TIPUPromptAnsweringPlayer>,
+                               private val script: List<ScriptSection>,
+                               private val tipuSession: TIPUSession): TIPUSessionState {
 
     private val promptAllocator: PromptAllocator = PromptAllocator(players, script)
     private val promptFormatter: PromptFormatter = PromptFormatter(players)
 
     init {
+        val json = jsonDecoder
+            .encodeToString(EnterPromptAnsweringStateMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
+
+        players.forEach {
+            it.connection.send(json)
+        }
+
         // send everyone their prompts. empty list because there are no newly completed prompts
         promptAllocator.allocateAvailablePrompts().forEach { sendPromptsToPlayer(it.key, it.value) }
     }
@@ -46,7 +50,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
                 }
             }
             // user reconnect
-            is CreateUserMessage -> {
+            is UserConnectMessage -> {
                 // if this user is connecting with a username not in the lobby, stop
                 val reconnectingUser = players.find { it.username == message.username } ?: return
 
@@ -56,7 +60,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
 
                 // send them the start game info to get them up to speed
                 val json = jsonDecoder
-                    .encodeToString(GameStartedMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
+                    .encodeToString(EnterPromptAnsweringStateMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
                 reconnectingUser.connection.send(json)
 
                 // send them their incomplete prompts
@@ -71,7 +75,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
     }
 
     // todo maybe this should be unpacked beforehand since reconnecting has to be
-    private fun sendPromptsToPlayer(player: TIPUPlayer, prompts: List<SinglePrompt>) {
+    private fun sendPromptsToPlayer(player: TIPUPromptAnsweringPlayer, prompts: List<SinglePrompt>) {
         // format script prompts
         val formattedScriptPrompts = prompts.map { SinglePrompt(it.id, promptFormatter.formatText(it.description)) }
 
@@ -82,7 +86,7 @@ class TIPUGame(private val players: List<TIPUPlayer>,
         return script.flatMap { it.lines }.map { ScriptLine(it.speaker, promptFormatter.formatText(it.text)) }
     }
 
-    fun getPlayers(): List<TIPUPlayer> {
+    fun getPlayers(): List<TIPUPromptAnsweringPlayer> {
         return players
     }
 }

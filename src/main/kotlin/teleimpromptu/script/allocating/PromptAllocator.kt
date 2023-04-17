@@ -1,10 +1,10 @@
 package teleimpromptu.script.allocating
 
-import teleimpromptu.TIPUPlayer
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringPlayer
 import teleimpromptu.script.building.DetailedPromptBuilderService
 import teleimpromptu.script.parsing.*
 
-class PromptAllocator(private val players: List<TIPUPlayer>,
+class PromptAllocator(private val players: List<TIPUPromptAnsweringPlayer>,
                       private val script: List<ScriptSection>) {
 
     // these are partially redundant...
@@ -12,7 +12,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
     private val promptsToDoleOut: MutableList<DetailedPrompt>
     private val completedPromptIds: MutableList<String> = mutableListOf()
 
-    private val promptsGivenToPlayer: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> =
+    private val promptsGivenToPlayer: MutableMap<TIPUPromptAnsweringPlayer, MutableList<SinglePrompt>> =
         players.associateWith { mutableListOf<SinglePrompt>() }.toMutableMap()
 
     init {
@@ -23,14 +23,14 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
             allDetailedPrompts.filter { it.dependentPrompts.isNotEmpty() }.toMutableList()
     }
 
-    fun moveCompletedPromptsAndAllocate(newlyCompletedPromptIds: List<String>, completedByTIPUPlayer: TIPUPlayer): Map<TIPUPlayer, List<SinglePrompt>> {
-        moveCompletedPrompts(newlyCompletedPromptIds, completedByTIPUPlayer)
+    fun moveCompletedPromptsAndAllocate(newlyCompletedPromptIds: List<String>, completedByPrompt: TIPUPromptAnsweringPlayer): Map<TIPUPromptAnsweringPlayer, List<SinglePrompt>> {
+        moveCompletedPrompts(newlyCompletedPromptIds, completedByPrompt)
         return allocateAvailablePrompts()
     }
 
     // todo build this out into multiple strategies... this one is probably called flood
-    fun allocateAvailablePrompts(): Map<TIPUPlayer, List<SinglePrompt>> {
-        val allocatedPrompts: MutableMap<TIPUPlayer, MutableList<SinglePrompt>> = mutableMapOf()
+    fun allocateAvailablePrompts(): Map<TIPUPromptAnsweringPlayer, List<SinglePrompt>> {
+        val allocatedPrompts: MutableMap<TIPUPromptAnsweringPlayer, MutableList<SinglePrompt>> = mutableMapOf()
 
         // give all the prompts out
         while (promptsToDoleOut.isNotEmpty()) {
@@ -60,7 +60,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         return allocatedPrompts.entries.associate { it.key to it.value.toList() }
     }
 
-    private fun moveCompletedPrompts(newlyCompletedPromptIds: List<String>, completedByPlayer: TIPUPlayer) {
+    private fun moveCompletedPrompts(newlyCompletedPromptIds: List<String>, completedByPlayer: TIPUPromptAnsweringPlayer) {
         // move newlyCompletedPromptIds to completed
         for (promptList in promptsGivenToPlayer.values) {
             // remove completed prompts
@@ -86,7 +86,7 @@ class PromptAllocator(private val players: List<TIPUPlayer>,
         promptsToDoleOut.addAll(promptsToMove)
     }
 
-    fun outstandingPromptsForPlayer(player: TIPUPlayer): List<SinglePrompt> {
+    fun outstandingPromptsForPlayer(player: TIPUPromptAnsweringPlayer): List<SinglePrompt> {
         return promptsGivenToPlayer[player]!!
     }
 

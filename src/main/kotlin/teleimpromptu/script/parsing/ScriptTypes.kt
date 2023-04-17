@@ -15,17 +15,17 @@ enum class SegmentTag {
 @Serializable
 open class RawScriptSection(
     val tags: List<SegmentTag>,
-    val primaryRoles: List<TIPURole>,
+    val primaryRoles: Set<TIPURole>,
     val lines: List<ScriptLine>,
     val prompts: List<ScriptPrompt>,
 )
 
 class ScriptSection(
     tags: List<SegmentTag>,
-    primaryRoles: List<TIPURole>,
+    primaryRoles: Set<TIPURole>,
     lines: List<ScriptLine>,
     prompts: List<ScriptPrompt>,
-    val rolesInSection: List<TIPURole>
+    val rolesInSection: Set<TIPURole>
 ): RawScriptSection(tags, primaryRoles, lines, prompts)
 
 @Serializable

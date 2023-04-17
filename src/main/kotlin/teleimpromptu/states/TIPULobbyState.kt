@@ -5,25 +5,26 @@ import io.javalin.websocket.WsContext
 import io.javalin.websocket.WsMessageContext
 import jsonDecoder
 import kotlinx.serialization.encodeToString
-import teleimpromptu.TIPUPlayer
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringPlayer
 import teleimpromptu.TIPURole
 import teleimpromptu.TIPUSession
 import teleimpromptu.TIPUSessionState
 import teleimpromptu.message.*
 import teleimpromptu.script.building.ScriptBuilderService
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringState
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.random.Random
 
-class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
+class TIPULobbyState(private val tipuSession: TIPUSession) : TIPUSessionState {
     private val usernameMap = ConcurrentHashMap<String, WsContext>()
 
-    val lastNameMap = mapOf(
+    private val lastNameMap = mapOf(
         TIPURole.HOST to listOf("Newsly", "Hostman", "Hostdanews"),
         TIPURole.COHOST to listOf("McNewsman", "Newsperson", "Hosterson"),
         TIPURole.GUESTEXPERT to listOf("Expertson", "Knowsalot", "McQualified"),
         TIPURole.DETECTIVE to listOf("Gumshoe", "McSniff", "Sleuthburger"),
         TIPURole.FIELDREPORTER to listOf("Reportson", "McReporter", "Rerpotsalot"),
-        TIPURole.WITNESS to listOf("Realman"),
+        TIPURole.WITNESS to listOf("Realman", "Eyeball"),
         TIPURole.COMMENTATOR to listOf("Smith"),
         TIPURole.ZOOKEEPER to listOf("Zooman", "King", "Animalman"),
         TIPURole.RELIGIOUSLEADER to listOf("Smith")
@@ -43,25 +44,18 @@ class TIPULobby(private val tipuSession: TIPUSession) : TIPUSessionState {
                     .map { (entry, role) ->
                         val lastNameList = lastNameMap[role] ?: error("No last name for $role")
                         val lastName = lastNameList[Random.nextInt(lastNameList.size)]
-                        TIPUPlayer(entry.key, role, lastName, entry.value)
+                        TIPUPromptAnsweringPlayer(entry.key, role, lastName, entry.value)
                     }
 
                 // randomly assign roles
                 tipuSession.state =
-                    TIPUGame(
+                    TIPUPromptAnsweringState(
                         players,
                         script,
                         tipuSession
                     )
-
-                val json = jsonDecoder
-                    .encodeToString(GameStartedMessage(players.map { IngamePlayerStatus(it.username, it.role.toLowercaseString()) }))
-
-                usernameMap.values.forEach { ws ->
-                    ws.send(json)
-                }
             }
-            is CreateUserMessage -> {
+            is UserConnectMessage -> {
                 // if someone already connected with this username kick them and set this as the new one lol
                 usernameMap[message.username]?.closeSession()
                 usernameMap[message.username] = ctx

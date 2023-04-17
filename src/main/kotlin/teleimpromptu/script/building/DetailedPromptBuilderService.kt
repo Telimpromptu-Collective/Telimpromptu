@@ -1,13 +1,13 @@
 package teleimpromptu.script.building
 
-import teleimpromptu.TIPUPlayer
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringPlayer
 import teleimpromptu.TIPURole
 import teleimpromptu.script.allocating.DetailedPrompt
 import teleimpromptu.script.allocating.Prompt
 import teleimpromptu.script.parsing.*
 
 object DetailedPromptBuilderService {
-    fun buildDetailedPrompts(script: List<ScriptSection>, players: List<TIPUPlayer>): MutableList<DetailedPrompt> {
+    fun buildDetailedPrompts(script: List<ScriptSection>, players: List<TIPUPromptAnsweringPlayer>): MutableList<DetailedPrompt> {
         val prompts: MutableList<DetailedPrompt> = mutableListOf()
 
         prompts.addAll(buildDetailedScriptPrompts(script))
@@ -16,7 +16,7 @@ object DetailedPromptBuilderService {
         return prompts
     }
 
-    private fun buildLastNamePrompts(players: List<TIPUPlayer>): List<DetailedPrompt> {
+    private fun buildLastNamePrompts(players: List<TIPUPromptAnsweringPlayer>): List<DetailedPrompt> {
         return players.map {
             DetailedPrompt(
                 SinglePrompt("${it.role.toLowercaseString()}_lastname",

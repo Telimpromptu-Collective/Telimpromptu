@@ -2,11 +2,8 @@ package teleimpromptu.message
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Polymorphic
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
-import java.lang.Exception
-import java.lang.IllegalArgumentException
 
 @Polymorphic
 @Serializable(with = MessageSerializer::class)
@@ -14,7 +11,7 @@ open class Message
 
 // todo maybe figure out how to not have to include type here it isnt needed
 @Serializable
-data class CreateUserMessage(val type: String, val username: String): Message()
+data class UserConnectMessage(val type: String, val username: String): Message()
 
 @Serializable
 data class StartGameMessage(
@@ -33,6 +30,17 @@ data class PromptResponseMessage(
     val id: String
 ): Message()
 
+@Serializable
+data class StorySubmissionMessage(
+    val type: String,
+    val story: String
+): Message()
+
+@Serializable
+data class StoryVoteMessage(
+    val type: String,
+    val storyId: Int
+): Message()
 
 
 object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::class) {
@@ -40,7 +48,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
         element: JsonElement
     ): DeserializationStrategy<out Message> {
         return when (val type = element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-            "createUser" -> CreateUserMessage.serializer()
+            "createUser" -> UserConnectMessage.serializer()
             "startGame" -> StartGameMessage.serializer()
             "promptResponse" -> PromptResponseMessage.serializer()
             "heartbeat" -> HeartbeatMessage.serializer()
