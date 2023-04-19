@@ -42,6 +42,10 @@ data class StoryVoteMessage(
     val storyId: Int
 ): Message()
 
+@Serializable
+data class EndStoryVotingMessage(
+    val type: String
+): Message()
 
 object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::class) {
     override fun selectDeserializer(
@@ -52,6 +56,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
             "startGame" -> StartGameMessage.serializer()
             "promptResponse" -> PromptResponseMessage.serializer()
             "heartbeat" -> HeartbeatMessage.serializer()
+            "endStorySubmissionMessage" -> EndStoryVotingMessage.serializer()
             else -> error("unknown message type $type")
         }
     }

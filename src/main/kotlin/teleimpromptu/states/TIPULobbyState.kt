@@ -12,23 +12,13 @@ import teleimpromptu.TIPUSessionState
 import teleimpromptu.message.*
 import teleimpromptu.script.building.ScriptBuilderService
 import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringState
+import teleimpromptu.states.storySelection.TIPUStorySelectionPlayer
+import teleimpromptu.states.storySelection.TIPUStoryVotingState
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.random.Random
 
 class TIPULobbyState(private val tipuSession: TIPUSession) : TIPUSessionState {
     private val usernameMap = ConcurrentHashMap<String, WsContext>()
-
-    private val lastNameMap = mapOf(
-        TIPURole.HOST to listOf("Newsly", "Hostman", "Hostdanews"),
-        TIPURole.COHOST to listOf("McNewsman", "Newsperson", "Hosterson"),
-        TIPURole.GUESTEXPERT to listOf("Expertson", "Knowsalot", "McQualified"),
-        TIPURole.DETECTIVE to listOf("Gumshoe", "McSniff", "Sleuthburger"),
-        TIPURole.FIELDREPORTER to listOf("Reportson", "McReporter", "Rerpotsalot"),
-        TIPURole.WITNESS to listOf("Realman", "Eyeball"),
-        TIPURole.COMMENTATOR to listOf("Smith"),
-        TIPURole.ZOOKEEPER to listOf("Zooman", "King", "Animalman"),
-        TIPURole.RELIGIOUSLEADER to listOf("Smith")
-    )
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         when (message) {
             is StartGameMessage -> {
@@ -37,35 +27,22 @@ class TIPULobbyState(private val tipuSession: TIPUSession) : TIPUSessionState {
                     return
                 }
 
-                val script = ScriptBuilderService.buildScriptForPlayerCount(usernameMap.size)
-                val roles = ScriptBuilderService.getPrimaryRolesInScript(script)
-
-                val players = (usernameMap.entries.shuffled() zip roles)
-                    .map { (entry, role) ->
-                        val lastNameList = lastNameMap[role] ?: error("No last name for $role")
-                        val lastName = lastNameList[Random.nextInt(lastNameList.size)]
-                        TIPUPromptAnsweringPlayer(entry.key, role, lastName, entry.value)
-                    }
-
-                // randomly assign roles
-                tipuSession.state =
-                    TIPUPromptAnsweringState(
-                        players,
-                        script,
-                        tipuSession
-                    )
-            }
-            is UserConnectMessage -> {
-                // if someone already connected with this username kick them and set this as the new one lol
-                usernameMap[message.username]?.closeSession()
-                usernameMap[message.username] = ctx
-
-                ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage(message.username)))
-
-                updateUserStatuses()
+                tipuSession.state = TIPUStoryVotingState(
+                    usernameMap.entries.map { TIPUStorySelectionPlayer(it.key, it.value) },
+                    tipuSession)
             }
             else -> println("fail lobby: $message")
         }
+    }
+
+    override fun recieveConnectionMessage(ctx: WsMessageContext, message: UserConnectMessage) {
+        // if someone already connected with this username kick them and set this as the new one lol
+        usernameMap[message.username]?.closeSession()
+        usernameMap[message.username] = ctx
+
+        ctx.send(jsonDecoder.encodeToString(ConnectionSuccessMessage(message.username)))
+
+        updateUserStatuses()
     }
 
     override fun receiveDisconnect(ctx: WsCloseContext) {

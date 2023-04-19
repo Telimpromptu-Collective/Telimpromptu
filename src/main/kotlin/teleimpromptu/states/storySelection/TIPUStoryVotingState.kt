@@ -6,61 +6,99 @@ import jsonDecoder
 import kotlinx.serialization.encodeToString
 import teleimpromptu.*
 import teleimpromptu.message.*
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringState
 
 class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
-                           userStories: List<TIPUStory>,
                            private val tipuSession: TIPUSession): TIPUSessionState {
 
-    private val playerToVoteMap: MutableMap<TIPUStorySelectionPlayer, Int> = mutableMapOf()
-
-    private val storyOptions: List<TIPUStory> = userStories + getDefaultStoryOptions()
+    // vote option id is equal to the index in this list
+    private val storyOptions: MutableMap<Int, TIPUStory> = getDefaultStoryOptions()
+        .withIndex().associate { it.index to it.value }.toMutableMap()
+    private val storyVotes: MutableMap<TIPUStorySelectionPlayer, Int> = mutableMapOf()
 
     init {
-        val json = jsonDecoder
-            .encodeToString(
-                EnterStoryVotingStateMessage(storyOptions.map {
-                    val authorName = it.author?.username ?: "the powers that be"
-                    StoryForClient(authorName, it.story)
-                }
-                )
-            )
-
         players.forEach {
-            it.connection.send(json)
+            it.connection.send(jsonDecoder
+                .encodeToString(EnterStoryVotingStateMessage()))
         }
     }
+
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {
         // find the sender player, return if its not someone we know
         val sender = players.firstOrNull { it.connection == ctx } ?: return
 
         when (message) {
-            is StoryVoteMessage -> {
-                playerToVoteMap[sender] = message.storyId
+            is StorySubmissionMessage -> {
+                val usersAlreadySubmittedStoryOption = storyOptions.entries.find { it.value.author == sender }
 
-                // tell the players what everyone has voted for
-                players.forEach {
-                    it.connection.send(StoryVotesUpdate(playerToVoteMap.entries.associate { entry ->
-                        entry.key.username to entry.value
-                    }))
+                if (usersAlreadySubmittedStoryOption != null) {
+                    val usersStory = usersAlreadySubmittedStoryOption.value
+                    val usersIndex = usersAlreadySubmittedStoryOption.key
+
+                    // update that user's story
+                    storyOptions[usersIndex] = TIPUStory(sender, message.story)
+
+                    // wipe all the votes
+
+                    // all the users that voted for this
+                    val usersVotedForOldStory = storyVotes.entries.filter { it.value == usersIndex }.map { it.key }
+                    // remove their votes
+                    usersVotedForOldStory.forEach { storyVotes.remove(it) }
+                } else {
+                    // create a new story... we dont remove stories ever so this should hold
+                    storyOptions[storyOptions.size] = TIPUStory(sender, message.story)
                 }
 
-                if (playerToVoteMap.keys == players) {
-
-                }
+                // update the users
+                players.forEach { it.connection.send(buildStoryVotingStateUpdateMessage()) }
             }
-            // user reconnect
-            is UserConnectMessage -> {
-                // if this user is connecting with a username not in the lobby, stop
-                val reconnectingUser = players.find { it.username == message.username } ?: return
+            is StoryVoteMessage -> {
+                if (!storyOptions.contains(message.storyId)) {
+                    println("what the heck wrong vote id")
+                    return
+                }
 
-                // if someone already connected with this username kick them and set this as the new one lol
-                reconnectingUser.connection.closeSession()
-                reconnectingUser.connection = ctx
+                storyVotes[sender] = message.storyId
 
-                // send the state...
+                // update the users
+                players.forEach { it.connection.send(buildStoryVotingStateUpdateMessage()) }
+            }
+            is EndStoryVotingMessage -> {
+                if (players.all { storyVotes.keys.contains(it) }) {
+                    val winningStoryIndex = storyVotes.values.groupingBy { it }.eachCount().maxBy { it.value }.key
+                    val winningStory = storyOptions[winningStoryIndex] ?: error("story was not found in voting")
+
+                    tipuSession.state = TIPUPromptAnsweringState(players, winningStory.story, tipuSession)
+                }
             }
             else -> println("fail game: $message")
         }
+    }
+
+    override fun recieveConnectionMessage(ctx: WsMessageContext, message: UserConnectMessage) {
+        // if this user is connecting with a username not in the lobby, stop
+        val reconnectingUser = players.find { it.username == message.username } ?: return
+
+        // if someone already connected with this username kick them and set this as the new one lol
+        reconnectingUser.connection.closeSession()
+        reconnectingUser.connection = ctx
+
+        // send the state...
+        ctx.send(jsonDecoder
+            .encodeToString(EnterStoryVotingStateMessage()))
+        ctx.send(buildStoryVotingStateUpdateMessage())
+    }
+
+    private fun buildStoryVotingStateUpdateMessage(): StoryVotingStateUpdateMessage {
+        return StoryVotingStateUpdateMessage(
+            storyOptions.entries.map { storyOption ->
+                StoryForClient(
+                    storyOption.value.author?.username,
+                    storyOption.value.story,
+                    storyVotes.filter { storyVote -> storyVote.value == storyOption.key }
+                        .map { storyVote -> storyVote.key.username })
+            }
+        )
     }
 
     override fun receiveDisconnect(ctx: WsCloseContext) {

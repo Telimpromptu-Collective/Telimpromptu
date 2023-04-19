@@ -53,29 +53,25 @@ data class PromptsCompleteMessage(
 
 @Serializable
 data class EnterPromptAnsweringStateMessage(
+    val storyOfTheNight: String,
     val statuses: Collection<IngamePlayerStatus>,
     val type: String = "enterPromptAnsweringState"
 )
 
 @Serializable
-data class EnterStorySubmissionStateMessage(
-    val type: String = "enterStorySubmissionState"
+data class StoryForClient(
+    val author: String?,
+    val story: String,
+    val voters: List<String>
 )
 
 @Serializable
-data class StoryForClient(
-    val author: String,
-    val story: String
+data class StoryVotingStateUpdateMessage(
+    val stories: List<StoryForClient>,
+    val type: String = "storyVotingStateUpdate"
 )
 
 @Serializable
 data class EnterStoryVotingStateMessage(
-    val stories: List<StoryForClient>,
-    val type: String = "enterStoryVotingState"
-)
-
-@Serializable
-data class StoryVotesUpdate(
-    val votes: Map<String, Int>,
     val type: String = "enterStoryVotingState"
 )
