@@ -52,7 +52,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
         element: JsonElement
     ): DeserializationStrategy<out Message> {
         return when (val type = element.jsonObject["type"]?.jsonPrimitive?.contentOrNull) {
-            "createUser" -> UserConnectMessage.serializer()
+            "userConnect" -> UserConnectMessage.serializer()
             "startGame" -> StartGameMessage.serializer()
             "promptResponse" -> PromptResponseMessage.serializer()
             "heartbeat" -> HeartbeatMessage.serializer()
