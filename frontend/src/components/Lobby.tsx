@@ -3,6 +3,7 @@ import styles from "../styles/components.module.css";
 import React, { FormEvent, useCallback, useRef } from "react";
 import { UserList } from "./UserList";
 import { UserStatus } from "../messages";
+import TeleprompterDrawing from "./TeleprompterDrawing";
 
 interface LobbyProps {
   username?: string;
@@ -11,6 +12,9 @@ interface LobbyProps {
   onConnect: (lobbyID: string, username: string) => void;
   onStartGame: () => void;
 }
+
+const buttonMessages = ["Fun times: Engage!","Play!","Letsa go!","Let's get gaming!!","Go!!!!!","Weeeeeeee!"]
+const randomIndex = Math.floor(Math.random() * buttonMessages.length);
 
 export const Lobby: React.FC<LobbyProps> = (props) => {
   const { username, connected, onConnect, onStartGame, userList } = props;
@@ -30,10 +34,15 @@ export const Lobby: React.FC<LobbyProps> = (props) => {
 
   return !connected ? (
     <div className={styles.connectionFormContainer}>
+      <TeleprompterDrawing/>
       <form>
-        <input type={"text"} ref={userNameFieldRef} placeholder="Name" />
-        <input type={"text"} ref={lobbyFieldRef} placeholder="Lobby ID" />
-        <button onClick={onClickConnectButton}>Connect</button>
+        <input className={styles.connectionFormInput} type={"text"} ref={userNameFieldRef} placeholder="Name" />
+        <br/>
+        <input className={styles.connectionFormInput} type={"text"} ref={lobbyFieldRef} placeholder="Lobby ID" />
+        <br/>
+        <button className={styles.coolButton} onClick={onClickConnectButton}>{buttonMessages[randomIndex]}</button>
+        <br/>
+        <a className={styles.connectTeleprompterButton}>Go to teleprompter</a>
       </form>
     </div>
   ) : (
@@ -42,4 +51,5 @@ export const Lobby: React.FC<LobbyProps> = (props) => {
       <button onClick={onStartGame}>Start Game</button>
     </div>
   );
+  
 };
