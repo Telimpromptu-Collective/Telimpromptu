@@ -11,7 +11,9 @@ enum class TIPURole(val lastNames: List<String>) {
     WITNESS(listOf("Realman")),
     COMMENTATOR(listOf("Smith")),
     ZOOKEEPER(listOf("Zooman", "King", "Animalman")),
-    RELIGIOUSLEADER(listOf("Smith"));
+    RELIGIOUSLEADER(listOf("Smith")),
+    POLITICALREPORTER(listOf()),
+    SPORTSREPORTER(listOf());
 
     fun toLowercaseString(): String {
         return when(this) {
@@ -24,6 +26,8 @@ enum class TIPURole(val lastNames: List<String>) {
             COMMENTATOR -> "commentator"
             ZOOKEEPER -> "zookeeper"
             RELIGIOUSLEADER -> "religiousleader"
+            POLITICALREPORTER -> "politicalreporter"
+            SPORTSREPORTER -> "sportsreporter"
         }
     }
 

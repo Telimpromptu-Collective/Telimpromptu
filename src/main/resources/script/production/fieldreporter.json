@@ -9,7 +9,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
+        "text": "We go now to field reporter {@fieldreporter} {@fieldreporter_lastname}. {@fieldreporter} thank you for joining us."
       },
       {
         "speaker": "FIELDREPORTER",
@@ -49,7 +49,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "That's field reporter {@fieldreporter} Reportsalot. {@fieldreporter}, thank you."
+        "text": "That's field reporter {@fieldreporter} {@fieldreporter_lastname}. {@fieldreporter}, thank you."
       },
       {
         "speaker": "FIELDREPORTER",
@@ -86,7 +86,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
+        "text": "We go now to field reporter {@fieldreporter} {@fieldreporter_lastname}. {@fieldreporter} thank you for joining us."
       },
       {
         "speaker": "FIELDREPORTER",
@@ -142,7 +142,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "{@fieldreporter} Reportsalot, do you have a message for the families at home?"
+        "text": "{@fieldreporter} {@fieldreporter_lastname}, do you have a message for the families at home?"
       },
       {
         "speaker": "FIELDREPORTER",
@@ -150,7 +150,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "That's field reporter {@fieldreporter} Reportsalot. {@fieldreporter}, thank you."
+        "text": "That's field reporter {@fieldreporter} {@fieldreporter_lastname}. {@fieldreporter}, thank you."
       },
       {
         "speaker": "FIELDREPORTER",

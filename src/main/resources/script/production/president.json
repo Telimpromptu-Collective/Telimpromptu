@@ -1,0 +1,74 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "primaryRoles": [
+      "POLITICALREPORTER"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Good evening, America! We interrupt your regularly scheduled programming to bring you breaking news from the White House. In a press conference earlier today, President {!president_name} announced a major new policy that has the nation buzzing!"
+      },
+      {
+        "speaker": "POLITICALREPORTER",
+        "text": "That's right, {@host}! After months of deliberation, the President has unveiled a new plan to {!president_policy}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "This is a huge development, {@politicalreporter}. Can you tell us more about what this means for the country?"
+      },
+      {
+        "speaker": "POLITICALREPORTER",
+        "text": "Absolutely, {@cohost}. The President's policy will {!policy_detail}. What do you think about that, America? Let us know in the chat!"
+      },
+      {
+        "speaker": "GUESTEXPERT",
+        "text": "Well, {@politicalreporter}, I have to say, this is a bold move by the President. {!expert_political_comment}. What do you think, America? Agree or disagree? Let us know in the chat!"
+      },
+      {
+        "speaker": "POLITICALREPORTER",
+        "text": "But not everyone is on board with the President's new policy. Critics say that {!policy_criticism}. What do you think about that, America? Is this policy a good idea or a bad idea? Let us know in the chat!"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Wow, we're getting a lot of responses from our viewers! It looks like this new policy is really stirring up some strong opinions. {@politicalreporter}, what do you think this means for the upcoming election?"
+      },
+      {
+        "speaker": "POLITICALREPORTER",
+        "text": "Well, {@cohost}, it's hard to say at this point. But one thing's for sure: this policy is going to be a major factor in the race. And with such strong opinions on both sides, it's anyone's guess who will come out on top. What do you think, America? Who do you think will win the election? Let us know in the chat!"
+      },
+      {
+        "speaker": "HOST",
+        "text": "We planned on showing you a clip of the President's conference where they announced the speech, but we seem to have lost the footage. Luckily, {@politicalreporter} remembers it all and can act it out for you:"
+      },
+      {
+        "speaker": "POLITICALREPORTER",
+        "text": "Oh, uhh... *Appears on screen with a big smile* Good evening, America! I'm thrilled to announce my administration's latest policy initiative. It's called {!president_policy} and it's going to revolutionize the way we live our lives. *Pauses dramatically* Now, I know some of you may be skeptical. But let me assure you, this policy is backed by the best and brightest minds in the country. And I'm confident it's going to make America great again! *Winks at the camera*"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "president_name",
+        "description": "The name of the President who is announcing a new policy."
+      },
+      {
+        "id": "president_policy",
+        "description": "The President's new policy. What is it?"
+      },
+      {
+        "id": "policy_detail",
+        "description": "Clearly describe what the President's policy that is named {!president_policy} will do."
+      },
+      {
+        "id": "expert_political_comment",
+        "description": "A comment from a political expert on what the President's new policy could mean for the country.\nIt is named {!president_policy} which will {!policy_detail}."
+      },
+      {
+        "id": "policy_criticism",
+        "description": "What are some concerns or criticisms people have about the President's policy?"
+      }
+    ]
+  }
+]

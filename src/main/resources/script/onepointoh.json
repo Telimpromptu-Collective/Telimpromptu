@@ -6,7 +6,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "I'm {@host} {@hostlastname} with Telimpromptu news."
+        "text": "I'm {@host} {@host_lastname} with Telimpromptu news."
       },
       {
         "speaker": "COHOST",

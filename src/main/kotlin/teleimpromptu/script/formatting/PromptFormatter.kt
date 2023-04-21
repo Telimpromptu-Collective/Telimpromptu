@@ -18,7 +18,7 @@ class PromptFormatter(private val players: List<TIPUPromptAnsweringPlayer>) {
         for (player in players) {
             formattedText = formattedText.replace("{@${player.role.toLowercaseString()}}",
                 player.username.replaceFirstChar(Char::titlecase))
-            formattedText = formattedText.replace("{@${player.role.toLowercaseString()}lastname}",
+            formattedText = formattedText.replace("{@${player.role.toLowercaseString()}_lastname}",
                 player.lastname)
         }
 

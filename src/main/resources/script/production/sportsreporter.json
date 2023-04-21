@@ -1,0 +1,71 @@
+[
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "primaryRoles": [
+      "SPORTSREPORTER"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "Good evening, sports fans! We're coming to you live from the arena where last night's big {!sport_name} game went down. The place was electric as two of the top teams in the league went head to head for the ultimate prize. And boy, did they deliver!"
+      },
+      {
+        "speaker": "COHOST",
+        "text": "That's right, {@host}. It was a nail-biter all the way through, with both teams giving it their all. But in the end, there could only be one winner. {@sportsreporter}, can you take us through the final moments of the game?"
+      },
+      {
+        "speaker": "SPORTSREPORTER",
+        "text": "Absolutely, {@cohost}. It was neck and neck right up until the very end. But with just seconds left on the clock, {!sports_winning_play}.\n And with that the {!winning_team} had won, {!winning_team_score} - {!losing_team_score}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "It was definitely an exciting game, {@sportsreporter}. Who do you think was the standout player of the game?"
+      },
+      {
+        "speaker": "SPORTSREPORTER",
+        "text": "Well, {@cohost}, there were a lot of great performances out there last night. But I have to give it to {!standout_player} for {!standout_player_action}. *Insert joke or pun here about standout player's performance, {@host}!*"
+      },
+      {
+        "speaker": "HOST",
+        "text": "Very funny, {@sportsreporter}! Thanks for joining us, and thanks to all of you at home for tuning in. We'll see you next time for more sports news and analysis!"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "sport_name",
+        "description": "The name of the sport that was played."
+      },
+      {
+        "groupId": "game_info",
+        "subPrompts": [
+          {
+            "id": "winning_team",
+            "description": "The name of the team that won last night's {!sport_name} game."
+          },
+          {
+            "id": "winning_team_score",
+            "description": "The final score of the winning team."
+          },
+          {
+            "id": "losing_team_score",
+            "description": "The final score of the losing team."
+          }
+        ]
+      },
+      {
+        "id": "standout_player",
+        "description": "The name of the player who stood out in last night's {!sport_name} game."
+      },
+      {
+        "id": "sports_winning_play",
+        "description": "The last minute winning play made in last nights {!sport_name} game."
+      },
+      {
+        "id": "standout_player_action",
+        "description": "The incredible play that {!standout_player} made in last nights {!sport_name} game."
+      }
+    ]
+  }
+]

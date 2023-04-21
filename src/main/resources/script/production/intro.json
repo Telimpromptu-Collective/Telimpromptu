@@ -45,11 +45,11 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "You're watching Telimpromptu News, I'm your host, {@host} Hostadanews."
+        "text": "You're watching Telimpromptu News, I'm your host, {@host} {@host_lastname}."
       },
       {
         "speaker": "COHOST",
-        "text": "I'm {@cohost} Newsly, tonight's story: {!main_story}"
+        "text": "I'm {@cohost} {@cohost_lastname}, tonight's story: {!main_story}"
       },
       {
         "speaker": "HOST",

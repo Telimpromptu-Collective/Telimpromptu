@@ -20,7 +20,7 @@ class RoleNameValidator: ScriptValidator {
      * the preceding {@ and following } characters.
      */
     private fun getReferencedRoleStringsInLine(line: ScriptLine): List<String> {
-        val regex = """\{@[^}]+}""".toRegex()
+        val regex = """\{@(?!.*_lastname)[^}]+}""".toRegex()
 
         val matches = regex.findAll(line.text).map { it.value }
         return matches

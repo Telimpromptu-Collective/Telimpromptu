@@ -6,7 +6,11 @@ import teleimpromptu.script.parsing.ScriptSection
 class ReferencedPromptExistsValidator: ScriptValidator {
     override fun validate(section: ScriptSection): List<ScriptValidationError> {
         val out = mutableListOf<ScriptValidationError>()
-        val sectionPrompts = section.prompts.map { prompt -> prompt.unpack().map { it.id } }.flatten().toSet()
+        // these prompts are always valid.
+        val defaultPrompts = listOf("main_story")
+        val sectionPrompts = defaultPrompts +
+                section.prompts.map { prompt -> prompt.unpack().map { it.id } }.flatten()
+                    .toSet()
         for (line in section.lines) {
             val referencedPrompts = getPromptIdStringsInLine(line).distinct()
             val missingPrompts = referencedPrompts.filterNot { sectionPrompts.contains(it) }
