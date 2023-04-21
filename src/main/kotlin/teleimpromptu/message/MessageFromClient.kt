@@ -55,6 +55,8 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
             "userConnect" -> UserConnectMessage.serializer()
             "startGame" -> StartGameMessage.serializer()
             "promptResponse" -> PromptResponseMessage.serializer()
+            "storySubmission" -> StorySubmissionMessage.serializer()
+            "storyVote" -> StoryVoteMessage.serializer()
             "heartbeat" -> HeartbeatMessage.serializer()
             "endStorySubmissionMessage" -> EndStoryVotingMessage.serializer()
             else -> error("unknown message type $type")

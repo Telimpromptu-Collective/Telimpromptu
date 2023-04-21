@@ -31,7 +31,7 @@ export const PromptProvider: React.FC<PromptProviderProps> = (props) => {
   );
 };
 
-const Prompt: React.FC<PromptProps> = (props) => {
+export const Prompt: React.FC<PromptProps> = (props) => {
   const { id, description, onSubmitPrompt } = props;
   const textAreaRef = useRef<HTMLInputElement>(null);
 
