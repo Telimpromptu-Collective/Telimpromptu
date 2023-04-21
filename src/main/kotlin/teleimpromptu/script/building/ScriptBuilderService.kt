@@ -17,7 +17,11 @@ object ScriptBuilderService {
         } while (getPrimaryRolesInScript(script).size < playerCount)
 
         if (getPrimaryRolesInScript(script).size > playerCount) {
-            error("Something has gone horribly wrong.... Script was generated with too many roles.")
+            error("Script was generated with too many roles!?")
+        }
+
+        if (getRolesInScript(script) != getPrimaryRolesInScript(script)) {
+            error("There are roles in the script without sections where they are the primary role!?")
         }
 
         script.add(getAvailableSectionsForRoles(playerCount, SegmentTag.CLOSING, script, true).random())
@@ -30,7 +34,7 @@ object ScriptBuilderService {
                                              filterByTag: SegmentTag,
                                              scriptSoFar: List<ScriptSection>,
                                              canAddNothing: Boolean = false): List<ScriptSection> {
-        val rolesInScript = getPrimaryRolesInScript(scriptSoFar)
+        val primaryRolesInScript = getPrimaryRolesInScript(scriptSoFar)
         return ScriptParsingService.sections
             // if it is the type we are looking for
             .filter { it.tags.contains(filterByTag) }
@@ -38,17 +42,23 @@ object ScriptBuilderService {
             // and it adds at least one role
             // AND the new roles it would add to the script would still be less than our player count
             .filter {
-                val newRoleCount = getNewRoles(it.primaryRoles, rolesInScript).size
-                return@filter (newRoleCount > 0 || canAddNothing) &&
-                        newRoleCount + rolesInScript.size <= playerCount
+                val newPrimaryRoleCount = (it.primaryRoles - primaryRolesInScript).size
+                val newNonPrimaryRoles = it.primaryRoles - it.rolesInSection
+
+                // this section adds something, or is allowed to add nothing
+                return@filter (newPrimaryRoleCount > 0 || canAddNothing) &&
+                        // and it wont put us over cap
+                        newPrimaryRoleCount + primaryRolesInScript.size <= playerCount &&
+                        // and all the non-primary roles already have a primary part
+                        primaryRolesInScript.containsAll(newNonPrimaryRoles)
             }
     }
 
-    private fun getNewRoles(newRolesFromSection: List<TIPURole>, preexisingRoles: List<TIPURole>): List<TIPURole> {
-        return newRolesFromSection.filter { !preexisingRoles.contains(it) }
+    fun getRolesInScript(script: List<ScriptSection>): Set<TIPURole> {
+        return script.flatMap { it.rolesInSection }.toSet()
     }
 
-    fun getPrimaryRolesInScript(script: List<ScriptSection>): List<TIPURole> {
-        return script.flatMap { it.primaryRoles }.distinct()
+    fun getPrimaryRolesInScript(script: List<ScriptSection>): Set<TIPURole> {
+        return script.flatMap { it.primaryRoles }.toSet()
     }
 }

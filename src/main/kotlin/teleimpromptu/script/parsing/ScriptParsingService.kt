@@ -1,12 +1,10 @@
 package teleimpromptu.script.parsing
 
 import jsonDecoder
-import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 import teleimpromptu.TIPURole
 import java.io.File
 import java.lang.Exception
-import java.nio.file.Files
 
 object ScriptParsingService
 {
@@ -27,7 +25,7 @@ object ScriptParsingService
         // todo make this cleaner
         return rawSections.map { rawSection ->
             // all the roles that say stuff
-            val rolesInSection: MutableList<TIPURole> = rawSection.lines.map { it.speaker }.distinct().toMutableList()
+            val rolesInSection: MutableSet<TIPURole> = rawSection.lines.map { it.speaker }.toMutableSet()
 
             // all the roles that get mentioned
             for (line in rawSection.lines) {
@@ -43,7 +41,7 @@ object ScriptParsingService
                 rawSection.primaryRoles,
                 rawSection.lines,
                 rawSection.prompts,
-                rolesInSection.distinct().toList())
+                rolesInSection.toSet())
         }
     }
 }
