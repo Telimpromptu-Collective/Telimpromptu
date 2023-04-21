@@ -26,10 +26,6 @@
     ],
     "prompts": [
       {
-        "id": "main_story",
-        "description": "The story of the night!"
-      },
-      {
         "id": "main_story_info",
         "description": "Initial details about the story, {!main_story}"
       },
@@ -69,10 +65,6 @@
       }
     ],
     "prompts": [
-      {
-        "id": "main_story",
-        "description": "The story of the night!"
-      },
       {
         "id": "host_reaction_to_main_story",
         "description": "The host's reaction upon hearing the story for the first time, {!main_story}"

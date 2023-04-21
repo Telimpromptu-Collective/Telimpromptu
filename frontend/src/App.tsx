@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { Lobby } from "./components/Lobby";
 import {
@@ -6,19 +6,24 @@ import {
   UserStatus,
   isConnectionSuccessMessage,
   isErrorMessage,
-  isGameStartedMessage,
   isMessage,
   isNewPromptsMessage,
   isPromptsCompleteMessage,
   isUserNameUpdateMessage,
+  isEnterPromptAnsweringStateMessage,
+  isEnterStoryVotingStateMessage,
+  isStoryVotingStateUpdateMessage,
+  Story,
 } from "./messages";
 import { Game } from "./components/Game";
 import { ErrorHost, ErrorData } from "./components/ErrorHost";
 import { nanoid } from "nanoid";
+import { StoryVoting } from "./components/StoryVoting";
 
 enum GameState {
   lobbyDisconnected,
   lobbyConnected,
+  gameVoting,
   gameActive,
   gameOver,
   // gameComplete?
@@ -33,6 +38,8 @@ const App: React.FC = () => {
   const [errorList, setErrorList] = useState<ErrorData[]>([]);
   const [username, setUsername] = useState("");
   const [gameState, setGameState] = useState(GameState.lobbyDisconnected);
+  const [stories, setStories] = useState<Story[]>([]);
+  const storyOfTheNight = useRef<string>("");
 
   const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl);
 
@@ -41,7 +48,7 @@ const App: React.FC = () => {
       setSocketUrl(
         `ws://${window.location.hostname}:${window.location.port}/games/${lobbyID}`
       );
-      sendJsonMessage({ type: "createUser", username: username });
+      sendJsonMessage({ type: "userConnect", username: username });
       setHeartBeatInterval(
         setInterval(() => sendJsonMessage({ type: "heartbeat" }), 5000)
       );
@@ -67,6 +74,24 @@ const App: React.FC = () => {
     [setPromptList, promptList, sendJsonMessage]
   );
 
+  const onSubmitStory = useCallback(
+    (story: string) => {
+      sendJsonMessage({ type: "storySubmission", story: story });
+    },
+    [sendJsonMessage]
+  );
+
+  const onVoteForStory = useCallback(
+    (storyId: number) => {
+      sendJsonMessage({ type: "storyVote", storyId: storyId });
+    },
+    [sendJsonMessage]
+  );
+
+  const onEndVoting = useCallback(() => {
+    sendJsonMessage({ type: "endStoryVoting" });
+  }, [sendJsonMessage]);
+
   const onDismissError = useCallback(
     (id: string) => {
       setErrorList((errorList) => errorList.filter((error) => error.id !== id));
@@ -87,33 +112,38 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (isMessage(lastJsonMessage)) {
-      if (isUserNameUpdateMessage(lastJsonMessage)) {
-        setUserList(lastJsonMessage.statuses);
-      } else if (isConnectionSuccessMessage(lastJsonMessage)) {
-        setGameState(GameState.lobbyConnected);
-        setUsername(lastJsonMessage.username);
-      } else if (isNewPromptsMessage(lastJsonMessage)) {
-        setPromptList([...promptList, ...lastJsonMessage.scriptPrompts]);
-      } else if (isGameStartedMessage(lastJsonMessage)) {
-        setGameState(GameState.gameActive);
-        setUserList(lastJsonMessage.statuses);
-      } else if (isErrorMessage(lastJsonMessage)) {
+      if (isErrorMessage(lastJsonMessage)) {
         setErrorList([
           ...errorList,
           { message: lastJsonMessage.message, id: nanoid() }, //unique id for each error because of react shenanigans
         ]);
-      } else if (isPromptsCompleteMessage(lastJsonMessage)) {
+      }
+      if (isUserNameUpdateMessage(lastJsonMessage)) {
+        setUserList(lastJsonMessage.statuses);
+      }
+      if (isConnectionSuccessMessage(lastJsonMessage)) {
+        setGameState(GameState.lobbyConnected);
+        setUsername(lastJsonMessage.username);
+      }
+      if (isNewPromptsMessage(lastJsonMessage)) {
+        setPromptList([...promptList, ...lastJsonMessage.scriptPrompts]);
+      }
+      if (isEnterPromptAnsweringStateMessage(lastJsonMessage)) {
+        setGameState(GameState.gameActive);
+        setUserList(lastJsonMessage.statuses);
+        storyOfTheNight.current = lastJsonMessage.storyOfTheNight;
+      }
+      if (isEnterStoryVotingStateMessage(lastJsonMessage)) {
+        setGameState(GameState.gameVoting);
+      }
+      if (isStoryVotingStateUpdateMessage(lastJsonMessage)) {
+        setStories(lastJsonMessage.stories);
+      }
+      if (isPromptsCompleteMessage(lastJsonMessage)) {
         setGameState(GameState.gameOver);
       }
     }
-  }, [
-    lastJsonMessage,
-    setGameState,
-    setUserList,
-    setUsername,
-    setPromptList,
-    promptList,
-  ]);
+  }, [lastJsonMessage]);
 
   const commonProps = {
     username: username,
@@ -136,12 +166,23 @@ const App: React.FC = () => {
         </div>
       );
       break;
+    case GameState.gameVoting:
+      mainElement = (
+        <StoryVoting
+          stories={stories}
+          onSubmitStory={onSubmitStory}
+          onVote={onVoteForStory}
+          onEndVoting={onEndVoting}
+        />
+      );
+      break;
     case GameState.gameActive:
     case GameState.gameOver:
       mainElement = (
         <Game
           {...commonProps}
           gameOver={gameState === GameState.gameOver}
+          storyOfTheNight={storyOfTheNight.current}
           promptList={promptList}
           onSubmitPrompt={onSubmitPrompt}
         />

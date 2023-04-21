@@ -10,9 +10,9 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import teleimpromptu.TIPUSession
 import teleimpromptu.message.Message
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringState
 import teleimpromptu.script.parsing.ScriptParsingService
 import teleimpromptu.script.validating.TelimpromptuScriptValidator
-import teleimpromptu.states.TIPUGame
 
 
 val games = mutableMapOf<String, TIPUSession>()
@@ -71,7 +71,7 @@ fun main() {
         }
         get("/games/{game-id}/teleprompter") { ctx ->
             when (val gameState = games[ctx.gameId]?.state) {
-                is TIPUGame -> {
+                is TIPUPromptAnsweringState -> {
                     ctx.render("teleprompter.jte", mapOf(
                         "script" to gameState.getFullFormattedScript(),
                         "roleMap" to gameState.getPlayers().associate { it.role to it.username }

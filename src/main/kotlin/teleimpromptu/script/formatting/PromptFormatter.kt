@@ -1,9 +1,8 @@
 package teleimpromptu.script.formatting
 
-import teleimpromptu.TIPUPlayer
-import teleimpromptu.TIPURole
+import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringPlayer
 
-class PromptFormatter(private val players: List<TIPUPlayer>) {
+class PromptFormatter(private val players: List<TIPUPromptAnsweringPlayer>) {
     private val formatMap: MutableMap<String, String> = mutableMapOf()
 
     // todo this sucks
