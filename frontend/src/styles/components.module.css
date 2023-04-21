@@ -23,7 +23,7 @@ Button {
   font-size: 16px;
   margin-top: 10px;
   padding: 6px;
-  border: 2px solid #939393;
+  border: 2px solid #bcbcbc;
   color: white;
   border-radius: 8px;
 }
@@ -37,7 +37,8 @@ Button:hover {
 .telepompterDrawing {
   aspect-ratio: 1 / 1;
   margin-top: 10px;
-  max-width: 300px;
+  margin-bottom: 5vh;
+  max-width: 250px;
   text-align: center;
   color: white;
 }
@@ -62,18 +63,26 @@ Button:hover {
   margin: 8px 0;
   box-sizing: border-box;
   background-color: #284261;
-  border: 2px solid #939393;
+  border: 2px solid #bcbcbc;
   color: white;
   border-radius: 8px;
 }
 
+.connectTeleprompterButtonContainer {
+  margin-top: 10px;
+}
 
 .connectTeleprompterButton {
   color: gray;
   text-decoration: none;
+  text-decoration: underline;
   font-size: 16px;
   color: white;
   margin-top: 10px; 
+}
+
+.connectTeleprompterButton:hover {
+  cursor: pointer;
 }
 
 /*userList*/
@@ -100,7 +109,6 @@ Button:hover {
   display: flex;
   flex-direction: column;
   width: 75%;
-  height: 100px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3%;
@@ -112,8 +120,7 @@ Button:hover {
 }
 
 .promptButton {
-  margin-left: 85%;
-  width: 15%;
+  width:25%;
 }
 
 .promptText {

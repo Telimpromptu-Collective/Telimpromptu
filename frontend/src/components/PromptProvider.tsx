@@ -56,6 +56,7 @@ const Prompt: React.FC<PromptProps> = (props) => {
         className={`${styles.promptBox}`}
         type="textarea"
         ref={textAreaRef}
+        style={{ height: "100px" }}
       />
       <button
         className={`${styles.promptButton}`}

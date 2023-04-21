@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b97b4cb0-70fe-42a3-8b25-a318bdc1c698" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml.orig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/teleprompter1.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/teleprompter1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/teleprompter2.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/teleprompter2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Lobby.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Lobby.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PromptProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PromptProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/components.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/components.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public-old/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public-old/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

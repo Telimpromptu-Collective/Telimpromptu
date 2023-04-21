@@ -42,7 +42,9 @@ export const Lobby: React.FC<LobbyProps> = (props) => {
         <br/>
         <button className={styles.coolButton} onClick={onClickConnectButton}>{buttonMessages[randomIndex]}</button>
         <br/>
-        <a className={styles.connectTeleprompterButton}>Go to teleprompter</a>
+        <div className={styles.connectTeleprompterButtonContainer}>
+          <a className={styles.connectTeleprompterButton}>Go to teleprompter</a>
+        </div>
       </form>
     </div>
   ) : (
