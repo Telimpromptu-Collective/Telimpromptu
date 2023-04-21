@@ -51,6 +51,7 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
 
         this.promptAllocator = PromptAllocator(this.players, script)
         this.promptFormatter = PromptFormatter(this.players)
+        promptFormatter.addPromptResponse("main_story", storyOfTheNight)
 
 
         val json = jsonDecoder
@@ -107,6 +108,18 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
 
     override fun receiveDisconnect(ctx: WsCloseContext) {
         println("connection closed....")
+
+        val updateMessage = UsernameUpdateMessage(
+            players.map { player ->
+                UsernameStatus(player.username, player.connection.session.isOpen)
+            }
+        )
+
+        val json = jsonDecoder.encodeToString(updateMessage)
+
+        players.forEach { player ->
+            player.connection.send(json)
+        }
     }
 
     // todo maybe this should be unpacked beforehand since reconnecting has to be

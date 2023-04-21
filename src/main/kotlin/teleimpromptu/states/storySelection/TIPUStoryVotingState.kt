@@ -50,7 +50,8 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
                 }
 
                 // update the users
-                players.forEach { it.connection.send(buildStoryVotingStateUpdateMessage()) }
+                players.forEach { it.connection.send(jsonDecoder
+                    .encodeToString(buildStoryVotingStateUpdateMessage())) }
             }
             is StoryVoteMessage -> {
                 if (!storyOptions.contains(message.storyId)) {
@@ -61,11 +62,14 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
                 storyVotes[sender] = message.storyId
 
                 // update the users
-                players.forEach { it.connection.send(buildStoryVotingStateUpdateMessage()) }
+                players.forEach { it.connection.send(jsonDecoder
+                    .encodeToString(buildStoryVotingStateUpdateMessage())) }
             }
             is EndStoryVotingMessage -> {
                 if (players.all { storyVotes.keys.contains(it) }) {
-                    val winningStoryIndex = storyVotes.values.groupingBy { it }.eachCount().maxBy { it.value }.key
+                    // shuffled so its random on a tie
+                    val winningStoryIndex = storyVotes.values.shuffled()
+                        .groupingBy { it }.eachCount().maxBy { it.value }.key
                     val winningStory = storyOptions[winningStoryIndex] ?: error("story was not found in voting")
 
                     tipuSession.state = TIPUPromptAnsweringState(players, winningStory.story, tipuSession)
@@ -101,10 +105,24 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
                 )
             }
         )
+
     }
 
+    // todo this will trigger when we recieve any disconnect
     override fun receiveDisconnect(ctx: WsCloseContext) {
         println("connection closed....")
+
+        val updateMessage = UsernameUpdateMessage(
+            players.map { player ->
+                UsernameStatus(player.username, player.connection.session.isOpen)
+            }
+        )
+
+        val json = jsonDecoder.encodeToString(updateMessage)
+
+        players.forEach { player ->
+            player.connection.send(json)
+        }
     }
 
     private fun getDefaultStoryOptions(): List<TIPUStory> {

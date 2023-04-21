@@ -154,10 +154,6 @@
             "description": "A type of animal the Zookeeper will bring on."
           },
           {
-            "id": "animal_type_plural",
-            "description": "That animal type... but plural."
-          },
-          {
             "id": "animal_name",
             "description": "The name of that animal."
           }

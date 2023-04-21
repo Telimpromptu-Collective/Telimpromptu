@@ -1,3 +1,101 @@
+/*Page*/
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #101f31;
+  font-family: Arial, sans-serif;
+  color: white;
+  height: 100vh;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+Button {
+  font-size: 1em;
+  background-color: #284261;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 6px;
+  border: 2px solid #939393;
+  color: white;
+  border-radius: 8px;
+}
+
+Button:hover {
+  cursor: pointer;
+  background-color: #3a597d;
+}
+
+/*Teleprompter drawing animation*/
+.telepompterDrawing {
+  aspect-ratio: 1 / 1;
+  margin-top: 10px;
+  max-width: 300px;
+  text-align: center;
+  color: white;
+}
+
+/*Connection Form Box*/
+.connectionFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 33vw; /*for tha big input boxes*/
+  margin-top: 80px; /*prevent overlap w banner*/
+  text-align: center;
+}
+
+.connectionFormInput {
+  font-size: 1em;
+  width: 20vw;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #284261;
+  border: 2px solid #939393;
+  color: white;
+  border-radius: 8px;
+}
+
+
+.connectTeleprompterButton {
+  color: gray;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  margin-top: 10px; 
+}
+
+/*userList*/
+.userListContainer {
+    margin-top: 80px; /*prevent overlap w banner*/
+    list-style-type: none; 
+    overflow: auto;
+    text-align: center;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  padding: 10px;
+}
+
+/*Prompt Box*/
 .promptContainer {
   display: flex;
   flex-direction: column;
@@ -27,15 +125,7 @@
   visibility: hidden;
 }
 
-.connectionFormContainer {
-}
-
-.userListContainer {
-}
-
-.userList {
-}
-
+/*Error boxes*/
 .errorHost {
   display: flex;
   flex-direction: column;
@@ -73,4 +163,23 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 10pt;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .connectionFormContainer {
+    margin-top: 10vh;
+  }
+
+  .telepompterDrawing {
+    max-width: 50vw;
+  }
+
+  .connectionFormContainer {
+    width: 100vw;
+  }
+  
+  .connectionFormInput {
+    width: 80vw;
+  }
 }

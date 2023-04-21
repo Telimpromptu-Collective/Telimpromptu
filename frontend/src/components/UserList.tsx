@@ -15,8 +15,8 @@ export const UserList: React.FC<{
         <ul className={styles.userList}>
           {userList.map((status) => (
             <li>
-              {`${status.username}${status.connected ? "" : "-dc"}`}
-              {status.role && `: ${status.role}`}
+              {status.username}
+              {status.role && `: ${status.role} ${status.connected ? "" : ""}`}
               {status.username === username && <b> (you)</b>}
             </li>
           ))}

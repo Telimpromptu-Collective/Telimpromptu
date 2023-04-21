@@ -58,7 +58,7 @@ object MessageSerializer : JsonContentPolymorphicSerializer<Message>(Message::cl
             "storySubmission" -> StorySubmissionMessage.serializer()
             "storyVote" -> StoryVoteMessage.serializer()
             "heartbeat" -> HeartbeatMessage.serializer()
-            "endStorySubmissionMessage" -> EndStoryVotingMessage.serializer()
+            "endStoryVoting" -> EndStoryVotingMessage.serializer()
             else -> error("unknown message type $type")
         }
     }

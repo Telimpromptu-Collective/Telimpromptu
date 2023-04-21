@@ -8,8 +8,6 @@ body {
     height: 100vh;
 }
 
-//connection form
-
 #connectionForm {
   display: flex;
   flex-direction: column;

@@ -74,5 +74,135 @@
         "description": "Write a message for the field reporter to give to the families at home."
       }
     ]
+  },
+  {
+    "tags": [
+      "SEGMENT"
+    ],
+    "primaryRoles": [
+      "FIELDREPORTER",
+      "WITNESS"
+    ],
+    "lines": [
+      {
+        "speaker": "HOST",
+        "text": "We go now to field reporter {@fieldreporter} Reportsalot. {@fieldreporter} thank you for joining us."
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Thank you, {@host}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "Whats going on at the scene of the incident?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Well, {!fieldreporter_fieldreport1}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "Anything else?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Yes, we have a quote from a witness who saw the incident firsthand. Quote, {!fieldreporter_quote}."
+      },
+      {
+        "speaker": "COHOST",
+        "text": "{!host_exclamation}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "{!host_exclamation} is right {@cohost}."
+      },
+      {
+        "speaker": "WITNESS",
+        "text": "{!passerby_initial_greeting}"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Excuse me, hello, what's your name?"
+      },
+      {
+        "speaker": "WITNESS",
+        "text": "{@witness} {!passerby_last_name}"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "{@witness} {!passerby_last_name}, what can you tell us about what happened here?"
+      },
+      {
+        "speaker": "WITNESS",
+        "text": "(\nImprovise.\nInclude the following words:\n{!passerby_improv1}\n{!passerby_improv2}\n{!passerby_improv3}\n)"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "{!host_exclamation}! Thank you for telling us that {@witness} {!passerby_last_name}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "{@fieldreporter} Reportsalot, do you have a message for the families at home?"
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Yes, {!fieldreporter_familyanswer}."
+      },
+      {
+        "speaker": "HOST",
+        "text": "That's field reporter {@fieldreporter} Reportsalot. {@fieldreporter}, thank you."
+      },
+      {
+        "speaker": "FIELDREPORTER",
+        "text": "Thank you."
+      },
+      {
+        "speaker": "WITNESS",
+        "text": "Thank you."
+      }
+    ],
+    "prompts": [
+      {
+        "id": "fieldreporter_fieldreport1",
+        "description": "Write 1+ sentences on what the field reporter sees at the scene of the incident."
+      },
+      {
+        "id": "host_exclamation",
+        "description": "An exclamation the host says. Eg: 'Wow!' 'Holy moly!'"
+      },
+      {
+        "id": "fieldreporter_quote",
+        "description": "Write a quote for the field reporter to present on something said by a witness who saw the incident firsthand."
+      },
+      {
+        "id": "fieldreporter_familyanswer",
+        "description": "Write a message for the field reporter to give to the families at home."
+      },
+      {
+        "id": "passerby_initial_greeting",
+        "description": "Write something a random passerby would say to get on TV. Ignore any context about the scene."
+      },
+      {
+        "id": "passerby_last_name",
+        "description": "Create a fake last name that {@passerby} would make up"
+      },
+      {
+        "groupId": "passerby_improv_words",
+        "subPrompts": [
+          {
+            "id": "passerby_improv1",
+            "description": "Name a random object."
+          },
+          {
+            "id": "passerby_improv2",
+            "description": "Name a random person."
+          },
+          {
+            "id": "passerby_improv3",
+            "description": "Make up a fake word."
+          }
+        ]
+      }
+    ]
   }
 ]

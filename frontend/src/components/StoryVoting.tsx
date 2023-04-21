@@ -14,28 +14,26 @@ export const StoryVoting: React.FC<StoryVotingProps> = (props) => {
 
   return (
     <>
-      <Prompt
-        id=""
-        onSubmitPrompt={(_id, description) => onSubmitStory(description)}
-        description="Enter a story of the night!"
-      />
       <ul>
         {stories.map((story) => (
           <li>
-            {story.author}
-            {story.story}
-            {story.voters}
+            {story.author}: {story.story} - [{story.voters.join(", ")}]
             <button
               onClick={() => {
                 onVote(story.id);
               }}
             >
-              VOTE
+              Vote
             </button>
           </li>
         ))}
       </ul>
-      <button onClick={onEndVoting}>WE ARE FUCKING DONE</button>
+      <Prompt
+        id=""
+        onSubmitPrompt={(_id, description) => onSubmitStory(description)}
+        description="Enter a story of the night!"
+      />
+      <button onClick={onEndVoting}>Voting Complete</button>
     </>
   );
 };

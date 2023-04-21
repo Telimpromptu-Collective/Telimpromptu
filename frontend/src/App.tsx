@@ -26,6 +26,7 @@ enum GameState {
   gameVoting,
   gameActive,
   gameOver,
+  // gameComplete?
 }
 
 const App: React.FC = () => {
@@ -89,7 +90,7 @@ const App: React.FC = () => {
 
   const onEndVoting = useCallback(() => {
     sendJsonMessage({ type: "endStoryVoting" });
-  }, []);
+  }, [sendJsonMessage]);
 
   const onDismissError = useCallback(
     (id: string) => {
@@ -98,6 +99,8 @@ const App: React.FC = () => {
     [errorList, setErrorList]
   );
   //testing
+
+ /*
   useEffect(() => {
     setErrorList([
       { message: "1", id: nanoid() },
@@ -105,6 +108,7 @@ const App: React.FC = () => {
       { message: "3", id: nanoid() },
     ]);
   }, []);
+  */
 
   useEffect(() => {
     if (isMessage(lastJsonMessage)) {
@@ -152,12 +156,14 @@ const App: React.FC = () => {
     case GameState.lobbyDisconnected:
     case GameState.lobbyConnected:
       mainElement = (
-        <Lobby
-          {...commonProps}
-          connected={gameState === GameState.lobbyConnected}
-          onConnect={onConnect}
-          onStartGame={onStartGame}
-        />
+        <div>
+          <Lobby
+            {...commonProps}
+            connected={gameState === GameState.lobbyConnected}
+            onConnect={onConnect}
+            onStartGame={onStartGame}
+          />
+        </div>
       );
       break;
     case GameState.gameVoting:
@@ -176,6 +182,7 @@ const App: React.FC = () => {
         <Game
           {...commonProps}
           gameOver={gameState === GameState.gameOver}
+          storyOfTheNight={storyOfTheNight.current}
           promptList={promptList}
           onSubmitPrompt={onSubmitPrompt}
         />
