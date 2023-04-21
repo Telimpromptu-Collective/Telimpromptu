@@ -93,10 +93,12 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
         return StoryVotingStateUpdateMessage(
             storyOptions.entries.map { storyOption ->
                 StoryForClient(
+                    storyOption.key,
                     storyOption.value.author?.username,
                     storyOption.value.story,
                     storyVotes.filter { storyVote -> storyVote.value == storyOption.key }
-                        .map { storyVote -> storyVote.key.username })
+                        .map { storyVote -> storyVote.key.username }
+                )
             }
         )
     }

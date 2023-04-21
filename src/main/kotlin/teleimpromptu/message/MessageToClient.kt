@@ -60,6 +60,7 @@ data class EnterPromptAnsweringStateMessage(
 
 @Serializable
 data class StoryForClient(
+    val id: Int,
     val author: String?,
     val story: String,
     val voters: List<String>
