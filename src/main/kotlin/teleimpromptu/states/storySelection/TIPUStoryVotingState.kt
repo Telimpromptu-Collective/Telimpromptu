@@ -6,13 +6,15 @@ import jsonDecoder
 import kotlinx.serialization.encodeToString
 import teleimpromptu.*
 import teleimpromptu.message.*
+import teleimpromptu.script.parsing.DefaultStoryOptionParsingService
 import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringState
 
 class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
                            private val tipuSession: TIPUSession): TIPUSessionState {
 
     // vote option id is equal to the index in this list
-    private val storyOptions: MutableMap<Int, TIPUStory> = getDefaultStoryOptions()
+    private val storyOptions: MutableMap<Int, TIPUStory> = DefaultStoryOptionParsingService.defaultStoryOptions
+        .shuffled().take(2)
         .withIndex().associate { it.index to it.value }.toMutableMap()
     private val storyVotes: MutableMap<TIPUStorySelectionPlayer, Int> = mutableMapOf()
 
@@ -21,6 +23,10 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
             it.connection.send(jsonDecoder
                 .encodeToString(EnterStoryVotingStateMessage()))
         }
+
+        // update the users
+        players.forEach { it.connection.send(jsonDecoder
+            .encodeToString(buildStoryVotingStateUpdateMessage())) }
     }
 
     override fun receiveMessage(ctx: WsMessageContext, message: Message) {

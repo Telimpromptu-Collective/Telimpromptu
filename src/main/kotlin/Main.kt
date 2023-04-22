@@ -32,6 +32,7 @@ fun main() {
     // set up server
     Javalin.create {
         it.staticFiles.add("/public")
+        it.staticFiles.add("/public-hack")
     }.apply {
         ws("/games/{game-id}") { ws ->
             ws.onConnect { ctx ->

@@ -7,7 +7,7 @@
 
 <head>
     <title>Telimpromptu</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style-teleprompter.css">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <div style="font-size: 8em" style="white-space: pre-line">
