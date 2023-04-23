@@ -12,23 +12,12 @@ enum class TIPURole(val lastNames: List<String>) {
     COMMENTATOR(listOf("Smith")),
     ZOOKEEPER(listOf("Zooman", "King", "Animalman")),
     RELIGIOUSLEADER(listOf("Smith")),
-    POLITICALREPORTER(listOf()),
+    POLITICALREPORTER(listOf("")),
     SPORTSREPORTER(listOf());
 
+    // maybe we dont need this :p
     fun toLowercaseString(): String {
-        return when(this) {
-            HOST -> "host"
-            COHOST -> "cohost"
-            GUESTEXPERT -> "guestexpert"
-            DETECTIVE -> "detective"
-            FIELDREPORTER -> "fieldreporter"
-            WITNESS -> "witness"
-            COMMENTATOR -> "commentator"
-            ZOOKEEPER -> "zookeeper"
-            RELIGIOUSLEADER -> "religiousleader"
-            POLITICALREPORTER -> "politicalreporter"
-            SPORTSREPORTER -> "sportsreporter"
-        }
+        return this.toString().lowercase()
     }
 
     fun randomLastName(): String {

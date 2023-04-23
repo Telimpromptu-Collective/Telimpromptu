@@ -19,18 +19,6 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
                                private val storyOfTheNight: String,
                                private val tipuSession: TIPUSession): TIPUSessionState {
 
-    private val lastNameMap = mapOf(
-        TIPURole.HOST to listOf("Newsly", "Hostman", "Hostdanews"),
-        TIPURole.COHOST to listOf("McNewsman", "Newsperson", "Hosterson"),
-        TIPURole.GUESTEXPERT to listOf("Expertson", "Knowsalot", "McQualified"),
-        TIPURole.DETECTIVE to listOf("Gumshoe", "McSniff", "Sleuthburger"),
-        TIPURole.FIELDREPORTER to listOf("Reportson", "McReporter", "Rerpotsalot"),
-        TIPURole.WITNESS to listOf("Realman", "Eyeball"),
-        TIPURole.COMMENTATOR to listOf("Smith"),
-        TIPURole.ZOOKEEPER to listOf("Zooman", "King", "Animalman"),
-        TIPURole.RELIGIOUSLEADER to listOf("Smith")
-    )
-
     private val players: List<TIPUPromptAnsweringPlayer>
     private val script: List<ScriptSection> = ScriptBuilderService.buildScriptForPlayerCount(players.size)
 
@@ -42,7 +30,7 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
 
         val playersWithRoles = (players.shuffled() zip roles)
             .map { (entry, role) ->
-                val lastNameList = lastNameMap[role] ?: error("No last name for $role")
+                val lastNameList = role.lastNames
                 val lastName = lastNameList[Random.nextInt(lastNameList.size)]
                 TIPUPromptAnsweringPlayer(entry.username, role, lastName, entry.connection)
             }
@@ -122,7 +110,6 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
         }
     }
 
-    // todo maybe this should be unpacked beforehand since reconnecting has to be
     private fun sendPromptsToPlayer(player: TIPUPromptAnsweringPlayer, prompts: List<SinglePrompt>) {
         // format script prompts
         val formattedScriptPrompts = prompts.map { SinglePrompt(it.id, promptFormatter.formatText(it.description)) }

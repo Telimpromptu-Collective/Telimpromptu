@@ -28,9 +28,4 @@ class PromptFormatter(private val players: List<TIPUPromptAnsweringPlayer>) {
     fun addPromptResponse(promptId: String, response: String) {
         formatMap[promptId] = response
     }
-
-    // todo
-    enum class ResponseType {
-        STANDARD, ADLIB
-    }
 }

@@ -1,26 +1,14 @@
 package teleimpromptu.script.building
 
-import teleimpromptu.states.promptAnswering.TIPUPromptAnsweringPlayer
 import teleimpromptu.TIPURole
 import teleimpromptu.script.allocating.DetailedPrompt
-import teleimpromptu.script.allocating.Prompt
 import teleimpromptu.script.parsing.*
 
 object DetailedPromptBuilderService {
-    // todo move away from this
-    fun buildDetailedPrompts(script: List<ScriptSection>, players: List<TIPUPromptAnsweringPlayer>): MutableList<DetailedPrompt> {
-        val prompts: MutableList<DetailedPrompt> = mutableListOf()
-
-        prompts.addAll(buildDetailedScriptPrompts(script))
-
-        return prompts
-    }
-
-
     // todo this can be changed to happen at json parse time
     // we should try to maintain the order of the prompts that they are in inside the config
     // so we can serve them in roughly that order
-    private fun buildDetailedScriptPrompts(script: List<ScriptSection>): MutableList<DetailedPrompt> {
+    fun buildDetailedScriptPrompts(script: List<ScriptSection>): MutableList<DetailedPrompt> {
         val prompts: MutableList<DetailedPrompt> = mutableListOf()
 
 
@@ -31,7 +19,7 @@ object DetailedPromptBuilderService {
         for (scriptSection: ScriptSection in script) {
             for (scriptPrompt: ScriptPrompt in scriptSection.prompts) {
                 val speakers: MutableList<TIPURole> = mutableListOf()
-                val dependentPrompts: MutableList<Prompt> = mutableListOf()
+                val dependentPrompts: MutableList<ScriptPrompt> = mutableListOf()
 
                 // get dependent prompts
                 when (scriptPrompt) {

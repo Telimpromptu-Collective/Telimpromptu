@@ -17,7 +17,7 @@ export const StoryVoting: React.FC<StoryVotingProps> = (props) => {
       <ul>
         {stories.map((story) => (
           <li>
-            {story.author}: {story.story} - [{story.voters.join(", ")}]
+            {story.author ?? "DEFAULT"}: {story.story} - [{story.voters.join(", ")}]
             <button
               onClick={() => {
                 onVote(story.id);

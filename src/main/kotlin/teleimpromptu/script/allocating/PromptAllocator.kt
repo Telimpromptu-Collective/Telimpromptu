@@ -16,7 +16,7 @@ class PromptAllocator(private val players: List<TIPUPromptAnsweringPlayer>,
         players.associateWith { mutableListOf<SinglePrompt>() }.toMutableMap()
 
     init {
-        val allDetailedPrompts: List<DetailedPrompt> = DetailedPromptBuilderService.buildDetailedPrompts(script, players)
+        val allDetailedPrompts: List<DetailedPrompt> = DetailedPromptBuilderService.buildDetailedScriptPrompts(script)
         // the list we start handing out only contains prompts with no dependencies.
         this.promptsToDoleOut = allDetailedPrompts.filter { it.dependentPrompts.isEmpty() }.toMutableList()
         this.promptsToDoleOutWithUnresolvedDependencies =
@@ -96,11 +96,6 @@ class PromptAllocator(private val players: List<TIPUPromptAnsweringPlayer>,
                 promptsGivenToPlayer.all { it.value.isEmpty() }
     }
 
-    fun addAdlibPrompt(prompt: AdlibPrompt) {
-        // todo we could add speakers here but it probably doesnt matter
-        promptsToDoleOut.add(DetailedPrompt(prompt, mutableListOf(), listOf()))
-    }
-
     private fun areAllPromptDependenciesResolved(prompt: DetailedPrompt): Boolean {
         return prompt.dependentPrompts.all {
             when (it) {
@@ -109,9 +104,6 @@ class PromptAllocator(private val players: List<TIPUPromptAnsweringPlayer>,
                 }
                 is PromptGroup -> {
                     it.subPrompts.all { subPrompt -> completedPromptIds.contains(subPrompt.id) }
-                }
-                is AdlibPrompt -> {
-                    completedPromptIds.contains(it.id)
                 }
                 else -> {
                     error("prompt was of unknown type when checking if dependencies were resolved")

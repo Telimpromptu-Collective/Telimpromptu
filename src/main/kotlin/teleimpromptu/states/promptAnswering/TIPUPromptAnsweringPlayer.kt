@@ -4,7 +4,10 @@ import io.javalin.websocket.WsContext
 import teleimpromptu.TIPURole
 import java.util.Objects
 
-data class TIPUPromptAnsweringPlayer(val username: String, val role: TIPURole, val lastname: String, var connection: WsContext) {
+data class TIPUPromptAnsweringPlayer(val username: String,
+                                     val role: TIPURole,
+                                     val lastname: String,
+                                     var connection: WsContext) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) {

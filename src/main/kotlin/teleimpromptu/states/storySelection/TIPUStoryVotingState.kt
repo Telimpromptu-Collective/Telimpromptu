@@ -14,7 +14,7 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
 
     // vote option id is equal to the index in this list
     private val storyOptions: MutableMap<Int, TIPUStory> = DefaultStoryOptionParsingService.defaultStoryOptions
-        .shuffled().take(2)
+        .shuffled().take(2) // 2 default stories
         .withIndex().associate { it.index to it.value }.toMutableMap()
     private val storyVotes: MutableMap<TIPUStorySelectionPlayer, Int> = mutableMapOf()
 
@@ -35,6 +35,7 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
 
         when (message) {
             is StorySubmissionMessage -> {
+                // either create the user's new story or replace their old one and wipe the votes
                 val usersAlreadySubmittedStoryOption = storyOptions.entries.find { it.value.author == sender }
 
                 if (usersAlreadySubmittedStoryOption != null) {
@@ -101,12 +102,12 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
 
     private fun buildStoryVotingStateUpdateMessage(): StoryVotingStateUpdateMessage {
         return StoryVotingStateUpdateMessage(
-            storyOptions.entries.map { storyOption ->
+            storyOptions.entries.map { (id, story) ->
                 StoryForClient(
-                    storyOption.key,
-                    storyOption.value.author?.username,
-                    storyOption.value.story,
-                    storyVotes.filter { storyVote -> storyVote.value == storyOption.key }
+                    id,
+                    story.author?.username,
+                    story.story,
+                    storyVotes.filter { storyVote -> storyVote.value == id }
                         .map { storyVote -> storyVote.key.username }
                 )
             }
@@ -114,7 +115,6 @@ class TIPUStoryVotingState(private val players: List<TIPUStorySelectionPlayer>,
 
     }
 
-    // todo this will trigger when we recieve any disconnect
     override fun receiveDisconnect(ctx: WsCloseContext) {
         println("connection closed....")
 

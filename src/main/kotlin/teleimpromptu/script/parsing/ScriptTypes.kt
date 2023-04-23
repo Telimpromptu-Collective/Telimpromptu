@@ -3,10 +3,8 @@ package teleimpromptu.script.parsing
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.*
 import teleimpromptu.TIPURole
-import teleimpromptu.script.allocating.Prompt
 
 enum class SegmentTag {
     INTRODUCTION, MAIN_STORY, SEGMENT, CLOSING
@@ -37,13 +35,15 @@ class ScriptLine(
 // scriptprompts are prompts from scripts, prompts are any type of prompt (including adlib prompt)
 @Polymorphic
 @Serializable(with = PromptSerializer::class)
-sealed class ScriptPrompt: Prompt
+sealed interface ScriptPrompt {
+    fun unpack(): List<SinglePrompt>
+}
 
 @Serializable
 class SinglePrompt(
     val id: String,
     val description: String
-): ScriptPrompt() {
+): ScriptPrompt {
     override fun unpack(): List<SinglePrompt> {
         return listOf(this)
     }
@@ -53,7 +53,7 @@ class SinglePrompt(
 class PromptGroup(
     val groupId: String,
     val subPrompts: List<SinglePrompt>
-): ScriptPrompt() {
+): ScriptPrompt {
     override fun unpack(): List<SinglePrompt> {
         return this.subPrompts
     }
@@ -62,7 +62,7 @@ class PromptGroup(
 object PromptSerializer : JsonContentPolymorphicSerializer<ScriptPrompt>(ScriptPrompt::class) {
     override fun selectDeserializer(
         element: JsonElement
-    ): DeserializationStrategy<out ScriptPrompt> {
+    ): DeserializationStrategy<ScriptPrompt> {
         return if (element.jsonObject.containsKey("groupId")) {
             PromptGroup.serializer()
         } else if (element.jsonObject.containsKey("id")) {
