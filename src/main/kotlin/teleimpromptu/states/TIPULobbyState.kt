@@ -58,7 +58,7 @@ class TIPULobbyState(private val tipuSession: TIPUSession) : TIPUSessionState {
     private fun updateUserStatuses() {
         val updateMessage = UsernameUpdateMessage(
             usernameMap.map { entry ->
-                UsernameStatus(entry.key, entry.value.session.isOpen)
+                UsernameStatus(entry.key, !entry.value.session.isOpen)
             }
         )
 

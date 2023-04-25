@@ -11,16 +11,14 @@ export const UserList: React.FC<{
   return (
     <table>
       <th>Connected Users</th>
-      <td>
-        <ul className={styles.userList}>
-          {userList.map((status) => (
-            <li>
-              {status.username}
-              {status.role && `: ${status.role} ${status.connected ? "" : ""}`}
-              {status.username === username && <b> (you)</b>}
-            </li>
-          ))}
-        </ul>
+      <td className={styles.userList}>
+        {userList.map((status) => (
+          <li>
+            {status.username}
+            {status.role && `: ${status.role} ${status.connected ? "" : " -disconnected"}`}
+            {status.username === username && <b> (you)</b>}
+          </li>
+        ))}
       </td>
     </table>
   );

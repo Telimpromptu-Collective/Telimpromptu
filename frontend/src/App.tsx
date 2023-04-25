@@ -126,7 +126,7 @@ const App: React.FC = () => {
         setUsername(lastJsonMessage.username);
       }
       if (isNewPromptsMessage(lastJsonMessage)) {
-        setPromptList([...promptList, ...lastJsonMessage.scriptPrompts]);
+        setPromptList(promptList.concat(lastJsonMessage.scriptPrompts));
       }
       if (isEnterPromptAnsweringStateMessage(lastJsonMessage)) {
         setGameState(GameState.gameActive);
@@ -158,7 +158,8 @@ const App: React.FC = () => {
       mainElement = (
         <div>
           <Lobby
-            {...commonProps}
+            username={commonProps.username}
+            userList={commonProps.userList}
             connected={gameState === GameState.lobbyConnected}
             onConnect={onConnect}
             onStartGame={onStartGame}

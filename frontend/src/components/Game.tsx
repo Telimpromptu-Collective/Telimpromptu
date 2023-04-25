@@ -17,9 +17,9 @@ export const Game: React.FC<GameProps> = (props) => {
 
   return (
     <>
+      <h1>Story of the Night:</h1>
+      <h2>{storyOfTheNight}</h2>
       <UserList {...props} />
-      <p>Story of the Night:</p>
-      <p>{storyOfTheNight}</p>
       {!gameOver && <PromptProvider {...props} />}
       {gameOver && <p>Prompts complete!</p>}
     </>

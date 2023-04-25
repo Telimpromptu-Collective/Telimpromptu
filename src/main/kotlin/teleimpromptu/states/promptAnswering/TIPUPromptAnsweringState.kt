@@ -99,7 +99,7 @@ class TIPUPromptAnsweringState(players: List<TIPUStorySelectionPlayer>,
 
         val updateMessage = UsernameUpdateMessage(
             players.map { player ->
-                UsernameStatus(player.username, player.connection.session.isOpen)
+                UsernameStatus(player.username, !player.connection.session.isOpen)
             }
         )
 

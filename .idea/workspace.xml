@@ -6,19 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b97b4cb0-70fe-42a3-8b25-a318bdc1c698" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/StoryVoting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/StoryVoting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/TIPURole.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedPrompt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/DetailedPrompt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptAllocator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/allocating/PromptTypes.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/DetailedPromptBuilderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/DetailedPromptBuilderService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/parsing/ScriptTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringPlayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PromptProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PromptProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/components.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/components.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobbyState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/TIPULobbyState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/storySelection/TIPUStory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/storySelection/TIPUStory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/storySelection/TIPUStoryVotingState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/storySelection/TIPUStoryVotingState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/defaultStories.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/defaultStories.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,15 +68,6 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/storySelection/TIPUStoryVotingState.kt</url>
-          <line>118</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="io.javalin.http.InternalServerErrorResponse" memberName="cause" />

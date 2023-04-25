@@ -33,7 +33,7 @@ export const PromptProvider: React.FC<PromptProviderProps> = (props) => {
 
 export const Prompt: React.FC<PromptProps> = (props) => {
   const { id, description, onSubmitPrompt } = props;
-  const textAreaRef = useRef<HTMLInputElement>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const onClickSubmitButton = useCallback(
     (event: FormEvent) => {
@@ -52,9 +52,8 @@ export const Prompt: React.FC<PromptProps> = (props) => {
   return (
     <form className={styles.promptContainer}>
       <label className={`${styles.promptText}`}>{description}</label>
-      <input
+      <textarea
         className={`${styles.promptBox}`}
-        type="textarea"
         ref={textAreaRef}
         style={{ height: "100px" }}
       />
