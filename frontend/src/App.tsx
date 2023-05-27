@@ -4,15 +4,7 @@ import { Lobby } from "./components/Lobby";
 import {
   PromptData,
   UserStatus,
-  isConnectionSuccessMessage,
-  isErrorMessage,
-  isMessage,
-  isNewPromptsMessage,
-  isPromptsCompleteMessage,
-  isUserNameUpdateMessage,
-  isEnterPromptAnsweringStateMessage,
-  isEnterStoryVotingStateMessage,
-  isStoryVotingStateUpdateMessage,
+  isMessageForClient,
   Story,
 } from "./messages";
 import { Game } from "./components/Game";
@@ -111,7 +103,27 @@ const App: React.FC = () => {
   */
 
   useEffect(() => {
-    if (isMessage(lastJsonMessage)) {
+    if (isMessageForClient(lastJsonMessage)) {
+      switch(lastJsonMessage.type) {
+        case "error": {
+          setErrorList([
+            ...errorList,
+            { message: lastJsonMessage.message, id: nanoid() }, //unique id for each error because of react shenanigans
+          ]);
+          break;
+        }
+        case "promptsComplete":
+          break;
+        case "enterStoryVotingState":
+          break;
+        case "connectionSuccess": {
+          setGameState(GameState.lobbyConnected);
+          setUsername(lastJsonMessage.username);
+          break;
+        }
+        default:
+      }
+      /*
       if (isErrorMessage(lastJsonMessage)) {
         setErrorList([
           ...errorList,
@@ -142,6 +154,7 @@ const App: React.FC = () => {
       if (isPromptsCompleteMessage(lastJsonMessage)) {
         setGameState(GameState.gameOver);
       }
+      */
     }
   }, [lastJsonMessage]);
 
