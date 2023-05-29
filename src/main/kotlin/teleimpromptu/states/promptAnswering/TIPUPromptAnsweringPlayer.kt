@@ -21,7 +21,6 @@ data class TIPUPromptAnsweringPlayer(val username: String,
                 return true
             }
         }
-
         return false
     }
 

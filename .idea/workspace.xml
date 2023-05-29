@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b97b4cb0-70fe-42a3-8b25-a318bdc1c698" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/building/ScriptBuilderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/script/formatting/PromptFormatter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/teleimpromptu/states/promptAnswering/TIPUPromptAnsweringPlayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/onepointoh.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/onepointoh.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/intro.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/production/intro.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/outro.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/production/outro.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script/production/witness.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script/production/witness.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +63,16 @@
       <recent name="C:\Users\mulli\IdeaProjects\FunGamesWithFriendsOnline\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="FunGamesWithFriendsOnline.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScriptTestingKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="manualtesting.ScriptTestingKt" />
       <module name="FunGamesWithFriendsOnline.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -70,6 +81,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.ScriptTestingKt" />
       </list>
     </recent_temporary>
   </component>

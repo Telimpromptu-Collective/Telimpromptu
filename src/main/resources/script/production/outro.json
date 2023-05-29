@@ -9,7 +9,7 @@
   "lines": [
     {
       "speaker": "HOST",
-      "text": "Well thats all we have for tonight everyone. Truly something special isnt it, {@cohost}?"
+      "text": "Well that's all we have for tonight everyone. Truly something special isn't it, {@cohost}?"
     },
     {
       "speaker": "COHOST",
@@ -17,7 +17,7 @@
     },
     {
       "speaker": "HOST",
-      "text": "You're right about that one. Well folks, that’s all we've got for tonight. Telimpromptu news, signing off."
+      "text": "You're right about that one. Well folks, that's all we've got for tonight. Telimpromptu news, signing off."
     }
   ],
   "prompts": [

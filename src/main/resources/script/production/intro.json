@@ -21,7 +21,7 @@
       },
       {
         "speaker": "COHOST",
-        "text": "Thats right {@host}. We are also being told {!main_story_info2}"
+        "text": "That's right {@host}. We are also being told {!main_story_info2}"
       }
     ],
     "prompts": [

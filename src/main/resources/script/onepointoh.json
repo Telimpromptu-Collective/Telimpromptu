@@ -338,7 +338,7 @@
     "lines": [
       {
         "speaker": "HOST",
-        "text": "Turning back now to the scene of the incident where I’m being told reporters have managed to get a few words with a witness who saw the event."
+        "text": "Turning back now to the scene of the incident where I'm being told reporters have managed to get a few words with a witness who saw the event."
       },
       {
         "speaker": "WITNESS",
@@ -679,7 +679,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "Well folks, that’s all the time we have for tonight. Goodbye."
+        "text": "Well folks, that's all the time we have for tonight. Goodbye."
       }
     ],
     "prompts": [
@@ -708,7 +708,7 @@
       },
       {
         "speaker": "HOST",
-        "text": "You're right about that one. Well folks, that’s all we've got for tonight. Telimpromptu news, signing off."
+        "text": "You're right about that one. Well folks, that's all we've got for tonight. Telimpromptu news, signing off."
       }
     ],
     "prompts": [
