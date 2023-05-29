@@ -32,21 +32,18 @@ object ScriptBuilderService {
         playerCount: Int,
         filterByTag: SegmentTag,
         usedSections: List<ScriptSection>,
-        canAddNothing: Boolean = false
+        canReusePrimaryRoles: Boolean = false
     ): List<ScriptSection> {
         return ScriptParsingService.sections
             .filter { it.tags.contains(filterByTag) }
-            .filter { c ->
-                val isNewRoleAdded = !usedSections
-                    .map { it.rolesInSection }
-                    .flatten()
-                    .toSet()
-                    .containsAll(c.rolesInSection)
-                isNewRoleAdded || canAddNothing
+            .filter { scriptSection ->
+                val usedPrimaryRoles = usedSections.map { it.primaryRoles }.flatten().toSet()
+                val isNewPrimaryRoleAdded = !usedPrimaryRoles.containsAll(scriptSection.primaryRoles)
+                canReusePrimaryRoles || isNewPrimaryRoleAdded
             }
-            .filter {
+            .filter { scriptSection ->
                 val usedRoles = usedSections.map { it.rolesInSection }.flatten().toMutableSet()
-                usedRoles.addAll(it.primaryRoles)
+                usedRoles.addAll(scriptSection.primaryRoles)
                 usedRoles.size <= playerCount
             }
     }

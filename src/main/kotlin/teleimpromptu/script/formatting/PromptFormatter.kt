@@ -21,7 +21,6 @@ class PromptFormatter(private val players: List<TIPUPromptAnsweringPlayer>) {
             formattedText = formattedText.replace("{@${player.role.toLowercaseString()}_lastname}",
                 player.lastname)
         }
-        println(formattedText)
         return formattedText
     }
 
