@@ -3,7 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #101f31;
+  background: #00005a;
   font-family: Arial, sans-serif;
   color: white;
   height: 100vh;
@@ -33,6 +33,30 @@ Button:hover {
   background-color: #3a597d;
 }
 
+.coolButton {
+  width: calc(50% - 10px); /* Fill half the container width minus a little space for the gap */
+  background-color: rgb(4, 174, 231); /* Light blue background */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  margin: 5px; /* Space around the buttons */
+  padding: 10px; /* Padding inside the buttons for better touch */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.carouselContainer {
+  margin-top: 20px;
+  background: #12127b;
+  border-radius: 8px;
+}
+
+.carousel {
+  margin: 0 auto;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*Teleprompter drawing animation*/
 .telepompterDrawing {
   aspect-ratio: 1 / 1;
@@ -52,7 +76,7 @@ Button:hover {
   padding: 20px;
   box-sizing: border-box;
   width: 33vw; /*for tha big input boxes*/
-  margin-top: 80px; /*prevent overlap w banner*/
+  margin-top: 20px; /*prevent overlap w banner*/
   text-align: center;
 }
 
@@ -62,10 +86,9 @@ Button:hover {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  background-color: #284261;
-  border: 2px solid #bcbcbc;
-  color: white;
+  background-color: #dddddd;
   border-radius: 8px;
+  border: 2px solid #dddddd;
 }
 
 .connectTeleprompterButtonContainer {

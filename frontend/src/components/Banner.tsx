@@ -3,8 +3,8 @@ import React from "react";
 
 const Banner: React.FC = () => {
   return (
-    <div className={styles.banner}>
-        <h1 >Telimpromptu</h1>
+    <div>
+        <h1>Telimpromptu</h1>
     </div> 
   );
 };

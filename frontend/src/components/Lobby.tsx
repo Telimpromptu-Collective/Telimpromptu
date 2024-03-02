@@ -4,6 +4,7 @@ import React, { FormEvent, useCallback, useRef } from "react";
 import { UserList } from "./UserList";
 import { UserStatus } from "../messages";
 import TeleprompterDrawing from "./TeleprompterDrawing";
+import HowToPlayCarousel from "./HowToPlayCarousel";
 
 interface LobbyProps {
   username?: string;
@@ -34,18 +35,17 @@ export const Lobby: React.FC<LobbyProps> = (props) => {
 
   return !connected ? (
     <div className={styles.connectionFormContainer}>
-      <TeleprompterDrawing/>
+      <h1>Telimpromptu</h1>
       <form>
         <input className={styles.connectionFormInput} type={"text"} ref={userNameFieldRef} placeholder="Name" />
         <br/>
         <input className={styles.connectionFormInput} type={"text"} ref={lobbyFieldRef} placeholder="Lobby ID" />
         <br/>
-        <button className={styles.coolButton} onClick={onClickConnectButton}>{buttonMessages[randomIndex]}</button>
+        <button className={styles.coolButton} onClick={onClickConnectButton}>Create Lobby</button>
+        <button className={styles.coolButton} onClick={onClickConnectButton}>Join Lobby</button>
         <br/>
-        <div className={styles.connectTeleprompterButtonContainer}>
-          <a className={styles.connectTeleprompterButton}>Go to teleprompter</a>
-        </div>
       </form>
+      <HowToPlayCarousel/>
     </div>
   ) : (
     <div className={styles.userListContainer}>
